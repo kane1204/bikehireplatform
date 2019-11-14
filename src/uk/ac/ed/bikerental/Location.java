@@ -11,7 +11,8 @@ public class Location {
     }
     
     public boolean isNearTo(Location other) {
-        // TODO: Implement Location.isNearTo
+        // TODO: Implement Location.isNearTo  
+    	// Compares the first two letters of the post code if they match it returns true
         assert false;
         return true;
     }

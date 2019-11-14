@@ -13,8 +13,7 @@ public class MockDeliveryService implements DeliveryService {
     Deque<Deliverable> dropoffs;
     
     public MockDeliveryService() {
-        this.pickups = new HashMap<LocalDate,
-                Collection<Deliverable>>();
+        this.pickups = new HashMap<LocalDate,Collection<Deliverable>>();
         this.dropoffs = new ArrayDeque<Deliverable>();
     }
 
@@ -24,8 +23,7 @@ public class MockDeliveryService implements DeliveryService {
             Location pickupLocation,
             Location dropoffLocation,
             LocalDate pickupDate) {
-        this.pickups.putIfAbsent(pickupDate,
-                new HashSet<Deliverable>());
+        this.pickups.putIfAbsent(pickupDate,new HashSet<Deliverable>());
         this.pickups.get(pickupDate).add(deliverable);
     }
     
