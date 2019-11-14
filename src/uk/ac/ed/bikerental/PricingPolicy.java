@@ -7,3 +7,5 @@ public interface PricingPolicy {
     public void setDailyRentalPrice(BikeType bikeType, BigDecimal dailyPrice);
     public BigDecimal calculatePrice(Collection<Bike> bikes, DateRange duration);
 }
+// Default pricing policy
+
