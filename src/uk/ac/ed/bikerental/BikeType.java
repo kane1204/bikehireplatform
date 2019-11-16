@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class BikeType {
     public BigDecimal getReplacementValue() {
-        // TODO: Implement Bike.getReplacementValue
+        // TODO: Implement Bike.getReplacementValue WOO
         assert false;
         return null;
     }
