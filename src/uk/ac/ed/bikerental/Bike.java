@@ -9,7 +9,7 @@ public class Bike {
     public String typeOfBike;
     public BikeStore store;
     //public Booking booking;
-    private BikeType type;
+    public BikeType type;
     
     
 //    private LocalDate dateNew;

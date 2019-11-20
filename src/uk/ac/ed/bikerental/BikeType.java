@@ -24,4 +24,7 @@ public class BikeType {
         //assert false;
         return replacementCost;
     }
+    public void setReplacementValue(BigDecimal x) {
+        replacementCost =x;
+    }
 }

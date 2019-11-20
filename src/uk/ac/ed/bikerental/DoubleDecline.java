@@ -5,13 +5,10 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 
 public class DoubleDecline implements ValuationPolicy {
-
+    public BigDecimal depriciationRate;
     @Override
     public BigDecimal calculateValue(Bike bike, LocalDate date) {
-        System.out.println("Double declining balance deprication:");
-        
         BikeType bikeType = bike.getType();
-        BigDecimal depriciationRate = new BigDecimal("0.1");
         BigDecimal one = new BigDecimal("1");
         BigDecimal two = new BigDecimal("2");
         LocalDate dateNow = LocalDate.now();
