@@ -20,9 +20,6 @@ public class ValuationPolicyTests {
         testbike.type = testBiketype;
         ld = new LinearDepreciation();
         dd = new DoubleDecline();
-        
-        
-        
     }
     
     @Test
