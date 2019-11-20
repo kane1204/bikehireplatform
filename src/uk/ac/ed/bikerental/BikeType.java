@@ -21,7 +21,6 @@ public class BikeType {
         return null;
     }
     public BigDecimal getReplacementValue() {
-        // TODO: Implement Bike.getReplacementValue
         //assert false;
         return replacementCost;
     }
