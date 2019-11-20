@@ -9,7 +9,7 @@ public class Bike {
     public String typeOfBike;
     public BikeStore store;
     //public Booking booking;
-    public BikeType type;
+    private BikeType type;
     
     
 //    private LocalDate dateNew;
@@ -22,8 +22,8 @@ public class Bike {
     
     public BikeType getType() {
         // TODO: Implement Bike.getType 
-        assert false;
-        return null;
+        //assert false;
+        return type;
     }
     
     public Boolean checkDates(DateRange dates) {
