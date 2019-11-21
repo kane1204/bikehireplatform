@@ -9,15 +9,16 @@ import org.junit.jupiter.api.*;
 public class ValuationPolicyTests {
     // You can add attributes here
     private Bike testbike;
-    private BikeType testBiketype;
+    private BikeType testBikeType;
     private LinearDepreciation ld;
-    private DoubleDecline dd ;
+    private DoubleDecline dd;
+    
     @BeforeEach
     void setUp() throws Exception {
-       // System.out.println("Next test:");
-        testBiketype = new BikeType();
+    	// Create objects for each test
+    	testBikeType = new BikeType();
         testbike = new Bike();
-        testbike.type = testBiketype;
+        testbike.type = testBikeType;
         ld = new LinearDepreciation();
         dd = new DoubleDecline();
     }
@@ -27,7 +28,7 @@ public class ValuationPolicyTests {
     void firstTest() {
         LocalDate dateBikeNew = LocalDate.of(2016,1,1);
         ld.depriciationRate = new BigDecimal("0.1");
-        testBiketype.setReplacementValue(new BigDecimal("900"));
+        testBikeType.setReplacementValue(new BigDecimal("900"));
             
         BigDecimal result = ld.calculateValue(testbike, dateBikeNew);
         BigDecimal expectedResult = new BigDecimal("630.00");
@@ -40,34 +41,62 @@ public class ValuationPolicyTests {
     void secondTest() {
         LocalDate dateBikeNew = LocalDate.of(2012,1,1);
         ld.depriciationRate = new BigDecimal("0.2");
-        testBiketype.setReplacementValue(new BigDecimal("1000"));
+        testBikeType.setReplacementValue(new BigDecimal("1000"));
             
         BigDecimal result = ld.calculateValue(testbike, dateBikeNew);
         BigDecimal expectedResult = new BigDecimal("-400.00");
         
         assertEquals(expectedResult, result);
     }
+    
     @Test
     @DisplayName("Linear Depreciation Test 3")
     void thirdTest() {
         LocalDate dateBikeNew = LocalDate.of(2018,1,1);
         ld.depriciationRate = new BigDecimal("0.3");
-        testBiketype.setReplacementValue(new BigDecimal("3000"));
+        testBikeType.setReplacementValue(new BigDecimal("3000"));
             
         BigDecimal result = ld.calculateValue(testbike, dateBikeNew);
         BigDecimal expectedResult = new BigDecimal("2100.00");
         
         assertEquals(expectedResult, result);
     }
+    
     @Test
-    @DisplayName("Double Delclining Balance Depreciation Test")
+    @DisplayName("Double Delclining Balance Depreciation Test 1")
     void fourthTest() {     
         LocalDate dateBikeNew = LocalDate.of(2016,1,1);
         dd.depriciationRate = new BigDecimal("0.1");
-        testBiketype.setReplacementValue(new BigDecimal("900"));
+        testBikeType.setReplacementValue(new BigDecimal("900"));
             
         BigDecimal result = dd.calculateValue(testbike, dateBikeNew);
         BigDecimal expectedResult = new BigDecimal("460.80");
+        
+        assertEquals(expectedResult, result);
+    }
+    
+    @Test
+    @DisplayName("Double Delclining Balance Depreciation Test 2")
+    void fifthTest() {
+        LocalDate dateBikeNew = LocalDate.of(2012,1,1);
+        dd.depriciationRate = new BigDecimal("0.2");
+        testBikeType.setReplacementValue(new BigDecimal("1000"));
+            
+        BigDecimal result = dd.calculateValue(testbike, dateBikeNew);
+        BigDecimal expectedResult = new BigDecimal("28.00");
+        
+        assertEquals(expectedResult, result);
+    }
+    
+    @Test
+    @DisplayName("Double Delclining Balance Depreciation Test 3")
+    void sixthTest() {
+        LocalDate dateBikeNew = LocalDate.of(2018,1,1);
+        dd.depriciationRate = new BigDecimal("0.3");
+        testBikeType.setReplacementValue(new BigDecimal("3000"));
+            
+        BigDecimal result = dd.calculateValue(testbike, dateBikeNew);
+        BigDecimal expectedResult = new BigDecimal("1200.00");
         
         assertEquals(expectedResult, result);
     }
