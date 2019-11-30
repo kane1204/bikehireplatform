@@ -16,8 +16,6 @@ public class Quote {
         this.providerName = providerName;
         this.bikeStore = bikeStore;
         this.dates = dates;
-        this.totalPrice = totalPrice;
-        this.totalDeposit = totalDeposit;
         this.bikes = bikes;
     }
     public BigDecimal calcTotalPrice(BigDecimal dailyPrice) {
