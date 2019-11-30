@@ -1,6 +1,7 @@
 package uk.ac.ed.bikerental;
 
 /**
+ * Summary
  * 
  * @author s1839592
  * @author s1841064
@@ -9,12 +10,13 @@ package uk.ac.ed.bikerental;
 
 public class Location {
     /**
-     * ...
+     * Summary
      */
     private String postcode;
     private String address;
     
     /**
+     * Summary
      * 
      * @param postcode
      * @param address
@@ -26,6 +28,7 @@ public class Location {
     }
     
     /**
+     * Summary
      * 
      * @param other
      * @return <code>true</code>
@@ -38,6 +41,7 @@ public class Location {
     }
 
     /**
+     * Summary
      * 
      * @return String <code>postcode</code>
      */
@@ -46,6 +50,7 @@ public class Location {
     }
 
     /**
+     * Summary
      * 
      * @return String <code>address</code>
      */

@@ -6,6 +6,7 @@ import java.util.Objects;
 import java.util.function.BooleanSupplier;
 
 /**
+ * Summary
  * 
  * @author s1839592
  * @author s1841064
@@ -14,7 +15,7 @@ import java.util.function.BooleanSupplier;
 
 public class DateRange {
     /**
-     * ...
+     * Summary
      */
     private LocalDate start, end;
     
@@ -24,6 +25,7 @@ public class DateRange {
     }
     
     /**
+     * Summary
      * 
      * @return <code>start</code> LocalDate
      */
@@ -32,6 +34,7 @@ public class DateRange {
     }
     
     /**
+     * Summary
      * 
      * @return <code>end</code> LocalDate
      */
@@ -40,6 +43,7 @@ public class DateRange {
     }
 
     /**
+     * Summary
      * 
      * @return Number of years between <code>start</code> and <code>end</code>
      */
@@ -48,6 +52,7 @@ public class DateRange {
     }
 
     /**
+     * Summary
      * 
      * @return Number of days between <code>start</code> and <code>end</code>
      */
@@ -56,6 +61,7 @@ public class DateRange {
     }
 
     /**
+     * Summary
      * 
      * @param other
      * @return <code>null</code>
@@ -67,6 +73,7 @@ public class DateRange {
     }
 
     /**
+     * Summary
      * 
      * @return A hash code for <code>start</code> and <code>end</code>
      */
@@ -77,6 +84,7 @@ public class DateRange {
     }
 
     /**
+     * Summary
      * 
      * @return Truth value of the equality of <code>start</code> and <code>other.start</code>;
      * and <code>end</code> and <code>other.end</code>
