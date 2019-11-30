@@ -34,10 +34,17 @@ public class Location {
      * @return <code>true</code>
      */
     public boolean isNearTo(Location other) {
-        // TODO: Implement Location.isNearTo  
     	// Compares the first two letters of the post code if they match it returns true
-        assert false;
-        return true;
+        // is the location near to the this other location
+        String otherPostcode = getPostcode();
+        String other2Letters = otherPostcode.substring(0, 2);
+        String LocPostcode = postcode.substring(0, 2);
+        
+        if (LocPostcode==other2Letters) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
