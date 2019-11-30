@@ -25,6 +25,6 @@ public class BikeType {
         return replacementCost;
     }
     public void setReplacementValue(BigDecimal x) {
-        replacementCost =x;
+        replacementCost = x;
     }
 }

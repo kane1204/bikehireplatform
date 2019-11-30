@@ -1,7 +1,8 @@
 package uk.ac.ed.bikerental;
 
 /**
- * Summary
+ * The location class provides methods that deal with the location of bike stores and the location.
+ * the customer queries.
  * 
  * @author s1839592
  * @author s1841064
@@ -10,13 +11,16 @@ package uk.ac.ed.bikerental;
 
 public class Location {
     /**
-     * Summary
+     * Postcode and address of the store.
+     * <p>
+     * <code>postcode</code> should never be less than 6 characters.
      */
     private String postcode;
     private String address;
     
     /**
-     * Summary
+     * Define the constructor for Location.
+     * This also prevents the postcode string being less than 6 characters long. 
      * 
      * @param postcode
      * @param address
@@ -28,14 +32,14 @@ public class Location {
     }
     
     /**
-     * Summary
+     * Compare the first two letters of the postcode of the store and and the customer's queried
+     * location.
      * 
      * @param other
-     * @return <code>true</code>
+     * @return <code>true</code> if the first two letters of each postcode match
+     * @return <code>false</code> if the first to letters of the post code don't match
      */
     public boolean isNearTo(Location other) {
-    	// Compares the first two letters of the post code if they match it returns true
-        // is the location near to the this other location
         String otherPostcode = getPostcode();
         String other2Letters = otherPostcode.substring(0, 2);
         String LocPostcode = postcode.substring(0, 2);
@@ -45,10 +49,11 @@ public class Location {
         } else {
             return false;
         }
+        //why is 'other' (that has been passed in) not been used?
     }
 
     /**
-     * Summary
+     * Getter method for the postcode string.
      * 
      * @return String <code>postcode</code>
      */
@@ -57,7 +62,7 @@ public class Location {
     }
 
     /**
-     * Summary
+     * Getter method for the string <code>address</code>.
      * 
      * @return String <code>address</code>
      */

@@ -23,7 +23,7 @@ public class Customer {
         // first check locations in area by bike store
         
         Collection<BikeStore> nearByStores = new ArrayList<BikeStore>();
-        Iterator<BikeStore> nearByStoreiterator = nearByStores.iterator();
+        Iterator<BikeStore> nearByStoreIterator = nearByStores.iterator();
         Collection<Quote> availableQuotes = new ArrayList<Quote>();
         
         while(AllBikeStores.hasNext()){// AllBikeStores is a global collection
@@ -33,10 +33,10 @@ public class Customer {
                 nearByStores.add(tempStore);
            } 
         }
-        while(nearByStoreiterator.hasNext()){
-            BikeStore tempStore = nearByStoreiterator.next();
+        while(nearByStoreIterator.hasNext()){
+            BikeStore tempStore = nearByStoreIterator.next();
             // check bike availability will need to return a list of bikes
-            Collection<Bike> availibleBikes = tempStore.checkBikeAvailability(dateRange, bikeTypes)
+            Collection<Bike> availibleBikes = tempStore.checkBikeAvailability(dateRange, bikeTypes);
             
             if(availibleBikes != null) {
                 Quote newQuote = new Quote(tempStore.storeName,tempStore,dateRange,availibleBikes);     

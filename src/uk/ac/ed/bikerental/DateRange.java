@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.function.BooleanSupplier;
 
 /**
- * Summary
+ * This class provides means of finding a period of time between two dates.
  * 
  * @author s1839592
  * @author s1841064
@@ -15,17 +15,23 @@ import java.util.function.BooleanSupplier;
 
 public class DateRange {
     /**
-     * Summary
+     * First day and last day of a period of time.
      */
     private LocalDate start, end;
     
+    /**
+     * Define constructor for DateRange
+     * 
+     * @param start
+     * @param end
+     */
     public DateRange(LocalDate start, LocalDate end) {
         this.start = start;
         this.end = end;
     }
     
     /**
-     * Summary
+     * Getter method for the date <code>start</code>.
      * 
      * @return <code>start</code> LocalDate
      */
@@ -34,7 +40,7 @@ public class DateRange {
     }
     
     /**
-     * Summary
+     * Getter method for the date <code>end</code>.
      * 
      * @return <code>end</code> LocalDate
      */
@@ -43,39 +49,42 @@ public class DateRange {
     }
 
     /**
-     * Summary
+     * Using the getter methods for <code>start</code> and <code>end</code>, find Number of years
+     * in this date range.
      * 
-     * @return Number of years between <code>start</code> and <code>end</code>
+     * @return the number of years in this date range.
      */
     public long toYears() {
         return ChronoUnit.YEARS.between(this.getStart(), this.getEnd());
     }
 
     /**
-     * Summary
+     * Using the getter methods for <code>start</code> and <code>end</code>, find Number of days
+     * in this date range.
      * 
-     * @return Number of days between <code>start</code> and <code>end</code>
+     * @return the number of days in this date range.
      */
     public long toDays() {
         return ChronoUnit.DAYS.between(this.getStart(), this.getEnd());
     }
 
     /**
-     * Summary
+     * Check if the 
      * 
      * @param other
      * @return <code>null</code>
      */
     public Boolean overlaps(DateRange other) {
         // TODO: implement date range intersection checking
+    	// if the date range of date1's(getters) end date and date2's(other) start date is <= 0
         assert false;
         return null;
     }
 
     /**
-     * Summary
+     * Create a hash code for <code>start</code> and <code>end</code>
      * 
-     * @return A hash code for <code>start</code> and <code>end</code>
+     * @return this hash code.
      */
     @Override
     public int hashCode() {
@@ -84,10 +93,10 @@ public class DateRange {
     }
 
     /**
-     * Summary
-     * 
-     * @return Truth value of the equality of <code>start</code> and <code>other.start</code>;
+     * Find the truth value of the equality of <code>start</code> and <code>other.start</code>;
      * and <code>end</code> and <code>other.end</code>
+     * 
+     * @return this truth value.
      */
     @Override
     public boolean equals(Object obj) {
