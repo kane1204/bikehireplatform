@@ -69,16 +69,25 @@ public class DateRange {
     }
 
     /**
-     * Check if the 
+     * Check if the date range of a bike currently being rented's end date and the date range of a
+     * customers query's start date is less than or equal to 0, this will check if they over lap or
+     * do not.
      * 
      * @param other
-     * @return <code>null</code>
+     * @return <code>true</code> if the 2 date ranges overlap; or
+     * <p>
+     * <code>false</code> if the 2 date ranges do not overlap.
      */
     public Boolean overlaps(DateRange other) {
         // TODO: implement date range intersection checking
-    	// if the date range of date1's(getters) end date and date2's(other) start date is <= 0
-        assert false;
-        return null;
+    	// if the 
+    	LocalDate rentalEndDate = end;
+    	LocalDate otherStartDate = other.getStart();
+    	DateRange rentToQuery = new DateRange(rentalEndDate, otherStartDate);
+    	int daysBetween = (int) rentToQuery.toDays();
+    	
+    	if(daysBetween <= 0) return true;
+        return false;
     }
 
     /**

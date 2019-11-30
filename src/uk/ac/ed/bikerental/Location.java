@@ -36,11 +36,12 @@ public class Location {
      * location.
      * 
      * @param other
-     * @return <code>true</code> if the first two letters of each postcode match
-     * @return <code>false</code> if the first to letters of the post code don't match
+     * @return <code>true</code> if the first two letters of each postcode match; or
+     * <p>
+     * <code>false</code> if the first to letters of the post code don't match.
      */
     public boolean isNearTo(Location other) {
-        String otherPostcode = getPostcode();
+        String otherPostcode = other.getPostcode();
         String other2Letters = otherPostcode.substring(0, 2);
         String LocPostcode = postcode.substring(0, 2);
         
@@ -49,7 +50,8 @@ public class Location {
         } else {
             return false;
         }
-        //why is 'other' (that has been passed in) not been used?
+        //made line 43 other.getPostcose() (i assume you just for got to add 'other' before the
+        //method.
     }
 
     /**
