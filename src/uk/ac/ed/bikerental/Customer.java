@@ -16,15 +16,11 @@ public class Customer {
     private Collection<Booking> bookings;
     
     
-    
-    
     public Collection<Quote> getAllQuotes(Collection<BikeType> bikeTypes, DateRange dateRange,Location locationOfHire){
         //TODO: getAllQuotes
         // first check locations in area by bike store
         
         Collection<BikeStore> nearByStores = new ArrayList<BikeStore>();
-
-        Iterator<BikeStore> nearByStoreIterator = nearByStores.iterator();
 
         Collection<Quote> availableQuotes = new ArrayList<Quote>();
         
@@ -38,8 +34,8 @@ public class Customer {
 
         Iterator<BikeStore> nearByStoreiterator = nearByStores.iterator();
 
-        while(nearByStoreIterator.hasNext()){
-            BikeStore tempStore = nearByStoreIterator.next();
+        while(nearByStoreiterator.hasNext()){
+            BikeStore tempStore = nearByStoreiterator.next();
             // check bike availability will need to return a list of bikes
             Collection<Bike> availibleBikes = tempStore.checkBikeAvailability(dateRange, bikeTypes);
             
@@ -73,6 +69,7 @@ public class Customer {
                     availableQuotes.add(newQuote);
                     }
             }
+ //:TODO the last part of the get all quotes
             if (availableQuotes.size() == 0) {// another date extension
              // reinitialise the iterator for a the nearby stores
                 Iterator<BikeStore> nearByStoreiterator2 = nearByStores.iterator();
@@ -83,7 +80,7 @@ public class Customer {
                     DateRange newDateRange = new DateRange(dateRange.getStart().plusDays(3),
                             dateRange.getStart().plusDays(3).plusDays(dateRange.toDays()));
                     
-                    Collection<Bike> availibleBikes = tempStore.checkBikeAvailability(dateRange, bikeTypes);
+                    Collection<Bike> availibleBikes = tempStore.checkBikeAvailability(newDateRange, bikeTypes);
                     
                     if(availibleBikes != null) {
                         Quote newQuote = new Quote(tempStore.storeName,tempStore,dateRange,availibleBikes);
@@ -94,8 +91,6 @@ public class Customer {
                 }
             }
         }
-        
-        
         
         return availableQuotes;
     }
