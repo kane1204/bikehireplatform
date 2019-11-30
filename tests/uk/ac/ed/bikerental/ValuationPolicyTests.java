@@ -21,8 +21,8 @@ public class ValuationPolicyTests {
     
     @BeforeEach
     void setUp() throws Exception {
-    	// Create objects for each test
-    	testBikeType = new BikeType();
+        // Create objects for each test
+        testBikeType = new BikeType();
         testbike = new Bike();
         testbike.type = testBikeType;
         ld = new LinearDepreciation();

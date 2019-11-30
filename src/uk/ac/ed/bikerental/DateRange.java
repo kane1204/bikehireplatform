@@ -80,13 +80,12 @@ public class DateRange {
      */
     public Boolean overlaps(DateRange other) {
         // TODO: implement date range intersection checking
-    	// if the 
-    	LocalDate rentalEndDate = end;
-    	LocalDate otherStartDate = other.getStart();
-    	DateRange rentToQuery = new DateRange(rentalEndDate, otherStartDate);
-    	int daysBetween = (int) rentToQuery.toDays();
-    	
-    	if(daysBetween <= 0) return true;
+        LocalDate rentalEndDate = end;
+        LocalDate otherStartDate = other.getStart();
+        DateRange rentToQuery = new DateRange(rentalEndDate, otherStartDate);
+        int daysBetween = (int) rentToQuery.toDays();
+        
+        if(daysBetween <= 0) return true;
         return false;
     }
 
