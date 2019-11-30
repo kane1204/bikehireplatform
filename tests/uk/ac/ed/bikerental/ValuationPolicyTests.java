@@ -13,6 +13,12 @@ public class ValuationPolicyTests {
     private LinearDepreciation ld;
     private DoubleDecline dd;
     
+    /*
+     * Set Up:
+     * Create objects for a bike, a bike type and the 2 types of depreciation.
+     * Set the bike's bike type
+     */
+    
     @BeforeEach
     void setUp() throws Exception {
     	// Create objects for each test
@@ -22,6 +28,14 @@ public class ValuationPolicyTests {
         ld = new LinearDepreciation();
         dd = new DoubleDecline();
     }
+    
+    /*
+     * Linear Depreciation Tests:
+     * A LinearDepreciation object has been created globally.
+     * We must set a date at which the bike was band new at.
+     * Set a depreciation rate and replacement value.
+     * Compare the result from the method implemented from class ValuationPolicy with correct value
+     */
     
     @Test
     @DisplayName("Linear Depreciation Test 1")
@@ -62,13 +76,21 @@ public class ValuationPolicyTests {
         assertEquals(expectedResult.stripTrailingZeros(), result.stripTrailingZeros());
     }
     
+    /*
+     * Double Declining Balance Depreciation Tests:
+     * A DoubleDelining object has been created globally.
+     * We must set a date at which the bike was band new at.
+     * Set a depreciation rate and replacement value.
+     * Compare the result from the method implemented from class ValuationPolicy with correct value
+     */
+    
     @Test
     @DisplayName("Double Delclining Balance Depreciation Test 1")
     void fourthTest() {     
         LocalDate dateBikeNew = LocalDate.of(2016,1,1);
         dd.depriciationRate = new BigDecimal("0.1");
         testBikeType.setReplacementValue(new BigDecimal("900"));
-            
+        
         BigDecimal result = dd.calculateValue(testbike, dateBikeNew);
         BigDecimal expectedResult = new BigDecimal("460.8");
         
