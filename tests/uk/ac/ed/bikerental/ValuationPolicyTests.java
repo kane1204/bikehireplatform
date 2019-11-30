@@ -31,9 +31,9 @@ public class ValuationPolicyTests {
         testBikeType.setReplacementValue(new BigDecimal("900"));
             
         BigDecimal result = ld.calculateValue(testbike, dateBikeNew);
-        BigDecimal expectedResult = new BigDecimal("630.00");
+        BigDecimal expectedResult = new BigDecimal("630");
         
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult.stripTrailingZeros(), result.stripTrailingZeros());
     }
  
     @Test
@@ -44,9 +44,9 @@ public class ValuationPolicyTests {
         testBikeType.setReplacementValue(new BigDecimal("1000"));
             
         BigDecimal result = ld.calculateValue(testbike, dateBikeNew);
-        BigDecimal expectedResult = new BigDecimal("-400.00");
+        BigDecimal expectedResult = new BigDecimal("-400");
         
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult.stripTrailingZeros(), result.stripTrailingZeros());
     }
     
     @Test
@@ -57,9 +57,9 @@ public class ValuationPolicyTests {
         testBikeType.setReplacementValue(new BigDecimal("3000"));
             
         BigDecimal result = ld.calculateValue(testbike, dateBikeNew);
-        BigDecimal expectedResult = new BigDecimal("2100.00");
+        BigDecimal expectedResult = new BigDecimal("2100");
         
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult.stripTrailingZeros(), result.stripTrailingZeros());
     }
     
     @Test
@@ -70,9 +70,9 @@ public class ValuationPolicyTests {
         testBikeType.setReplacementValue(new BigDecimal("900"));
             
         BigDecimal result = dd.calculateValue(testbike, dateBikeNew);
-        BigDecimal expectedResult = new BigDecimal("460.80");
+        BigDecimal expectedResult = new BigDecimal("460.8");
         
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult.stripTrailingZeros(), result.stripTrailingZeros());
     }
     
     @Test
@@ -83,9 +83,9 @@ public class ValuationPolicyTests {
         testBikeType.setReplacementValue(new BigDecimal("1000"));
             
         BigDecimal result = dd.calculateValue(testbike, dateBikeNew);
-        BigDecimal expectedResult = new BigDecimal("28.00");
+        BigDecimal expectedResult = new BigDecimal("28");
         
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult.stripTrailingZeros(), result.stripTrailingZeros());
     }
     
     @Test
@@ -96,9 +96,9 @@ public class ValuationPolicyTests {
         testBikeType.setReplacementValue(new BigDecimal("3000"));
             
         BigDecimal result = dd.calculateValue(testbike, dateBikeNew);
-        BigDecimal expectedResult = new BigDecimal("1200.00");
+        BigDecimal expectedResult = new BigDecimal("1200");
         
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult.stripTrailingZeros(), result.stripTrailingZeros());
     }
     
 }
