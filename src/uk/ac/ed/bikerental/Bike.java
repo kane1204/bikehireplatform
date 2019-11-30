@@ -21,7 +21,6 @@ public class Bike {
 //    }
     
     public BikeType getType() {
-        //assert false;
         return type;
     }
     

@@ -11,6 +11,15 @@ public class Quote {
     public BigDecimal totalDeposit;
     public Collection<Bike> bikes;
     
+    public Quote(String providerName, BikeStore bikeStore, DateRange dates, Collection<Bike> bikes) {
+        super();
+        this.providerName = providerName;
+        this.bikeStore = bikeStore;
+        this.dates = dates;
+        this.totalPrice = totalPrice;
+        this.totalDeposit = totalDeposit;
+        this.bikes = bikes;
+    }
     public BigDecimal calcTotalPrice(BigDecimal dailyPrice) {
         return null;
     }

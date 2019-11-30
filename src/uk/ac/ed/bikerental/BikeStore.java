@@ -6,8 +6,7 @@ import java.util.Collection;
 public class BikeStore {
     //Info about the store
     public String storeName;
-    public String address;
-    public String postcode;
+    public Location locationOfStore;
     
     //More functional info
     public Collection<Bike> bikeStock;
@@ -24,9 +23,9 @@ public class BikeStore {
     public void updateBooking(String message) {
         //TODO: Honestly No idea what was the idea behind this
     }
-    public Boolean checkBikeAvailability(DateRange dateRange,Collection<BikeType> bikeTypes) {
+    public Collection<Bike> checkBikeAvailability(DateRange dateRange,Collection<BikeType> bikeTypes) {
         //TODO: uses the list of types of bikes to see if they are available 
-        return false;
+        return null;
     }
     public void setDailyPrice(BikeType typeOfBike, BigDecimal dailyPrice) {
         //TODO: set Daily price on a specified bike type
