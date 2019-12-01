@@ -16,7 +16,8 @@ public class Customer {
     private Collection<Booking> bookings;
     
     
-    public Collection<Quote> getAllQuotes(Collection<BikeType> bikeTypes, DateRange dateRange,Location locationOfHire){
+    public Collection<Quote> getAllQuotes(Collection<BikeType> bikeTypes, DateRange dateRange, 
+            Location locationOfHire){
         //TODO: getAllQuotes
         // first check locations in area by bike store
         
@@ -32,15 +33,16 @@ public class Customer {
            } 
         }
 
-        Iterator<BikeStore> nearByStoreiterator = nearByStores.iterator();
+        Iterator<BikeStore> nearByStoreIterator = nearByStores.iterator();
 
-        while(nearByStoreiterator.hasNext()){
-            BikeStore tempStore = nearByStoreiterator.next();
+        while(nearByStoreIterator.hasNext()){
+            BikeStore tempStore = nearByStoreIterator.next();
             // check bike availability will need to return a list of bikes
             Collection<Bike> availibleBikes = tempStore.checkBikeAvailability(dateRange, bikeTypes);
             
             if(availibleBikes != null) {
-                Quote newQuote = new Quote(tempStore.storeName,tempStore,dateRange,availibleBikes);
+                Quote newQuote = new Quote(tempStore.storeName, tempStore, dateRange, 
+                        availibleBikes);
                 newQuote.calcTotalDeposit(null);// not sure what value and from where?
                 newQuote.calcTotalPrice(null);// not sure what value and from where?
                 availableQuotes.add(newQuote);
@@ -55,21 +57,23 @@ public class Customer {
             
             while(nearByStoreiterator1.hasNext()){
                 BikeStore tempStore = nearByStoreiterator1.next();
+                
                 // check bike availability will need to return a list of bikes
-              
                 DateRange newDateRange = new DateRange(dateRange.getStart().plusDays(3),
                         dateRange.getStart().plusDays(3).plusDays(dateRange.toDays()));
                 
-                Collection<Bike> availibleBikes = tempStore.checkBikeAvailability(newDateRange, bikeTypes);
+                Collection<Bike> availibleBikes = tempStore.checkBikeAvailability(newDateRange,
+                        bikeTypes);
                 
                 if(availibleBikes != null) {
-                    Quote newQuote = new Quote(tempStore.storeName,tempStore,dateRange,availibleBikes);
+                    Quote newQuote = new Quote(tempStore.storeName,tempStore,dateRange,
+                            availibleBikes);
                     newQuote.calcTotalDeposit(null);// not sure what value and from where?
                     newQuote.calcTotalPrice(null);// not sure what value and from where?
                     availableQuotes.add(newQuote);
                     }
             }
- //:TODO the last part of the get all quotes
+            //:TODO the last part of the get all quotes
             if (availableQuotes.size() == 0) {// another date extension
              // reinitialise the iterator for a the nearby stores
                 Iterator<BikeStore> nearByStoreiterator2 = nearByStores.iterator();
@@ -80,10 +84,12 @@ public class Customer {
                     DateRange newDateRange = new DateRange(dateRange.getStart().plusDays(3),
                             dateRange.getStart().plusDays(3).plusDays(dateRange.toDays()));
                     
-                    Collection<Bike> availibleBikes = tempStore.checkBikeAvailability(newDateRange, bikeTypes);
+                    Collection<Bike> availibleBikes = tempStore.checkBikeAvailability(newDateRange,
+                            bikeTypes);
                     
                     if(availibleBikes != null) {
-                        Quote newQuote = new Quote(tempStore.storeName,tempStore,dateRange,availibleBikes);
+                        Quote newQuote = new Quote(tempStore.storeName, tempStore, dateRange,
+                                availibleBikes);
                         newQuote.calcTotalDeposit(null);// not sure what value and from where?
                         newQuote.calcTotalPrice(null);// not sure what value and from where?
                         availableQuotes.add(newQuote);
@@ -100,6 +106,7 @@ public class Customer {
         // Adds that booking created to the collection of booking for each customer
         return null;
     }
+    
     //getter for bookings
     public Collection<Booking> getBookings() {
         return bookings;

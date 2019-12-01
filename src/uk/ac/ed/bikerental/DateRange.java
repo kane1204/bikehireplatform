@@ -79,7 +79,6 @@ public class DateRange {
      * <code>false</code> if the 2 date ranges do not overlap.
      */
     public Boolean overlaps(DateRange other) {
-        // TODO: implement date range intersection checking
         LocalDate rentalEndDate = end;
         LocalDate otherStartDate = other.getStart();
         DateRange rentToQuery = new DateRange(rentalEndDate, otherStartDate);
