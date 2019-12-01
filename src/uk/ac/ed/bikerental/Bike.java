@@ -1,6 +1,8 @@
 package uk.ac.ed.bikerental;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Iterator;
 
 //Version1
 public class Bike {
@@ -11,6 +13,7 @@ public class Bike {
     //public Booking booking;
     public BikeType type;
     private LocalDate dateNew;
+    private Collection<DateRange> unavailableDates;
     
     public LocalDate getDateNew() {
         return this.dateNew;
@@ -34,8 +37,16 @@ public class Bike {
     }
     
     public Boolean checkDates(DateRange dates) {
-        // TODO: Implement checkDates Function
-        return false;
+        Iterator<DateRange> unavailableDatesIterator = unavailableDates.iterator();
+        while(unavailableDatesIterator.hasNext()){
+            DateRange tempDateRange = unavailableDatesIterator.next();
+            if(tempDateRange.overlaps(dates)) {
+                return false;
+            }
+            
+        }
+        
+        return true;
     }
     
 }
