@@ -3,6 +3,7 @@ package uk.ac.ed.bikerental;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.Iterator;
 
 public class Quote {
     public String providerName;
@@ -20,25 +21,27 @@ public class Quote {
         this.dates = dates;
         this.bikes = bikes;
     }
-    public BigDecimal calcTotalPrice(BigDecimal dailyPrice, BikeStore store, BikeType type,
-            Bike bike) {
-        
-        
+    
+    public BigDecimal calcTotalPrice(BikeStore store, BikeType type, Bike bike) {
         String valuationPolicy = store.getValuationPolicy();
         LinearDepreciation ld = new LinearDepreciation();
         DoubleDecline dd = new DoubleDecline();
         LocalDate dateBikeNew = bike.getDateNew();
         
-        //for next bike in quote
-        //      if(valuationPolicy=="Linear Depreciation") totalPrice += ld.calculateValue(type,
-        //          dateBikeNew);
-        //      else if(valuationPolicy=="Double Declining Balance Depreciation"  totalPrice +=
-        //          dd.calculateValue(type, dateBikeNew);
-        //next
-        return null;
+        Iterator<Bike> bikesInQuoteIterator = bikes.iterator();
+
+        while(bikesInQuoteIterator.hasNext()){
+            Bike nextBike = bikesInQuoteIterator.next();
+            
+            if(valuationPolicy=="Linear Depreciation") totalPrice = ld.calculateValue(bike,
+                    dateBikeNew).add(ld.calculateValue(bike, dateBikeNew));
+            else if(valuationPolicy=="Double Declining Balance Depreciation") totalPrice =
+                    dd.calculateValue(bike,dateBikeNew).add(dd.calculateValue(bike,dateBikeNew));
+        }
+        return totalPrice;
     }
     public BigDecimal calcTotalDeposit(BigDecimal depositRate) {
-        //totalDeposit += totalprice * depositRate;
-        return null;
+        totalDeposit = totalPrice.multiply(depositRate);
+        return totalDeposit;
     }
 }
