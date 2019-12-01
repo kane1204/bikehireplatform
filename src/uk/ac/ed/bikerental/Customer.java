@@ -38,16 +38,17 @@ public class Customer {
         while(nearByStoreIterator.hasNext()){
             BikeStore tempStore = nearByStoreIterator.next();
             // check bike availability will need to return a list of bikes
-            Collection<Bike> availibleBikes = tempStore.checkBikeAvailability(dateRange, bikeTypes);
+            Collection<Bike> quoteBikes = tempStore.checkBikeAvailability(dateRange, bikeTypes);
             
-            if(availibleBikes != null) {
+            if(quoteBikes != null) {
                 Quote newQuote = new Quote(tempStore.storeName, tempStore, dateRange, 
-                        availibleBikes);
+                        quoteBikes);
 
                 //iterate through the collection of bikes and set dailyprice, store and type will
                 //with a getter
-                newQuote.calcTotalDeposit(null);// not sure what value and from where?
-                newQuote.calcTotalPrice(null);// not sure what value and from where?
+                
+                newQuote.calcTotalPrice(tempStore, quoteBikes);// not sure what value and from where?
+                newQuote.calcTotalDeposit(tempStore.getDepositRate());// not sure what value and from where?
                 availableQuotes.add(newQuote);
             }
 

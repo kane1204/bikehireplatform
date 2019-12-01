@@ -22,21 +22,21 @@ public class Quote {
         this.bikes = bikes;
     }
     
-    public BigDecimal calcTotalPrice(BikeStore store, BikeType type, Bike bike) {
+    public BigDecimal calcTotalPrice(BikeStore store, Collection<Bike> bikes) {
         String valuationPolicy = store.getValuationPolicy();
         LinearDepreciation ld = new LinearDepreciation();
         DoubleDecline dd = new DoubleDecline();
-        LocalDate dateBikeNew = bike.getDateNew();
         
         Iterator<Bike> bikesInQuoteIterator = bikes.iterator();
 
         while(bikesInQuoteIterator.hasNext()){
             Bike nextBike = bikesInQuoteIterator.next();
+            LocalDate dateBikeNew = nextBike.getDateNew();
             
-            if(valuationPolicy=="Linear Depreciation") totalPrice = ld.calculateValue(bike,
-                    dateBikeNew).add(ld.calculateValue(bike, dateBikeNew));
+            if(valuationPolicy=="Linear Depreciation") totalPrice = 
+                    totalPrice.add(ld.calculateValue(nextBike, dateBikeNew));
             else if(valuationPolicy=="Double Declining Balance Depreciation") totalPrice =
-                    dd.calculateValue(bike,dateBikeNew).add(dd.calculateValue(bike,dateBikeNew));
+                    totalPrice.add(dd.calculateValue(nextBike,dateBikeNew));
         }
         return totalPrice;
     }
