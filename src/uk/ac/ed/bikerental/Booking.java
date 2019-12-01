@@ -9,6 +9,16 @@ public class Booking {
     public Collection<Bike> bikes;
     public String ref;
     
+    public Booking(Customer customer, Location location, Collection<Bike> bikes,
+            String ref) {
+        // reference should be calculated in bookQuote
+        super();
+        this.customer = customer;
+        this.location = location;
+        this.bikes = bikes;
+        this.ref = ref;
+    }
+    
     public void payment(BigDecimal totalPrice, BigDecimal totalDeposit) {
         //TODO:payment should just return i think
         return;
