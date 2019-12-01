@@ -12,10 +12,16 @@ public class BikeStore {
     
     //More functional info
     public Collection<Bike> bikeStock;
-    public BikeStore store;
+    //public BikeStore store;
     private String[] partnerships;
     private String valuationPolicy;
     private BigDecimal depositRate;
+    
+    public BikeStore(String storeName, Location locationOfStore) {
+        super();
+        this.storeName = storeName;
+        this.locationOfStore = locationOfStore;
+    }
     
     public void addPartnership(String partnerName) {
       //TODO: addPartnerShip
