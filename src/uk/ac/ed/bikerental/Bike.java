@@ -7,13 +7,23 @@ import java.util.Iterator;
 //Version1
 public class Bike {
 
-    public Boolean status;
+    //public Boolean status;
     public String typeOfBike;
     public BikeStore store;
     //public Booking booking;
     public BikeType type;
     private LocalDate dateNew;
     private Collection<DateRange> unavailableDates;
+    
+    public Bike(BikeStore store,  BikeType type, LocalDate dateNew) {
+        this.type = type;
+        this.typeOfBike = type.nameOfType;
+        this.dateNew =dateNew;
+    }
+    
+    public void addBooking(DateRange dates) {
+        unavailableDates.add(dates);
+    }
     
     public LocalDate getDateNew() {
         return this.dateNew;
