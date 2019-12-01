@@ -25,7 +25,7 @@ public class Customer {
     }
     
     
-    public Collection<Quote> getAllQuotes(Collection<BikeType> bikeTypes, DateRange dateRange, 
+    public Collection<Quote> getAllQuotes(Collection<BikeStore> allStores, Collection<BikeType> bikeTypes, DateRange dateRange, 
             Location locationOfHire){
         //TODO: getAllQuotes
         // first check locations in area by bike store
@@ -34,8 +34,10 @@ public class Customer {
 
         Collection<Quote> availableQuotes = new ArrayList<Quote>();
         
-        while(AllBikeStores.hasNext()){// AllBikeStores is a global collection
-            BikeStore tempStore = AllBikeStores.next();
+        Iterator<BikeStore> allStoresIterator = allStores.iterator();
+        
+        while(allStoresIterator.hasNext()){// AllBikeStores is a global collection
+            BikeStore tempStore = allStoresIterator.next();
             Location tempStoreLocation = tempStore.locationOfStore;
             if (tempStoreLocation.isNearTo(locationOfHire)==true) {
                 nearByStores.add(tempStore);
