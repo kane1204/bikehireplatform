@@ -10,6 +10,15 @@ public class Bike {
     public BikeStore store;
     //public Booking booking;
     public BikeType type;
+    private LocalDate dateNew;
+    
+    public LocalDate getDateNew() {
+        return this.dateNew;
+    }
+    
+    public void setDateNew(LocalDate dateNew) { //set in test
+        this.dateNew = dateNew;
+    }
     
     
 //    private LocalDate dateNew;

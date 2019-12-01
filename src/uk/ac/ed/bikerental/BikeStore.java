@@ -12,6 +12,8 @@ public class BikeStore {
     public Collection<Bike> bikeStock;
     public BikeStore store;
     private String[] partnerships;
+    private String valuationPolicy;
+    private BigDecimal depositRate;
     
     public void addPartnership(String partnerName) {
       //TODO: addPartnerShip
@@ -29,5 +31,21 @@ public class BikeStore {
     }
     public void setDailyPrice(BikeType typeOfBike, BigDecimal dailyPrice) {
         //TODO: set Daily price on a specified bike type
+    }
+    
+    public String getValuationPolicy() {
+        return this.valuationPolicy;
+    }
+    
+    public void setValuationPolicy(String policy) { //set in test
+        this.valuationPolicy = policy;
+    }
+    
+    public BigDecimal getDepositRate() {
+        return this.depositRate;
+    }
+    
+    public void setDepositRate(BigDecimal rate) { //set in test
+        this.depositRate = rate;
     }
 }

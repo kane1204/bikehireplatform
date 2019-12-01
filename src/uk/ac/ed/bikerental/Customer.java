@@ -43,10 +43,12 @@ public class Customer {
             if(availibleBikes != null) {
                 Quote newQuote = new Quote(tempStore.storeName, tempStore, dateRange, 
                         availibleBikes);
+
+                
                 newQuote.calcTotalDeposit(null);// not sure what value and from where?
                 newQuote.calcTotalPrice(null);// not sure what value and from where?
                 availableQuotes.add(newQuote);
-                }
+            }
 
         }
         

@@ -85,7 +85,7 @@ public class ValuationPolicyTests {
      */
     
     @Test
-    @DisplayName("Double Delclining Balance Depreciation Test 1")
+    @DisplayName("Double Declining Balance Depreciation Test 1")
     void fourthTest() {     
         LocalDate dateBikeNew = LocalDate.of(2016,1,1);
         dd.depriciationRate = new BigDecimal("0.1");
@@ -98,7 +98,7 @@ public class ValuationPolicyTests {
     }
     
     @Test
-    @DisplayName("Double Delclining Balance Depreciation Test 2")
+    @DisplayName("Double Declining Balance Depreciation Test 2")
     void fifthTest() {
         LocalDate dateBikeNew = LocalDate.of(2012,1,1);
         dd.depriciationRate = new BigDecimal("0.2");
@@ -111,7 +111,7 @@ public class ValuationPolicyTests {
     }
     
     @Test
-    @DisplayName("Double Delclining Balance Depreciation Test 3")
+    @DisplayName("Double Declining Balance Depreciation Test 3")
     void sixthTest() {
         LocalDate dateBikeNew = LocalDate.of(2018,1,1);
         dd.depriciationRate = new BigDecimal("0.3");
