@@ -15,6 +15,15 @@ public class Customer {
     
     private Collection<Booking> bookings;
     
+    public Customer(String firstName, String lastName,Location locationInfo,String email,
+            String contactNo) {
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.contactNo = contactNo;
+    }
+    
     
     public Collection<Quote> getAllQuotes(Collection<BikeType> bikeTypes, DateRange dateRange, 
             Location locationOfHire){
