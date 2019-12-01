@@ -12,6 +12,19 @@ public class BikeType {
     private BigDecimal deposit;
     private BigDecimal dailyPrice;
     
+    public BikeType(BigDecimal replacementCost) {
+        this.replacementCost = replacementCost;
+    }
+    
+    public void setReplacementValue(BigDecimal x) {
+        replacementCost = x;
+    }
+    
+    public BigDecimal getReplacementValue() {
+        //assert false;
+        return replacementCost;
+    }
+    
     public BigDecimal calcDeposit(){
         //Not sure if this is getReplacement Value
         return null;
@@ -20,11 +33,6 @@ public class BikeType {
         //TODO: calc Daily Price
         return null;
     }
-    public BigDecimal getReplacementValue() {
-        //assert false;
-        return replacementCost;
-    }
-    public void setReplacementValue(BigDecimal x) {
-        replacementCost = x;
-    }
+    
+    
 }
