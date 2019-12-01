@@ -12,16 +12,17 @@ public class Customer {
     private Location locationInfo;
     private String email;
     private String contactNo;
-    
+    private Location accommodation;
     private Collection<Booking> bookings;
     
     public Customer(String firstName, String lastName,Location locationInfo,String email,
-            String contactNo) {
+            String contactNo, Location accommodation) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.contactNo = contactNo;
+        this.accommodation = accommodation;
     }
     
     
@@ -65,13 +66,22 @@ public class Customer {
 
         }
         
-        
         return availableQuotes;
     }
     
     public String bookQuote(Quote quote) {
         //TODO: bookQuote 
         // Adds that booking created to the collection of booking for each customer
+        MockDeliveryService dpd = new MockDeliveryService();
+        String ref = "";
+        Boolean delivery = false;
+        Booking newBooking =  new Booking(this,quote.bikeStore, quote.bikeStore.locationOfStore,
+                quote.dates, quote.bikes, ref, delivery, quote.totalPrice, quote.totalDeposit);
+//        if(newBooking.bikeDelivery) {
+//             Deliverable delivery = new Deliverable();
+//            dpd.scheduleDelivery(deliverable, newBooking.location, this.accommodation, newBooking.range.getStart());
+//        }
+        bookings.add(newBooking);
         return null;
     }
     

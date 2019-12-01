@@ -8,15 +8,25 @@ public class Booking {
     public Location location;
     public Collection<Bike> bikes;
     public String ref;
+    public Boolean bikeDelivery;
+    public DateRange range;
+    public BikeStore store;
+    public BigDecimal totalPrice;
+    public BigDecimal totalDeposit;
     
-    public Booking(Customer customer, Location location, Collection<Bike> bikes,
-            String ref) {
+    public Booking(Customer customer,BikeStore store, Location location, DateRange dateRange, Collection<Bike> bikes,
+            String ref,Boolean bikeDelivery,BigDecimal totalPrice, BigDecimal totalDeposit) {
         // reference should be calculated in bookQuote
         super();
         this.customer = customer;
         this.location = location;
         this.bikes = bikes;
         this.ref = ref;
+        this.bikeDelivery = bikeDelivery;
+        this.range = dateRange;
+        this.store = store;
+        this.totalPrice = totalPrice;
+        this.totalDeposit = totalDeposit;       
     }
     
     public void payment(BigDecimal totalPrice, BigDecimal totalDeposit) {
