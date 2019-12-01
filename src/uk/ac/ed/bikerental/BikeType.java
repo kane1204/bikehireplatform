@@ -12,7 +12,11 @@ public class BikeType {
     private BigDecimal deposit;
     private BigDecimal dailyPrice;
     
-    public BikeType(BigDecimal replacementCost, BigDecimal dailyPrice) {
+    
+    
+    public BikeType(String nameofType, BigDecimal replacementCost, BigDecimal dailyPrice) {
+        super();
+        this.nameOfType =nameofType;
         this.replacementCost = replacementCost;
         this.dailyPrice = dailyPrice;
     }
