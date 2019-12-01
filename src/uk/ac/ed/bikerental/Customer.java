@@ -51,53 +51,6 @@ public class Customer {
         }
         
         
-        if (availableQuotes.size() == 0) {// date extension by 3 days with the same duration
-            // reinitialise the iterator for a the nearby stores
-            Iterator<BikeStore> nearByStoreiterator1 = nearByStores.iterator();
-            
-            while(nearByStoreiterator1.hasNext()){
-                BikeStore tempStore = nearByStoreiterator1.next();
-                
-                // check bike availability will need to return a list of bikes
-                DateRange newDateRange = new DateRange(dateRange.getStart().plusDays(3),
-                        dateRange.getStart().plusDays(3).plusDays(dateRange.toDays()));
-                
-                Collection<Bike> availibleBikes = tempStore.checkBikeAvailability(newDateRange,
-                        bikeTypes);
-                
-                if(availibleBikes != null) {
-                    Quote newQuote = new Quote(tempStore.storeName,tempStore,dateRange,
-                            availibleBikes);
-                    newQuote.calcTotalDeposit(null);// not sure what value and from where?
-                    newQuote.calcTotalPrice(null);// not sure what value and from where?
-                    availableQuotes.add(newQuote);
-                    }
-            }
-            //:TODO the last part of the get all quotes
-            if (availableQuotes.size() == 0) {// another date extension
-             // reinitialise the iterator for a the nearby stores
-                Iterator<BikeStore> nearByStoreiterator2 = nearByStores.iterator();
-                while(nearByStoreiterator2.hasNext()){
-                    BikeStore tempStore = nearByStoreiterator2.next();
-                    // check bike availability will need to return a list of bikes
-                    
-                    DateRange newDateRange = new DateRange(dateRange.getStart().plusDays(3),
-                            dateRange.getStart().plusDays(3).plusDays(dateRange.toDays()));
-                    
-                    Collection<Bike> availibleBikes = tempStore.checkBikeAvailability(newDateRange,
-                            bikeTypes);
-                    
-                    if(availibleBikes != null) {
-                        Quote newQuote = new Quote(tempStore.storeName, tempStore, dateRange,
-                                availibleBikes);
-                        newQuote.calcTotalDeposit(null);// not sure what value and from where?
-                        newQuote.calcTotalPrice(null);// not sure what value and from where?
-                        availableQuotes.add(newQuote);
-                        }
-                }
-            }
-        }
-        
         return availableQuotes;
     }
     
