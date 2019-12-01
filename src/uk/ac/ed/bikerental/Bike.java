@@ -16,6 +16,7 @@ public class Bike {
     private Collection<DateRange> unavailableDates;
     
     public Bike(BikeStore store,  BikeType type, LocalDate dateNew) {
+        super();
         this.type = type;
         this.typeOfBike = type.nameOfType;
         this.dateNew =dateNew;
