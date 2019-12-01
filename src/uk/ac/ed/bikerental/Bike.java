@@ -23,15 +23,6 @@ public class Bike {
         this.dateNew = dateNew;
     }
     
-    
-//    private LocalDate dateNew;
-//    public Bike(LocalDate dateNew) {
-//        this.dateNew = dateNew;
-//    }
-//    public LocalDate getNewDate() {
-//        return this.dateNew;
-//    }
-    
     public BikeType getType() {
         return type;
     }
@@ -42,10 +33,8 @@ public class Bike {
             DateRange tempDateRange = unavailableDatesIterator.next();
             if(tempDateRange.overlaps(dates)) {
                 return false;
-            }
-            
-        }
-        
+            }        
+        }    
         return true;
     }
     
