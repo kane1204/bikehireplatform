@@ -44,7 +44,8 @@ public class Customer {
                 Quote newQuote = new Quote(tempStore.storeName, tempStore, dateRange, 
                         availibleBikes);
 
-                
+                //iterate through the collection of bikes and set dailyprice, store and type will
+                //with a getter
                 newQuote.calcTotalDeposit(null);// not sure what value and from where?
                 newQuote.calcTotalPrice(null);// not sure what value and from where?
                 availableQuotes.add(newQuote);

@@ -20,14 +20,18 @@ public class BikeStore {
     public void addPartnership(String partnerName) {
       //TODO: addPartnerShip
     }
+    
     public String[] listBookings() {
         //TODO: list Bookings using their own name
         return null;
     }
+    
     public void updateBooking(String message) {
         //TODO: Honestly No idea what was the idea behind this
     }
-    public Collection<Bike> checkBikeAvailability(DateRange dateRange,Collection<BikeType> bikeTypes) { 
+    
+    public Collection<Bike> checkBikeAvailability(DateRange dateRange,
+            Collection<BikeType> bikeTypes) { 
         Collection<Bike> allAvailableBikes = new ArrayList<Bike>();
         Collection<Bike> returnBikes = new ArrayList<Bike>();
         Iterator<Bike> bikeStockIterator = bikeStock.iterator();
@@ -55,8 +59,7 @@ public class BikeStore {
                 }
             }
         }
-        
-        
+         
         return returnBikes;
     }
     

@@ -81,7 +81,8 @@ public class ValuationPolicyTests {
      * A DoubleDelining object has been created globally.
      * We must set a date at which the bike was band new at.
      * Set a depreciation rate and replacement value.
-     * Compare the result from the method implemented from class ValuationPolicy with the correct value
+     * Compare the result from the method implemented from class ValuationPolicy with the correct
+     * value
      */
     
     @Test
