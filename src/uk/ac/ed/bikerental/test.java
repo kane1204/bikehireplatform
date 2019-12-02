@@ -12,7 +12,7 @@ public class test {
         
         LinearDepreciation test1 = new LinearDepreciation();
         
-        Bike bike = new Bike();
+        Bike bike = new Bike(null, null, null);
         LocalDate dateBikeNew = LocalDate.of(2016,1,1);
         
         BigDecimal result = test1.calculateValue(bike, dateBikeNew);
