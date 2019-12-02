@@ -4,6 +4,10 @@ import java.math.BigDecimal;
 import java.util.Collection;
 
 public class Booking {
+    public static int BOOKINGS =0; // global
+    public static Collection<Booking> ALLBOOKINGS;
+    
+    
     //Booking info
     public Customer customer;
     public Location location;
