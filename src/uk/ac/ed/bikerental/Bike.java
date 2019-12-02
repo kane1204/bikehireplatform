@@ -24,7 +24,6 @@ public class Bike implements Deliverable{
         super();
         this.type = type;
         this.typeOfBike = type.nameOfType;
-        this.dateNew = dateNew;
         this.status = statuses.AVAILABLE;
     }
     

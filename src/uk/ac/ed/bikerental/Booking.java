@@ -128,6 +128,7 @@ public class Booking {
         }
         else {
             this.depositReturnedToProvider(); //deposit returned to original provider
+            
         }
         
     }
@@ -145,11 +146,14 @@ public class Booking {
             }
         }
         
+        this.depositCollected(); //deposit is confirmed as collected
+        this.depositReturnedToPartner(); //deposit is confirmed as collected to partner
+        
         if(this.deliveryService != null) {
-            this.depositInDelivery(); //depo
+            this.depositInDelivery(); //deposit going back to original provider
         }
         else {
-            this.depositReturnedToProvider();
+            this.depositCollected(); //deposit collected
         }
     }
 }

@@ -48,33 +48,76 @@ public class BikeStore {
     }
     
     //Methods
-    //...
-    public void returnBikes(int ref) {
+    //Customer returns bikes straight to provider
+    public void returnBikeToProvider(int ref) {
         // input validation if the reference exists
-        assert ref >=Booking.BOOKINGS ;
+        assert ref < Booking.BOOKINGS;
+        
+        //partner store enters booking ref and finds the oringal store
+        //if it isnt found then exit
+        Iterator<Booking> allBookingsIterator = Booking.ALLBOOKINGS.iterator();
+        while(allBookingsIterator.hasNext()) {
+            Booking tempBooking = allBookingsIterator.next();
+            
+            if(tempBooking.ref == ref) {  
+                tempBooking.bikesReturned();
+            } else {
+                assert false;
+            }
+        }
+    }
+    
+    //Customer returns bikes to partner of provider
+    public void returnBikesAsPartner(int ref) {
+        // input validation if the reference exists
+        assert ref < Booking.BOOKINGS;
        
+        //partner store enters booking ref and finds the original store
+        //if it isnt found then exit
         Iterator<Booking> allBookingsIterator = Booking.ALLBOOKINGS.iterator();
         while(allBookingsIterator.hasNext()) {
             Booking tempBooking = allBookingsIterator.next();
             Boolean part = false;
             for (int i = 0; i< partnerships.length; i++) {
-                if(partnerships[i]== tempBooking.store.storeName) {
+                if(partnerships[i] == tempBooking.store.storeName) {
                     part = true;
+                    return;
                 }
             }
             
-            if(tempBooking.ref == ref) {
-                
-                if(tempBooking.store.storeName == this.storeName) {
-                    tempBooking.bikesReturned();
-                    tempBooking.depositCollected();
+            if(tempBooking.ref == ref && part) {   
+                tempBooking.depositReturnedToPartner();
+                tempBooking.bikesToBeDeliveredToProvider();
+            } else {
+                assert false;
+            }
+            
+        }   
+    }
+    
+    //Partner returns bikes to original provider
+    public void returnBikesFromPartner(int ref) {
+        // input validation if the reference exists
+        assert ref < Booking.BOOKINGS;
+       
+        //partner store enters booking ref and finds the oringal store
+        //if it isnt found then exit
+        Iterator<Booking> allBookingsIterator = Booking.ALLBOOKINGS.iterator();
+        while(allBookingsIterator.hasNext()) {
+            Booking tempBooking = allBookingsIterator.next();
+            Boolean part = false;
+            for (int i = 0; i< partnerships.length; i++) {
+                if(partnerships[i] == tempBooking.store.storeName) {
+                    part = true;
+                    return;
                 }
-                
-                if (part) {
-                    tempBooking.bikesToBeDeliveredToProvider();
-                    tempBooking.depositInDelivery();
-                }
-
+            }
+            
+            if(tempBooking.ref == ref && part) {
+                tempBooking.depositInDelivery();
+                tempBooking.bikesReturned();
+            } else {
+                assert false;
             }
             
         }   
