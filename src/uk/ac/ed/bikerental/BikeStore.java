@@ -17,30 +17,60 @@ public class BikeStore {
     private String valuationPolicy;
     private BigDecimal depositRate;
     
+    //Define constructor
     public BikeStore(String storeName, Location locationOfStore) {
         super();
         this.storeName = storeName;
         this.locationOfStore = locationOfStore;
     }
     
+    //Getters
+    public String getValuationPolicy() {
+        return this.valuationPolicy;
+    }
+    
+    public BigDecimal getDepositRate() {
+        return this.depositRate;
+    }
+    
+    //Setters
+    public void setDailyPrice(BikeType typeOfBike, BigDecimal dailyPrice) {
+        //TODO: set Daily price on a specified bike type
+    }
+
+    public void setValuationPolicy(String policy) { //set in test
+        this.valuationPolicy = policy;
+    }
+ 
+    public void setDepositRate(BigDecimal rate) { //set in test
+        this.depositRate = rate;
+    }
+    
+    //Methods
+    //...
     public void addPartnership(String partnerName) {
       //TODO: addPartnerShip
     }
     
+    //...
     public String[] listBookings() {
         //TODO: list Bookings using their own name
         return null;
     }
     
+    //...
     public void updateBooking(String message) {
         //TODO: Honestly No idea what was the idea behind this
     }
     
+    //...
     public Collection<Bike> checkBikeAvailability(DateRange dateRange,
             Collection<BikeType> bikeTypes) { 
         Collection<Bike> allAvailableBikes = new ArrayList<Bike>();
         Collection<Bike> returnBikes = new ArrayList<Bike>();
         Iterator<Bike> bikeStockIterator = bikeStock.iterator();
+        
+        //...
         while(bikeStockIterator.hasNext()){
             Bike tempBike = bikeStockIterator.next();
             Iterator<BikeType> bikeTypeIterator = bikeTypes.iterator();
@@ -52,7 +82,10 @@ public class BikeStore {
                 }
             }   
         }
+        
         Iterator<BikeType> bikeTypeIterator = bikeTypes.iterator();
+        
+        //...
         while(bikeTypeIterator.hasNext()){
             int i = 0;
             BikeType tempBikeType = bikeTypeIterator.next();
@@ -67,25 +100,5 @@ public class BikeStore {
         }
          
         return returnBikes;
-    }
-    
-    public void setDailyPrice(BikeType typeOfBike, BigDecimal dailyPrice) {
-        //TODO: set Daily price on a specified bike type
-    }
-    
-    public String getValuationPolicy() {
-        return this.valuationPolicy;
-    }
-    
-    public void setValuationPolicy(String policy) { //set in test
-        this.valuationPolicy = policy;
-    }
-    
-    public BigDecimal getDepositRate() {
-        return this.depositRate;
-    }
-    
-    public void setDepositRate(BigDecimal rate) { //set in test
-        this.depositRate = rate;
     }
 }

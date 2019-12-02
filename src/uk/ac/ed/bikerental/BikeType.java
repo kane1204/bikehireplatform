@@ -5,15 +5,17 @@ import java.util.Collection;
 import java.util.Objects;
 
 public class BikeType {
+    //Info on type
     public String nameOfType;
-    private BigDecimal replacementCost;
-    private BigDecimal depositRate;
     private Bike bike; //not sure tbh
+    private BigDecimal replacementCost;
+    
+    //More functional info  
+    private BigDecimal depositRate;  
     private BigDecimal deposit;
     private BigDecimal dailyPrice;
     
-    
-    
+    //Define constructor    
     public BikeType(String nameofType, BigDecimal replacementCost, BigDecimal dailyPrice) {
         super();
         this.nameOfType =nameofType;
@@ -21,26 +23,31 @@ public class BikeType {
         this.dailyPrice = dailyPrice;
     }
     
-    public void setReplacementValue(BigDecimal x) {
-        this.replacementCost = x;
-    }
-    
+    //Getters
     public BigDecimal getReplacementValue() {
         return replacementCost;
-    }
-    
-    public void setDailyprice(BigDecimal x) {
-        this.dailyPrice = x;
     }
     
     public BigDecimal getDailyPrice() {
         return dailyPrice;
     }
     
+    //Setters
+    public void setReplacementValue(BigDecimal x) {
+        this.replacementCost = x;
+    }
+    public void setDailyprice(BigDecimal x) {
+        this.dailyPrice = x;
+    }
+    
+    //Methods
+    //...
     public BigDecimal calcDeposit(){
         //Not sure if this is getReplacement Value
         return null;
     }
+    
+    //...
     public BigDecimal calcDailyPrice() {
         //TODO: calc Daily Price
         return null;

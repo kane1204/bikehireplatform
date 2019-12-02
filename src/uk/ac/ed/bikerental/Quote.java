@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 public class Quote {
+    //Quote info
     public String providerName;
     public BikeStore bikeStore;
     public DateRange dates;
@@ -13,6 +14,7 @@ public class Quote {
     public BigDecimal totalDeposit;
     public Collection<Bike> bikes;
     
+    //Define constructor
     public Quote(String providerName, BikeStore bikeStore, DateRange dates,
             Collection<Bike> bikes) {
         super();
@@ -22,6 +24,8 @@ public class Quote {
         this.bikes = bikes;
     }
     
+    //Methods
+    //...
     public BigDecimal calcTotalPrice(BikeStore store, Collection<Bike> bikes) {
         String valuationPolicy = store.getValuationPolicy();
         LinearDepreciation ld = new LinearDepreciation();
@@ -40,6 +44,8 @@ public class Quote {
         }
         return totalPrice;
     }
+    
+    //...
     public BigDecimal calcTotalDeposit(BigDecimal depositRate) {
         totalDeposit = totalPrice.multiply(depositRate);
         return totalDeposit;

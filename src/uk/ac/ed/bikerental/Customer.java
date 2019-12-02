@@ -13,8 +13,11 @@ public class Customer {
     private String email;
     private String contactNo;
     private Location accommodation;
+    
+    //More functional info
     private Collection<Booking> bookings;
     
+    //Define constructor
     public Customer(String firstName, String lastName,Location locationInfo,String email,
             String contactNo, Location accommodation) {
         super();
@@ -25,16 +28,20 @@ public class Customer {
         this.accommodation = accommodation;
     }
     
+    //Getters
+    public Collection<Booking> getBookings() {
+        return bookings;
+    }
     
+    //Methods
+    //...
     public Collection<Quote> getAllQuotes(Collection<BikeStore> allStores, Collection<BikeType> bikeTypes, DateRange dateRange, 
             Location locationOfHire){
         //TODO: getAllQuotes
         // first check locations in area by bike store
         
         Collection<BikeStore> nearByStores = new ArrayList<BikeStore>();
-
-        Collection<Quote> availableQuotes = new ArrayList<Quote>();
-        
+        Collection<Quote> availableQuotes = new ArrayList<Quote>();     
         Iterator<BikeStore> allStoresIterator = allStores.iterator();
         
         while(allStoresIterator.hasNext()){// AllBikeStores is a global collection
@@ -59,11 +66,10 @@ public class Customer {
                 //iterate through the collection of bikes and set dailyprice, store and type will
                 //with a getter
                 
-                newQuote.calcTotalPrice(tempStore, quoteBikes);// not sure what value and from where?
-                newQuote.calcTotalDeposit(tempStore.getDepositRate());// not sure what value and from where?
+                newQuote.calcTotalPrice(tempStore, quoteBikes);
+                newQuote.calcTotalDeposit(tempStore.getDepositRate());
                 availableQuotes.add(newQuote);
             }
-
         }
         
         return availableQuotes;
@@ -83,12 +89,5 @@ public class Customer {
 //        }
         bookings.add(newBooking);
         return null;
-    }
-    
-    //getter for bookings
-    public Collection<Booking> getBookings() {
-        return bookings;
-    }
-    
-    
+    }  
 }
