@@ -63,14 +63,14 @@ public class BikeStore {
         //TODO: Honestly No idea what was the idea behind this
     }
     
-    //...
+    //Check if the store has enough of each type of bike queried and for the right dates.
     public Collection<Bike> checkBikeAvailability(DateRange dateRange,
             Collection<BikeType> bikeTypes) { 
         Collection<Bike> allAvailableBikes = new ArrayList<Bike>();
         Collection<Bike> returnBikes = new ArrayList<Bike>();
         Iterator<Bike> bikeStockIterator = bikeStock.iterator();
         
-        //...
+        //Check if the store has enough of each type of bike
         while(bikeStockIterator.hasNext()){
             Bike tempBike = bikeStockIterator.next();
             Iterator<BikeType> bikeTypeIterator = bikeTypes.iterator();
@@ -85,20 +85,21 @@ public class BikeStore {
         
         Iterator<BikeType> bikeTypeIterator = bikeTypes.iterator();
         
-        //...
+        //Check if each bike that's suitable will be available to rent out on the queired dates.
         while(bikeTypeIterator.hasNext()){
             int i = 0;
             BikeType tempBikeType = bikeTypeIterator.next();
             Iterator<Bike> allAvailableBikesIterator = allAvailableBikes.iterator();
             while (allAvailableBikesIterator.hasNext()) {
                 Bike tempBike = allAvailableBikesIterator.next();
-                if(tempBikeType == tempBike.getType() && i!=1) {
-                    i= 1;
+                if(tempBikeType == tempBike.getType() && i != 1) {
+                    i = 1;
                     returnBikes.add(tempBike);
                 }
             }
         }
-         
+        
+        //Return all available bikes
         return returnBikes;
     }
 }

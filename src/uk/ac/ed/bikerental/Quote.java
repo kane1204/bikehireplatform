@@ -25,7 +25,11 @@ public class Quote {
     }
     
     //Methods
-    //...
+    
+    /*
+     * For each available bike a store has for the query, calculate it's cost with the specified
+     * depreciation rate, then add it to the total cost.
+     */
     public BigDecimal calcTotalPrice(BikeStore store, Collection<Bike> bikes) {
         String valuationPolicy = store.getValuationPolicy();
         LinearDepreciation ld = new LinearDepreciation();
@@ -45,7 +49,7 @@ public class Quote {
         return totalPrice;
     }
     
-    //...
+    //Calculate the total deposit using the total cost global variable and passed in deposit rate. 
     public BigDecimal calcTotalDeposit(BigDecimal depositRate) {
         totalDeposit = totalPrice.multiply(depositRate);
         return totalDeposit;

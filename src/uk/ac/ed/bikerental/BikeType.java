@@ -36,11 +36,8 @@ public class BikeType {
     public void setReplacementValue(BigDecimal x) {
         this.replacementCost = x;
     }
+    
     public void setDailyprice(BigDecimal x) {
         this.dailyPrice = x;
     }
-    
-    //Methods
-    
-    
 }

@@ -18,7 +18,7 @@ public class Customer {
     private Collection<Booking> bookings;
     
     //Define constructor
-    public Customer(String firstName, String lastName,Location locationInfo,String email,
+    public Customer(String firstName, String lastName,Location locationInfo, String email,
             String contactNo, Location accommodation) {
         super();
         this.firstName = firstName;
@@ -47,25 +47,19 @@ public class Customer {
         while(allStoresIterator.hasNext()){// AllBikeStores is a global collection
             BikeStore tempStore = allStoresIterator.next();
             Location tempStoreLocation = tempStore.locationOfStore;
-            if (tempStoreLocation.isNearTo(locationOfHire)==true) {
-                nearByStores.add(tempStore);
-           } 
+            if (tempStoreLocation.isNearTo(locationOfHire)) nearByStores.add(tempStore);
         }
 
         Iterator<BikeStore> nearByStoreIterator = nearByStores.iterator();
 
         while(nearByStoreIterator.hasNext()){
-            BikeStore tempStore = nearByStoreIterator.next();
-            // check bike availability will need to return a list of bikes
+            BikeStore tempStore = nearByStoreIterator.next(); 
             Collection<Bike> quoteBikes = tempStore.checkBikeAvailability(dateRange, bikeTypes);
             
+            // Check bike availability will need to return a list of bikes
             if(quoteBikes != null) {
                 Quote newQuote = new Quote(tempStore.storeName, tempStore, dateRange, 
-                        quoteBikes);
-
-                //iterate through the collection of bikes and set dailyprice, store and type will
-                //with a getter
-                
+                        quoteBikes);         
                 newQuote.calcTotalPrice(tempStore, quoteBikes);
                 newQuote.calcTotalDeposit(tempStore.getDepositRate());
                 availableQuotes.add(newQuote);
@@ -75,9 +69,8 @@ public class Customer {
         return availableQuotes;
     }
     
-    public String bookQuote(Quote quote) {
-        //TODO: bookQuote 
-        // Adds that booking created to the collection of booking for each customer
+    // Adds the booking created to the collection of booking for each customer
+    public Quote bookQuote(Quote quote) {       
         MockDeliveryService dpd = new MockDeliveryService();
         String ref = "";
         Boolean delivery = false;
@@ -88,6 +81,8 @@ public class Customer {
 //            dpd.scheduleDelivery(deliverable, newBooking.location, this.accommodation, newBooking.range.getStart());
 //        }
         bookings.add(newBooking);
+        
+        //Return the booking objects
         return null;
     }  
 }
