@@ -18,10 +18,11 @@ public class BikeStore {
     private BigDecimal depositRate;
     
     //Define constructor
-    public BikeStore(String storeName, Location locationOfStore) {
+    public BikeStore(String storeName, Location locationOfStore,String[] partnerships ) {
         super();
         this.storeName = storeName;
         this.locationOfStore = locationOfStore;
+        this.partnerships = partnerships;
     }
     
     //Getters
@@ -48,11 +49,11 @@ public class BikeStore {
     
     //Methods
     //...
-    public void addPartnership(String partnerName) {
-      //TODO: addPartnerShip
-        
-        
-    }
+//    public void addPartnership(String partnerName) {
+//      //TODO: addPartnerShip
+//        
+//        
+//    }
     public void returnBikes(int ref) {
         // input validation if the reference exists
         assert ref >=Booking.BOOKINGS ;
@@ -60,7 +61,13 @@ public class BikeStore {
         Iterator<Booking> allBookingsIterator = Booking.ALLBOOKINGS.iterator();
         while(allBookingsIterator.hasNext()) {
             Booking tempBooking = allBookingsIterator.next();
-            if(tempBooking.store == this && tempBooking.ref == ref) {
+            Boolean part = false;
+            for (int i = 0; i< partnerships.length; i++) {
+                if(partnerships[i]== tempBooking.store.storeName) {
+                    part = true;
+                }
+            }
+            if((tempBooking.store.storeName == this.storeName || part) && tempBooking.ref == ref) {
                 Iterator<Bike> bookedBikesIterator = tempBooking.bikes.iterator();
                 while(bookedBikesIterator.hasNext()) {
                     Bike tempBike = bookedBikesIterator.next();
