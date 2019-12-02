@@ -34,6 +34,7 @@ public class LinearDepreciation implements ValuationPolicy {
         BigDecimal value = repVal.subtract(depriationPt2);
         value = value.setScale(2, RoundingMode.CEILING); // Round to 2 decimal places as it's money
         
+        // Return the new cost of the bike
         return value;
     }
 

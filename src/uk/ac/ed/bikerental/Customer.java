@@ -69,7 +69,7 @@ public class Customer {
         return availableQuotes;
     }
     
-    // Adds the booking created to the collection of booking for each customer
+    //Adds the booking created to the collection of booking for each customer
     public Quote bookQuote(Quote quote) {       
         MockDeliveryService dpd = new MockDeliveryService();
         String ref = "";

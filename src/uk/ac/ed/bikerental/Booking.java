@@ -18,12 +18,11 @@ public class Booking {
     //Define constructor
     public Booking(Customer customer,BikeStore store, Location location, DateRange dateRange, Collection<Bike> bikes,
             String ref,Boolean bikeDelivery,BigDecimal totalPrice, BigDecimal totalDeposit) {
-        // reference should be calculated in bookQuote
         super();
         this.customer = customer;
         this.location = location;
         this.bikes = bikes;
-        this.ref = ref;
+        this.ref = ref; // Reference should be generated in bookQuote
         this.bikeDelivery = bikeDelivery;
         this.range = dateRange;
         this.store = store;
