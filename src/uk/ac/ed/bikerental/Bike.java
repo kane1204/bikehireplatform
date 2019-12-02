@@ -14,13 +14,14 @@ public class Bike implements Deliverable{
     private statuses status;
     public String typeOfBike;
     public BikeType type;
+    public LocalDate dateNew;
     
     //More functional info
     private Collection<DateRange> unavailableDates;
     public BikeStore store;
     
     //Define constructor
-    public Bike(BikeStore store,  BikeType type, LocalDate dateNew) {
+    public Bike(BikeStore store,  BikeType type) {
         super();
         this.type = type;
         this.typeOfBike = type.nameOfType;
@@ -34,6 +35,10 @@ public class Bike implements Deliverable{
     
     public String getStatus() {
         return status.toString();
+    }
+    
+    public LocalDate getDateNew() {
+        return this.dateNew;
     }
 
     

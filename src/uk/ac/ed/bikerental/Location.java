@@ -45,7 +45,7 @@ public class Location {
         String other2Letters = otherPostcode.substring(0, 2);
         String LocPostcode = postcode.substring(0, 2);
         
-        if (LocPostcode==other2Letters) {
+        if (LocPostcode.contentEquals(other2Letters)) {
             return true;
         } else {
             return false;
