@@ -6,7 +6,12 @@ import java.util.Iterator;
 
 public class Bike implements Deliverable{
     //Info on bike
-    public Boolean status;
+    private enum statuses {
+        AVAILABLE,
+        UNAVAILABLE,
+        BEING_DELIVERED
+    }
+    private statuses status;
     public String typeOfBike;
     public BikeType type;
     private LocalDate dateNew;
@@ -21,6 +26,7 @@ public class Bike implements Deliverable{
         this.type = type;
         this.typeOfBike = type.nameOfType;
         this.dateNew = dateNew;
+        this.status = statuses.AVAILABLE;
     }
     
     //Getters
@@ -32,10 +38,15 @@ public class Bike implements Deliverable{
         return type;
     }
     
+    public String getStatus() {
+        return status.toString();
+    }
+    
     //Setters
     public void setDateNew(LocalDate dateNew) { //set in test
         this.dateNew = dateNew;
     }
+    
     
     //Methods
     //Add all unavailable dates to a collection
@@ -57,18 +68,23 @@ public class Bike implements Deliverable{
         return true;
     }
 
+    //Implement methods
     @Override
     public void onPickup() {
-        // TODO this is for retrieving the bike either via delivery or from the store
-        this.status = true;
-        
-         
+        this.status = statuses.BEING_DELIVERED; //Currently in delivery stage          
     }
 
     @Override
     public void onDropoff() {
-        // TODO used when returning the bikes ie 3.        
-        this.status = false;
+        this.status = statuses.AVAILABLE; //Currently in delivery stage
+    }
+
+    public void bikeAvailable() {
+        this.status = statuses.AVAILABLE;     
+    }
+
+    public void bikeUnavailable() {
+        this.status = statuses.UNAVAILABLE;       
     }
     
 }

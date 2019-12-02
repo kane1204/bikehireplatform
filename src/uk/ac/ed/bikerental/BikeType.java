@@ -7,12 +7,7 @@ import java.util.Objects;
 public class BikeType {
     //Info on type
     public String nameOfType;
-    private Bike bike;
     private BigDecimal replacementCost;
-    
-    //More functional info  
-    private BigDecimal depositRate;  
-    private BigDecimal deposit;
     private BigDecimal dailyPrice;
     
     //Define constructor    

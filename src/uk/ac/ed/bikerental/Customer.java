@@ -35,6 +35,9 @@ public class Customer {
     public String getFirstName() {
         return firstName;
     }
+    public Location getAccommodation() {
+        return accommodation;
+    }
     
     //Methods
     //Find all possible quote that match the user's query
@@ -76,19 +79,9 @@ public class Customer {
     public Booking bookQuote(Quote quote, Boolean delivery) {       
         int ref = Booking.BOOKINGS;
 
-        Booking newBooking =  new Booking(this,quote.bikeStore, quote.bikeStore.locationOfStore,
-                quote.dates, quote.bikes, ref, delivery, quote.totalPrice, quote.totalDeposit);
+        Booking newBooking =  new Booking(this,quote.bikeStore, quote.dates, quote.bikes, ref,
+                delivery, quote.totalPrice, quote.totalDeposit);
         
-        Iterator<Bike> bikeIterator = newBooking.bikes.iterator();
-        while(bikeIterator.hasNext()){
-            Bike tempBike = bikeIterator.next();
-            tempBike.onPickup();
-        }
-        
-        if(newBooking.bikeDelivery) {
-            DeliveryServiceFactory dpd = new DeliveryServiceFactory(); 
-            dpd.getDeliveryService();
-        }
         Boolean paid = newBooking.payment();
         if (paid) {      
             System.out.print(newBooking.orderSummary());
