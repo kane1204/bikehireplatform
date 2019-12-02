@@ -19,7 +19,7 @@ public class Bike {
         super();
         this.type = type;
         this.typeOfBike = type.nameOfType;
-        this.dateNew =dateNew;
+        this.dateNew = dateNew;
     }
     
     //Getters

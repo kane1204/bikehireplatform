@@ -7,7 +7,7 @@ import java.util.Objects;
 public class BikeType {
     //Info on type
     public String nameOfType;
-    private Bike bike; //not sure tbh
+    private Bike bike;
     private BigDecimal replacementCost;
     
     //More functional info  
@@ -18,7 +18,7 @@ public class BikeType {
     //Define constructor    
     public BikeType(String nameofType, BigDecimal replacementCost, BigDecimal dailyPrice) {
         super();
-        this.nameOfType =nameofType;
+        this.nameOfType = nameofType;
         this.replacementCost = replacementCost;
         this.dailyPrice = dailyPrice;
     }
@@ -41,17 +41,6 @@ public class BikeType {
     }
     
     //Methods
-    //...
-    public BigDecimal calcDeposit(){
-        //Not sure if this is getReplacement Value
-        return null;
-    }
-    
-    //...
-    public BigDecimal calcDailyPrice() {
-        //TODO: calc Daily Price
-        return null;
-    }
     
     
 }
