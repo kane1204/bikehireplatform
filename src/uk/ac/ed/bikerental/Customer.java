@@ -15,6 +15,7 @@ public class Customer {
     private Location accommodation;
     
     //More functional info
+    private Collection<Booking> bookings;
     
     //Define constructor
     public Customer(String firstName, String lastName,Location locationInfo, String email,
@@ -69,27 +70,21 @@ public class Customer {
     }
     
     // Adds the booking created to the collection of booking for each customer
-    public Booking bookQuote(Quote quote) {       
+    public Booking bookQuote(Quote quote, Boolean delivery) {       
         int ref = 0;
-        Boolean delivery = false;
+        
         Booking newBooking =  new Booking(this,quote.bikeStore, quote.bikeStore.locationOfStore,
                 quote.dates, quote.bikes, ref, delivery, quote.totalPrice, quote.totalDeposit);
         
-        if(newBooking.bikeDelivery) {
-            Iterator<Bike> bikeIterator = newBooking.bikes.iterator();
-
-            while(bikeIterator.hasNext()){
-                Bike tempBike = bikeIterator.next();
-                tempBike.onDropoff();
-            }
+        Iterator<Bike> bikeIterator = newBooking.bikes.iterator();
+        while(bikeIterator.hasNext()){
+            Bike tempBike = bikeIterator.next();
+            tempBike.onPickup();
         }
-        else {
-            Iterator<Bike> bikeIterator = newBooking.bikes.iterator();
-
-            while(bikeIterator.hasNext()){
-                Bike tempBike = bikeIterator.next();
-                tempBike.onPickup();
-            
+        
+        if(newBooking.bikeDelivery) {
+            DeliveryServiceFactory dpd = new DeliveryServiceFactory(); 
+            dpd.getDeliveryService();
         }
        
         

@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 public class Bike implements Deliverable{
     //Info on bike
+    public Boolean status;
     public String typeOfBike;
     public BikeType type;
     private LocalDate dateNew;
@@ -58,14 +59,16 @@ public class Bike implements Deliverable{
 
     @Override
     public void onPickup() {
-        // TODO Auto-generated method stub
+        // TODO this is for retrieving the bike either via delivery or from the store
+        this.status = true;
         
+         
     }
 
     @Override
     public void onDropoff() {
-        // TODO Auto-generated method stub
-        
+        // TODO used when returning the bikes ie 3.        
+        this.status = false;
     }
     
 }
