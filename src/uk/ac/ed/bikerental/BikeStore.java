@@ -51,17 +51,29 @@ public class BikeStore {
     public void addPartnership(String partnerName) {
       //TODO: addPartnerShip
     }
-    
-    //...
-    public String[] listBookings() {
-        //TODO: list Bookings using their own name
-        return null;
+    public void returnBikes(int ref) {
+        // input validation if the reference exists
+        if (ref >=Booking.BOOKINGS) {
+            return;
+        }
+        Iterator<Booking> allBookingsIterator = Booking.ALLBOOKINGS.iterator();
+        while(allBookingsIterator.hasNext()) {
+            Booking tempBooking = allBookingsIterator.next();
+            if(tempBooking.store == this && tempBooking.ref == ref) {
+                Iterator<Bike> bookedBikesIterator = tempBooking.bikes.iterator();
+                while(bookedBikesIterator.hasNext()) {
+                    Bike tempBike = bookedBikesIterator.next();
+                    tempBike.onDropoff();
+                }
+            }
+            
+        }
+        
     }
     
+    
     //...
-//    public void updateBooking(String message) {
-//        //TODO: Honestly No idea what was the idea behind this
-//    }
+    
     
     //Check if the store has enough of each type of bike queried and for the right dates.
     public Collection<Bike> checkBikeAvailability(DateRange dateRange,
