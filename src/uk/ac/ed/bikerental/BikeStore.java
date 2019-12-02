@@ -68,10 +68,11 @@ public class BikeStore {
                 }
             }
             if((tempBooking.store.storeName == this.storeName || part) && tempBooking.ref == ref) {
-                Iterator<Bike> bookedBikesIterator = tempBooking.bikes.iterator();
-                while(bookedBikesIterator.hasNext()) {
-                    Bike tempBike = bookedBikesIterator.next();
-                    tempBike.onDropoff();
+                if((tempBooking.store.storeName == this.storeName)) {
+                    tempBooking.bikesReturned();
+                }
+                if (part) {
+                    tempBooking.bikesToBeDeliveredToProvider();
                 }
             }
             

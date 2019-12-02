@@ -101,7 +101,7 @@ public class Booking {
         this.depositStatus = depositStatuses.ORIGINAL_RETURNED;
     }
    
-    public void bikeBeingDelivered() {
+    public void bikesBeingDelivered() {
         Iterator<Bike> bikeIterator = bikes.iterator();
         
         while(bikeIterator.hasNext()){
@@ -110,29 +110,46 @@ public class Booking {
         }
     }
     
-    public void bikeReturned() {
+    public void bikesReturned() {
         Iterator<Bike> bikeIterator = bikes.iterator();
         
         while(bikeIterator.hasNext()){
             Bike tempBike = bikeIterator.next();
-            if(this.deliveryService != null) tempBike.onDropoff();
+            if(this.deliveryService != null) {
+                tempBike.onDropoff();
+            }
+            else {
             tempBike.bikeAvailable();
+            }
         }
         
-        if(this.deliveryService != null) this.depositInDelivery();
-        this.depositReturnedToProvider();
+        if(this.deliveryService != null) {
+            this.depositInDelivery();
+        }
+        else {
+            this.depositReturnedToProvider();
+        }
+        
     }
     
-    public void bikeToBeDeliveredToProvider() {
+    public void bikesToBeDeliveredToProvider() {
         Iterator<Bike> bikeIterator = bikes.iterator();
         
         while(bikeIterator.hasNext()){
             Bike tempBike = bikeIterator.next();
-            if(this.deliveryService != null) tempBike.onPickup();
+            if(this.deliveryService != null) {
+                tempBike.onPickup();
+            }
+            else {
             tempBike.bikeUnavailable();
+            }
         }
         
-        if(this.deliveryService != null) this.depositInDelivery();
-        this.depositReturnedToProvider();
+        if(this.deliveryService != null) {
+            this.depositInDelivery();
+        }
+        else {
+            this.depositReturnedToProvider();
+        }
     }
 }
