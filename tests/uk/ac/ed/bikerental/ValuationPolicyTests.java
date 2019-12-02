@@ -12,7 +12,9 @@ public class ValuationPolicyTests {
     private BikeType testBikeType;
     private LinearDepreciation ld;
     private DoubleDecline dd;
-    
+    private String testPartnerShips[];
+    private Location testStoresLocation;
+    private BikeStore testStore;
     /*
      * Set Up:
      * Create objects for a bike, a bike type and the 2 types of depreciation.
@@ -22,8 +24,11 @@ public class ValuationPolicyTests {
     @BeforeEach
     void setUp() throws Exception {
         // Create objects for each test
-        testBikeType = new BikeType();
-        testbike = new Bike();
+        //testPartnerShips[0] =  {"Test Store 2"};
+        testStoresLocation = new Location("KY12 5EB", "123 bobs Street");
+        testStore = new BikeStore("Test Store",testStoresLocation,testPartnerShips);
+        testBikeType = new BikeType("Race", new BigDecimal("0"), new BigDecimal("0"));
+        testbike = new Bike(testStore, testBikeType);
         testbike.type = testBikeType;
         ld = new LinearDepreciation();
         dd = new DoubleDecline();

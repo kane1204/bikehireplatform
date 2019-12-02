@@ -20,11 +20,10 @@ public class Bike implements Deliverable{
     public BikeStore store;
     
     //Define constructor
-    public Bike(BikeStore store,  BikeType type, LocalDate dateNew) {
+    public Bike(BikeStore store,  BikeType type) {
         super();
         this.type = type;
         this.typeOfBike = type.nameOfType;
-        this.dateNew = dateNew;
         this.status = statuses.AVAILABLE;
     }
     
