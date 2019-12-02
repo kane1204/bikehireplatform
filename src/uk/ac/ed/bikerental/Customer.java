@@ -34,17 +34,15 @@ public class Customer {
     }
     
     //Methods
-    //...
-    public Collection<Quote> getAllQuotes(Collection<BikeStore> allStores, Collection<BikeType> bikeTypes, DateRange dateRange, 
-            Location locationOfHire){
-        //TODO: getAllQuotes
-        // first check locations in area by bike store
-        
+    //Find all possible quote that match the user's query
+    public Collection<Quote> getAllQuotes(Collection<BikeStore> allStores,
+            Collection<BikeType> bikeTypes, DateRange dateRange, Location locationOfHire){       
         Collection<BikeStore> nearByStores = new ArrayList<BikeStore>();
         Collection<Quote> availableQuotes = new ArrayList<Quote>();     
         Iterator<BikeStore> allStoresIterator = allStores.iterator();
         
-        while(allStoresIterator.hasNext()){// AllBikeStores is a global collection
+        //First check locations in area by bike store
+        while(allStoresIterator.hasNext()){
             BikeStore tempStore = allStoresIterator.next();
             Location tempStoreLocation = tempStore.locationOfStore;
             if (tempStoreLocation.isNearTo(locationOfHire)) nearByStores.add(tempStore);
@@ -52,11 +50,12 @@ public class Customer {
 
         Iterator<BikeStore> nearByStoreIterator = nearByStores.iterator();
 
+        //Next check if a store that's near enough can fulfil the quote
         while(nearByStoreIterator.hasNext()){
             BikeStore tempStore = nearByStoreIterator.next(); 
             Collection<Bike> quoteBikes = tempStore.checkBikeAvailability(dateRange, bikeTypes);
             
-            // Check bike availability will need to return a list of bikes
+            //Add all available quotes to a list with the total cost and deposit calculated
             if(quoteBikes != null) {
                 Quote newQuote = new Quote(tempStore.storeName, tempStore, dateRange, 
                         quoteBikes);         
@@ -66,6 +65,7 @@ public class Customer {
             }
         }
         
+        //Return all available quotes
         return availableQuotes;
     }
     
