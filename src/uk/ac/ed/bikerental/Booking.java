@@ -146,9 +146,6 @@ public class Booking {
             }
         }
         
-        this.depositCollected(); //deposit is confirmed as collected
-        this.depositReturnedToPartner(); //deposit is confirmed as collected to partner
-        
         if(this.deliveryService != null) {
             this.depositInDelivery(); //deposit going back to original provider
         }
