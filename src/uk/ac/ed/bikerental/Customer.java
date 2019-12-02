@@ -71,7 +71,8 @@ public class Customer {
     
     // Adds the booking created to the collection of booking for each customer
     public Booking bookQuote(Quote quote, Boolean delivery) {       
-        int ref = 0;
+        int ref = Booking.BOOKINGS;
+
         Booking newBooking =  new Booking(this,quote.bikeStore, quote.bikeStore.locationOfStore,
                 quote.dates, quote.bikes, ref, delivery, quote.totalPrice, quote.totalDeposit);
         
@@ -86,7 +87,8 @@ public class Customer {
             dpd.getDeliveryService();
         }
        
-        
+        Booking.BOOKINGS +=1;
+        Booking.ALLBOOKINGS.add(newBooking);
         //Return the booking objects
         return newBooking;
     }  
