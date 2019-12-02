@@ -14,6 +14,7 @@ public class Bike implements Deliverable{
     private statuses status;
     public String typeOfBike;
     public BikeType type;
+    public LocalDate dateNew;
     
     //More functional info
     private Collection<DateRange> unavailableDates;
@@ -34,6 +35,10 @@ public class Bike implements Deliverable{
     
     public String getStatus() {
         return status.toString();
+    }
+    
+    public LocalDate getDateNew() {
+        return this.dateNew;
     }
 
     
