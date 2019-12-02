@@ -50,12 +50,13 @@ public class BikeStore {
     //...
     public void addPartnership(String partnerName) {
       //TODO: addPartnerShip
+        
+        
     }
     public void returnBikes(int ref) {
         // input validation if the reference exists
-        if (ref >=Booking.BOOKINGS) {
-            return;
-        }
+        assert ref >=Booking.BOOKINGS ;
+       
         Iterator<Booking> allBookingsIterator = Booking.ALLBOOKINGS.iterator();
         while(allBookingsIterator.hasNext()) {
             Booking tempBooking = allBookingsIterator.next();
