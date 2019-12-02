@@ -4,8 +4,9 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class Bike {
+public class Bike implements Deliverable{
     //Info on bike
+    public Boolean status;
     public String typeOfBike;
     public BikeType type;
     private LocalDate dateNew;
@@ -54,6 +55,20 @@ public class Bike {
         }
         
         return true;
+    }
+
+    @Override
+    public void onPickup() {
+        // TODO this is for retrieving the bike either via delivery or from the store
+        this.status = true;
+        
+         
+    }
+
+    @Override
+    public void onDropoff() {
+        // TODO used when returning the bikes ie 3.        
+        this.status = false;
     }
     
 }

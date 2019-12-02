@@ -69,20 +69,25 @@ public class Customer {
         return availableQuotes;
     }
     
-    //Adds the booking created to the collection of booking for each customer
-    public Quote bookQuote(Quote quote) {       
-        MockDeliveryService dpd = new MockDeliveryService();
-        String ref = "";
-        Boolean delivery = false;
+    // Adds the booking created to the collection of booking for each customer
+    public Booking bookQuote(Quote quote, Boolean delivery) {       
+        int ref = 0;
         Booking newBooking =  new Booking(this,quote.bikeStore, quote.bikeStore.locationOfStore,
                 quote.dates, quote.bikes, ref, delivery, quote.totalPrice, quote.totalDeposit);
-//        if(newBooking.bikeDelivery) {
-//             Deliverable delivery = new Deliverable();
-//            dpd.scheduleDelivery(deliverable, newBooking.location, this.accommodation, newBooking.range.getStart());
-//        }
-        bookings.add(newBooking);
+        
+        Iterator<Bike> bikeIterator = newBooking.bikes.iterator();
+        while(bikeIterator.hasNext()){
+            Bike tempBike = bikeIterator.next();
+            tempBike.onPickup();
+        }
+        
+        if(newBooking.bikeDelivery) {
+            DeliveryServiceFactory dpd = new DeliveryServiceFactory(); 
+            dpd.getDeliveryService();
+        }
+       
         
         //Return the booking objects
-        return null;
+        return newBooking;
     }  
 }
