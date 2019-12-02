@@ -83,13 +83,10 @@ public class DateRange {
         LocalDate otherStartDate = other.getStart();
         DateRange rentToQuery = new DateRange(rentalEndDate, otherStartDate);
         int daysBetween = (int) rentToQuery.toDays();
-        int yearsBetween = (int) ChronoUnit.DAYS.between(this.getStart(),other.getEnd());
-        if(yearsBetween != 0) {
-            return false;
-        }
-        
+        int yearsBetween = (int) ChronoUnit.DAYS.between(start,other.getEnd());
+        System.out.println(daysBetween);
         if(daysBetween <= 0) return true;
-        return false;
+        else return false;
     }
 
     /**
