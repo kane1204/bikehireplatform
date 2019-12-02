@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class Bike {
+public class Bike implements Deliverable{
     //Info on bike
     public String typeOfBike;
     public BikeType type;
@@ -54,6 +54,18 @@ public class Bike {
         }
         
         return true;
+    }
+
+    @Override
+    public void onPickup() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void onDropoff() {
+        // TODO Auto-generated method stub
+        
     }
     
 }
