@@ -49,11 +49,6 @@ public class BikeStore {
     
     //Methods
     //...
-//    public void addPartnership(String partnerName) {
-//      //TODO: addPartnerShip
-//        
-//        
-//    }
     public void returnBikes(int ref) {
         // input validation if the reference exists
         assert ref >=Booking.BOOKINGS ;
@@ -67,17 +62,22 @@ public class BikeStore {
                     part = true;
                 }
             }
-            if((tempBooking.store.storeName == this.storeName || part) && tempBooking.ref == ref) {
-                if((tempBooking.store.storeName == this.storeName)) {
+            
+            if(tempBooking.ref == ref) {
+                
+                if(tempBooking.store.storeName == this.storeName) {
                     tempBooking.bikesReturned();
+                    tempBooking.depositCollected();
                 }
+                
                 if (part) {
                     tempBooking.bikesToBeDeliveredToProvider();
+                    tempBooking.depositInDelivery();
                 }
+
             }
             
-        }
-        
+        }   
     }
     
     
@@ -106,7 +106,7 @@ public class BikeStore {
         
         Iterator<BikeType> bikeTypeIterator = bikeTypes.iterator();
         
-        //Check if each bike that's suitable will be available to rent out on the queired dates.
+        //Check if each bike that's suitable will be available to rent out on the queried dates.
         while(bikeTypeIterator.hasNext()){
             int i = 0;
             BikeType tempBikeType = bikeTypeIterator.next();

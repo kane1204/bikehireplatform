@@ -14,7 +14,6 @@ public class Bike implements Deliverable{
     private statuses status;
     public String typeOfBike;
     public BikeType type;
-    private LocalDate dateNew;
     
     //More functional info
     private Collection<DateRange> unavailableDates;
@@ -29,11 +28,7 @@ public class Bike implements Deliverable{
         this.status = statuses.AVAILABLE;
     }
     
-    //Getters
-    public LocalDate getDateNew() {
-        return this.dateNew;
-    }
-    
+    //Getters    
     public BikeType getType() {
         return type;
     }
@@ -41,12 +36,7 @@ public class Bike implements Deliverable{
     public String getStatus() {
         return status.toString();
     }
-    
-    //Setters
-    public void setDateNew(LocalDate dateNew) { //set in test
-        this.dateNew = dateNew;
-    }
-    
+
     
     //Methods
     //Add all unavailable dates to a collection

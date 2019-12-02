@@ -8,17 +8,8 @@ import java.util.Scanner;
 public class test {
 
     public static void main(String[] args) {
-        System.out.println("Linear Depreciation Test");
-        
-        LinearDepreciation test1 = new LinearDepreciation();
-        
-        Bike bike = new Bike(null, null, null);
-        LocalDate dateBikeNew = LocalDate.of(2016,1,1);
-        
-        BigDecimal result = test1.calculateValue(bike, dateBikeNew);
-        BigDecimal expectedResult = new BigDecimal("630.00");
-        
-        System.out.println("Result: " + result + "\nExpected Result: " + expectedResult);  
+        if(5==5) System.out.println("true");
+        System.out.println("false");
         
     }
 

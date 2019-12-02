@@ -106,7 +106,7 @@ public class Booking {
         
         while(bikeIterator.hasNext()){
             Bike tempBike = bikeIterator.next();
-            tempBike.onPickup();
+            tempBike.onPickup(); //being delivered
         }
     }
     
@@ -116,18 +116,18 @@ public class Booking {
         while(bikeIterator.hasNext()){
             Bike tempBike = bikeIterator.next();
             if(this.deliveryService != null) {
-                tempBike.onDropoff();
+                tempBike.onDropoff(); //available
             }
             else {
-            tempBike.bikeAvailable();
+                tempBike.bikeAvailable(); //available
             }
         }
         
         if(this.deliveryService != null) {
-            this.depositInDelivery();
+            this.depositInDelivery(); //deposit going back to original provider
         }
         else {
-            this.depositReturnedToProvider();
+            this.depositReturnedToProvider(); //deposit returned to original provider
         }
         
     }
@@ -138,15 +138,15 @@ public class Booking {
         while(bikeIterator.hasNext()){
             Bike tempBike = bikeIterator.next();
             if(this.deliveryService != null) {
-                tempBike.onPickup();
+                tempBike.onPickup(); //being delivered
             }
             else {
-            tempBike.bikeUnavailable();
+                tempBike.bikeUnavailable(); //unavailable
             }
         }
         
         if(this.deliveryService != null) {
-            this.depositInDelivery();
+            this.depositInDelivery(); //depo
         }
         else {
             this.depositReturnedToProvider();
