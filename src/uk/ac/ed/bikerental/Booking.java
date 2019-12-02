@@ -18,6 +18,7 @@ public class Booking {
     public BikeStore store;
     public BigDecimal totalPrice;
     public BigDecimal totalDeposit;
+    public Boolean paid;
     
     //Define constructor
     public Booking(Customer customer,BikeStore store, Location location, DateRange dateRange, Collection<Bike> bikes,
@@ -32,20 +33,22 @@ public class Booking {
         this.range = dateRange;
         this.store = store;
         this.totalPrice = totalPrice;
-        this.totalDeposit = totalDeposit;       
+        this.totalDeposit = totalDeposit;    
+        this.paid = false;
     }
     
     //Methods
     //...
-    public void payment(BigDecimal totalPrice, BigDecimal totalDeposit) {
-        //TODO:payment should just return i think
-        return;
+    public Boolean payment() {
+        //to simulate payment system
+        paid = true;
+        return paid;
     }
     
     //...
-    public String orderSummary(BigDecimal totalPrice,BigDecimal totalDeposit) {
-        //TODO: Not sure why we are passing in the pricing stuff shouldnt all those details be passed in when the booking was created
-        return null;
+    public String orderSummary() {
+        return  "Customer: "+ customer.getFirstName()+"\n Stores Name: " + store.storeName + 
+                "\n Total Price: "+ totalPrice + "\n Total Deposit: "+ totalDeposit ;
     }
     
 }

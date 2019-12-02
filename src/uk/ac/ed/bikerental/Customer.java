@@ -32,6 +32,9 @@ public class Customer {
     public Collection<Booking> getBookings() {
         return bookings;
     }
+    public String getFirstName() {
+        return firstName;
+    }
     
     //Methods
     //Find all possible quote that match the user's query
@@ -86,10 +89,14 @@ public class Customer {
             DeliveryServiceFactory dpd = new DeliveryServiceFactory(); 
             dpd.getDeliveryService();
         }
-       
-        Booking.BOOKINGS +=1;
-        Booking.ALLBOOKINGS.add(newBooking);
-        //Return the booking objects
-        return newBooking;
+        Boolean paid = newBooking.payment();
+        if (paid) {      
+            System.out.print(newBooking.orderSummary());
+            Booking.BOOKINGS +=1;
+            Booking.ALLBOOKINGS.add(newBooking);
+            //Return the booking objects
+            return newBooking;
+        }
+        return null;
     }  
 }

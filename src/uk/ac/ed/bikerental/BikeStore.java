@@ -59,9 +59,9 @@ public class BikeStore {
     }
     
     //...
-    public void updateBooking(String message) {
-        //TODO: Honestly No idea what was the idea behind this
-    }
+//    public void updateBooking(String message) {
+//        //TODO: Honestly No idea what was the idea behind this
+//    }
     
     //Check if the store has enough of each type of bike queried and for the right dates.
     public Collection<Bike> checkBikeAvailability(DateRange dateRange,
