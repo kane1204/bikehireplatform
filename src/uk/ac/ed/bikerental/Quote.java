@@ -65,10 +65,22 @@ public class Quote {
         totalDeposit = totalDeposit.setScale(2, RoundingMode.CEILING); // Round to 2 decimal places as it's money
         return totalDeposit;
     }
-    
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((bikeStore == null) ? 0 : bikeStore.hashCode());
+        result = prime * result + ((bikes == null) ? 0 : bikes.hashCode());
+        result = prime * result + ((dates == null) ? 0 : dates.hashCode());
+        result = prime * result + ((providerName == null) ? 0 : providerName.hashCode());
+        result = prime * result + ((totalDeposit == null) ? 0 : totalDeposit.hashCode());
+        result = prime * result + ((totalPrice == null) ? 0 : totalPrice.hashCode());
+        return result;
+    }
+
     @Override
     public boolean equals(Object obj) {
-        // equals method for testing equality in tests
         if (this == obj)
             return true;
         if (obj == null)
@@ -76,9 +88,37 @@ public class Quote {
         if (getClass() != obj.getClass())
             return false;
         Quote other = (Quote) obj;
-        return Objects.equals(totalDeposit, other.totalDeposit) && 
-               Objects.equals(providerName, other.providerName) && 
-               Objects.equals(dates, other.dates) &&
-               bikes.equals(other.bikes);
+        if (bikeStore == null) {
+            if (other.bikeStore != null)
+                return false;
+        } else if (!bikeStore.equals(other.bikeStore))
+            return false;
+        if (bikes == null) {
+            if (other.bikes != null)
+                return false;
+        } else if (!bikes.equals(other.bikes))
+            return false;
+        if (dates == null) {
+            if (other.dates != null)
+                return false;
+        } else if (!dates.equals(other.dates))
+            return false;
+        if (providerName == null) {
+            if (other.providerName != null)
+                return false;
+        } else if (!providerName.equals(other.providerName))
+            return false;
+        if (totalDeposit == null) {
+            if (other.totalDeposit != null)
+                return false;
+        } else if (!totalDeposit.equals(other.totalDeposit))
+            return false;
+        if (totalPrice == null) {
+            if (other.totalPrice != null)
+                return false;
+        } else if (!totalPrice.equals(other.totalPrice))
+            return false;
+        return true;
     }
+    
 }

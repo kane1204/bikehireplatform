@@ -131,11 +131,7 @@ public class BikeStore {
             }
             
         }   
-    }
-    
-    
-    //...
-    
+    }   
     
     //Check if the store has enough of each type of bike queried and for the right dates.
     public Collection<Bike> checkBikeAvailability(DateRange dateRange,
@@ -159,7 +155,6 @@ public class BikeStore {
         
         Iterator<BikeType> bikeTypeIterator = bikeTypes.iterator();
         
-        //Check if each bike that's suitable will be available to rent out on the queried dates.
         while(bikeTypeIterator.hasNext()){
             int i = 0;
             BikeType tempBikeType = bikeTypeIterator.next();

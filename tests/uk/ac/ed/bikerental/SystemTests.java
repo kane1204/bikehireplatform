@@ -54,9 +54,9 @@ public class SystemTests {
         
         testBikeStore1 = new BikeStore("Terrance Store", new Location("EH115LC","123 Hi St"),
                 new String[]{"NeverBike"} ) ;
-        testBikeStore2 = new BikeStore("Jeffs Shop", new Location("EH13LC","123 Hola St"),
+        testBikeStore2 = new BikeStore("Jeffs Shop", new Location("G42 5AF","123 Hola St"),
                 new String[]{""});
-        testBikeStore3 = new BikeStore("NeverBike", new Location("KY15LC","123 Bye St"),
+        testBikeStore3 = new BikeStore("NeverBike", new Location("ML5HLC","123 Bye St"),
                 new String[]{"Terrance Store"} );
         
         allBikeStores.add(testBikeStore1);
@@ -106,40 +106,23 @@ public class SystemTests {
     // TODO: Write system tests covering the three main use cases
 
     @Test
-    @DisplayName("System Test on Getting Quotes")
-    void myFirstTest() {
-        
-        
+    @DisplayName("System Test on Getting Quotes No Bookings")
+    void GetQuotes() {
+        //Actual actual results
         Collection<Bike> queriedBikes = new ArrayList<Bike>();
         queriedBikes.add(testBike1);
-        queriedBikes.add(testBike2);
-        
-        
-        Collection<Bike> quoteBikes1 = new ArrayList<Bike>();
-        quoteBikes1.add(testBike1);
-        quoteBikes1.add(testBike2);
-        
-        testBike1.addBooking(testRange1); //testtype 1
-        //testBike1.addBooking(testRange2); 
-        testBike2.addBooking(testRange2); //testtype2
         
         Collection<BikeType> queriedTypes = new ArrayList<BikeType>();
-        Iterator<Bike> queriedBikesIterator = quoteBikes1.iterator();
+        Iterator<Bike> queriedBikesIterator = queriedBikes.iterator();
         while(queriedBikesIterator.hasNext()) {
             Bike tempBike = queriedBikesIterator.next();
             queriedTypes.add(tempBike.getType());
+            System.out.println(tempBike.getType().toString());
         }
+        System.out.println(testBike1.getType().toString() + '\n');
         
-        Collection<Quote> quotesRecived = testCustomer1.getAllQuotes(allBikeStores, queriedTypes, 
-                testRange6, testCustomer1Accom);
-        
-        Quote expectedQuote1 = new Quote("Terrance Store", testBikeStore1, testRange1, queriedBikes);
-        Quote expectedQuote2 = new Quote("NeverBike", testBikeStore3, testRange1, queriedBikes);
-        
-        Collection<Quote> quotesActual = new ArrayList<Quote>();
-        
-        quotesActual.add(expectedQuote1);
-        quotesActual.add(expectedQuote2);
+        Collection<Quote> quotesActual = testCustomer1.getAllQuotes(allBikeStores, queriedTypes, 
+                testRange1, testCustomer1Accom);
         
         Iterator<Quote> x = quotesActual.iterator();
         while(x.hasNext()) {
@@ -151,26 +134,29 @@ public class SystemTests {
             System.out.println("");
         }
         
-        assert(quotesActual.containsAll(quotesRecived));
-        assert(quotesRecived.size() == 2);
+        //Expected query results
+        Collection<Quote> quotesExpected = new ArrayList<Quote>();
+        Quote expectedQuote1 = new Quote("Terrance Store", testBikeStore1, testRange1,
+                queriedBikes);
+        quotesExpected.add(expectedQuote1);
+        
+        Iterator<Quote> y = quotesActual.iterator();
+        while(y.hasNext()) {
+            Quote z = y.next();
+            System.out.println(z.providerName.toString());
+            System.out.println(z.bikeStore.toString());
+            System.out.println(z.dates.toString());
+            System.out.println(z.bikes.toString());
+            System.out.println("");
+        }
+        
+        assertEquals(quotesActual, quotesExpected);
+        assert(quotesActual.size() == quotesExpected.size());
     }
-    
-//    @Test
-//    @DisplayName("System Test on Getting Quotes 2")
-//    void mySecondTest() {
-//        // JUnit tests look like this
-//        
-//        
-//        
-//        assertEquals("The moon", "cheese"); // Should fail
-//    }
     
     @Test
     @DisplayName("System Test on Booking Quotes w/out Delivery")
-    void mythirdTest() {
-        //dummy depreciation rate that would be set by the store
-        //we had ran into issues trying to implement this
-        
+    void BookNoDelivery() {       
         Collection<Bike> quoteBikes = new ArrayList<Bike>();
         quoteBikes.add(testBike1);
         quoteBikes.add(testBike2);
