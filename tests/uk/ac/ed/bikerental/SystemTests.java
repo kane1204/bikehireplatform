@@ -124,25 +124,18 @@ public class SystemTests {
     @DisplayName("System Test on Getting 1 Quote, No Bookings")
     void GetQuotesNoBookings() {
         //Actual actual results
-        Collection<Bike> queriedBikes = new ArrayList<Bike>();
-        queriedBikes.add(testBike1);
-        
-        Collection<BikeType> queriedTypes = new ArrayList<BikeType>();
-        Iterator<Bike> queriedBikesIterator = queriedBikes.iterator();
-        while(queriedBikesIterator.hasNext()) {
-            Bike tempBike = queriedBikesIterator.next();
-            queriedTypes.add(tempBike.getType());
-            System.out.println(tempBike.getType().toString());
-        }
-        System.out.println(testBike1.getType().toString() + '\n');
+        Collection<BikeType> queriedBikeTypes = new ArrayList<BikeType>();
+        queriedBikeTypes.add(testType1);
+        Collection<Bike> expectedBikes = new ArrayList<Bike>();
+        expectedBikes.add(testBike1);
         
         //Expected query results
         ArrayList<Quote> quotesExpected = new ArrayList<Quote>();
         quotesExpected.add(new Quote("Terrance Store", testBikeStore1, testRange1,
-                queriedBikes));
+                expectedBikes));
                 
         ArrayList<Quote> quotesActual = (ArrayList<Quote>) testCustomer1.getAllQuotes(allBikeStores,
-                queriedTypes, testRange1, testCustomer1Accom);
+                queriedBikeTypes, testRange1, testCustomer1Accom);
         
         //Find the quote (there is only 1 so it is the next quote)
         Iterator<Quote> quotesActualIterator = quotesActual.iterator();
@@ -156,13 +149,51 @@ public class SystemTests {
         assertEquals(actualQuote, expectedQuote);
     }
     
+//  //Test use case 1: Find a quote
+//    @Test
+//    @DisplayName("System Test on Getting 1 Quote, No Bookings")
+//    void GetQuotesWithBookings() {
+//        //Actual actual results
+//        Collection<Bike> queriedBikes = new ArrayList<Bike>();
+//        queriedBikes.add(testBike1);
+//        queriedBikes.add(testBike3);
+//        
+//        Collection<BikeType> queriedTypes = new ArrayList<BikeType>();
+//        Iterator<Bike> queriedBikesIterator = queriedBikes.iterator();
+//        while(queriedBikesIterator.hasNext()) {
+//            Bike tempBike = queriedBikesIterator.next();
+//            queriedTypes.add(tempBike.getType());
+//            System.out.println(tempBike.getType().toString());
+//        }
+//        System.out.println(testBike1.getType().toString() + '\n');
+//        
+//        //Expected query results
+//        ArrayList<Quote> quotesExpected = new ArrayList<Quote>();
+//        quotesExpected.add(new Quote("Terrance Store", testBikeStore1, testRange1,
+//                queriedBikes));
+//                
+//        ArrayList<Quote> quotesActual = (ArrayList<Quote>) testCustomer1.getAllQuotes(allBikeStores,
+//                queriedTypes, testRange1, testCustomer1Accom);
+//        
+//        //Find the quote (there is only 1 so it is the next quote)
+//        Iterator<Quote> quotesActualIterator = quotesActual.iterator();
+//        Quote actualQuote = quotesActualIterator.next();
+//        
+//        //Find the quote (there is only 1 so it is the next quote)
+//        Iterator<Quote> quotesExpectedIterator = quotesExpected.iterator();
+//        Quote expectedQuote = quotesExpectedIterator.next();
+//        
+//        //Compare the quotes 
+//        assertEquals(actualQuote, expectedQuote);
+//    }
+    
     //Test use case 2: Book a quote
     @Test
     @DisplayName("System Test on Booking Quotes w/out Delivery")
     void BookNoDelivery() {       
         Collection<Bike> quoteBikes = new ArrayList<Bike>();
-        quoteBikes.add(testBike1);
-        quoteBikes.add(testBike2);
+        quoteBikes.add(testBike4);
+        quoteBikes.add(testBike5);
         Booking expBooking = new Booking(testCustomer1, testBikeStore1, testRange1, quoteBikes, 0,
                 false, new BigDecimal("880.00"), new BigDecimal("88.00"));
         Quote quoteToBook = new Quote("Terrance Store", testBikeStore1, testRange1, quoteBikes);
