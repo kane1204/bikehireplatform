@@ -168,6 +168,9 @@ public class SystemTests {
         quoteBikes.add(testBike2);
         Booking expBooking = new Booking(testCustomer1, testBikeStore1, testRange1, quoteBikes, 0, false, null, null);
         Quote quoteToBook = new Quote("Terrance Store", testBikeStore1, testRange1, quoteBikes);
+        quoteToBook.calcTotalPrice(testBikeStore1, quoteBikes);
+        quoteToBook.calcTotalDeposit(testBikeStore1.getDepositRate());
+        
         
         Booking returnedBooking = testCustomer1.bookQuote(quoteToBook, false);
         assertEquals(returnedBooking, expBooking);
