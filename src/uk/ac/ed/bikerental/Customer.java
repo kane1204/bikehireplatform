@@ -23,6 +23,7 @@ public class Customer {
         super();
         this.firstName = firstName;
         this.lastName = lastName;
+        this.locationInfo = locationInfo;
         this.email = email;
         this.contactNo = contactNo;
         this.accommodation = accommodation;
