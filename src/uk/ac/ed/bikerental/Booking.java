@@ -78,7 +78,7 @@ public class Booking {
     //String to return to customer with all the booking details
     public String orderSummary() {
         return  "Customer: "+ customer.getFirstName()+"\n Stores Name: " + store.storeName + 
-                "\n Total Price: "+ totalPrice + "\n Total Deposit: "+ totalDeposit ;
+                "\n Total Price: "+ totalPrice + "\n Total Deposit: "+ totalDeposit +"\n";
     }
     
     //Deposit statuses

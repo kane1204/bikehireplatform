@@ -38,7 +38,7 @@ public class SystemTests {
         DeliveryServiceFactory.setupMockDeliveryService();
         
         this.allBikeStores = new ArrayList<BikeStore>();
-        
+        Booking.BOOKINGS =0;
         testDate1 = LocalDate.of(2015, 1, 1);
         testDate2 = LocalDate.of(2015, 1, 10);
         testDate3 = LocalDate.of(2015, 1, 5);
@@ -170,5 +170,41 @@ public class SystemTests {
         Booking returnedBooking = testCustomer1.bookQuote(quoteToBook, false);
         assertEquals(returnedBooking, expBooking);
     }
+    @Test
+    @DisplayName("System Test on Booking Quotes w/ Delivery")
+    void myfourthTest() {
+        //dummy depreciation rate that would be set by the store
+        //we had ran into issues trying to implement this
         
+        Collection<Bike> quoteBikes = new ArrayList<Bike>();
+        quoteBikes.add(testBike1);
+        Booking expBooking = new Booking(testCustomer1, testBikeStore1, testRange1, quoteBikes, 0,
+                true, new BigDecimal("400.00"), new BigDecimal("40.00"));
+        Quote quoteToBook = new Quote("Terrance Store", testBikeStore1, testRange1, quoteBikes);
+        quoteToBook.calcTotalPrice(testBikeStore1, quoteBikes);
+        quoteToBook.calcTotalDeposit(testBikeStore1.getDepositRate());
+        
+        
+        Booking returnedBooking = testCustomer1.bookQuote(quoteToBook, true);
+        assertEquals(returnedBooking, expBooking);
+    }
+    @Test
+    @DisplayName("Return via Original Provider")
+    void myfifthTest() {
+        //dummy depreciation rate that would be set by the store
+        //we had ran into issues trying to implement this
+        
+        Collection<Bike> quoteBikes = new ArrayList<Bike>();
+        quoteBikes.add(testBike1);
+        quoteBikes.add(testBike2);
+        Quote quoteToBook = new Quote("Terrance Store", testBikeStore1, testRange1, quoteBikes);
+        quoteToBook.calcTotalPrice(testBikeStore1, quoteBikes);
+        quoteToBook.calcTotalDeposit(testBikeStore1.getDepositRate());
+        
+        
+        Booking returnedBooking = testCustomer1.bookQuote(quoteToBook, true);
+        
+        testBikeStore1.returnBikeToProvider(0);
+    }
+    
 }
