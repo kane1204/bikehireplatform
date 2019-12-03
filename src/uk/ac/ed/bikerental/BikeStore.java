@@ -91,10 +91,8 @@ public class BikeStore {
             for (int i = 0; i< partnerships.length; i++) {
                 if(partnerships[i] == tempBooking.store.storeName) {
                     part = true;
-                    return;
                 }
             }
-            
             if(tempBooking.ref == ref && part) {   
                 tempBooking.depositReturnedToPartner();
                 tempBooking.bikesToBeDeliveredToProvider();
@@ -115,19 +113,13 @@ public class BikeStore {
         Iterator<Booking> allBookingsIterator = Booking.ALLBOOKINGS.iterator();
         while(allBookingsIterator.hasNext()) {
             Booking tempBooking = allBookingsIterator.next();
-            Boolean part = false;
-            for (int i = 0; i< partnerships.length; i++) {
-                if(partnerships[i] == tempBooking.store.storeName) {
-                    part = true;
-                    return;
+            if(tempBooking.store.equals(this)) {
+                if(tempBooking.ref == ref ) {
+                    tempBooking.depositInDelivery();
+                    tempBooking.bikesReturned();
+                } else {
+                    assert false;
                 }
-            }
-            
-            if(tempBooking.ref == ref && part) {
-                tempBooking.depositInDelivery();
-                tempBooking.bikesReturned();
-            } else {
-                assert false;
             }
             
         }   

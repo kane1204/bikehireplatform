@@ -41,7 +41,7 @@ public class SystemTests {
         
         this.allBikeStores = new ArrayList<BikeStore>(); //Ready to store all bike stores
         Booking.BOOKINGS = 0; //Before each test, set the number of bookings to zero
-        
+        Booking.ALLBOOKINGS = new ArrayList<Booking>();
         //Test data for dates
         testDate1 = LocalDate.of(2015, 1, 1);
         testDate2 = LocalDate.of(2015, 1, 10);
@@ -149,43 +149,43 @@ public class SystemTests {
         assertEquals(actualQuote, expectedQuote);
     }
     
-//  //Test use case 1: Find a quote
-//    @Test
-//    @DisplayName("System Test on Getting 1 Quote, No Bookings")
-//    void GetQuotesWithBookings() {
-//        //Actual actual results
-//        Collection<Bike> queriedBikes = new ArrayList<Bike>();
-//        queriedBikes.add(testBike1);
-//        queriedBikes.add(testBike3);
-//        
-//        Collection<BikeType> queriedTypes = new ArrayList<BikeType>();
-//        Iterator<Bike> queriedBikesIterator = queriedBikes.iterator();
-//        while(queriedBikesIterator.hasNext()) {
-//            Bike tempBike = queriedBikesIterator.next();
-//            queriedTypes.add(tempBike.getType());
-//            System.out.println(tempBike.getType().toString());
-//        }
-//        System.out.println(testBike1.getType().toString() + '\n');
-//        
-//        //Expected query results
-//        ArrayList<Quote> quotesExpected = new ArrayList<Quote>();
-//        quotesExpected.add(new Quote("Terrance Store", testBikeStore1, testRange1,
-//                queriedBikes));
-//                
-//        ArrayList<Quote> quotesActual = (ArrayList<Quote>) testCustomer1.getAllQuotes(allBikeStores,
-//                queriedTypes, testRange1, testCustomer1Accom);
-//        
-//        //Find the quote (there is only 1 so it is the next quote)
-//        Iterator<Quote> quotesActualIterator = quotesActual.iterator();
-//        Quote actualQuote = quotesActualIterator.next();
-//        
-//        //Find the quote (there is only 1 so it is the next quote)
-//        Iterator<Quote> quotesExpectedIterator = quotesExpected.iterator();
-//        Quote expectedQuote = quotesExpectedIterator.next();
-//        
-//        //Compare the quotes 
-//        assertEquals(actualQuote, expectedQuote);
-//    }
+  //Test use case 1: Find a quote
+    @Test
+    @DisplayName("System Test on Getting 1 Quote, No Bookings")
+    void GetQuotesWithBookings() {
+        //Actual actual results
+        Collection<Bike> queriedBikes = new ArrayList<Bike>();
+        queriedBikes.add(testBike1);
+        queriedBikes.add(testBike3);
+        
+        Collection<BikeType> queriedTypes = new ArrayList<BikeType>();
+        Iterator<Bike> queriedBikesIterator = queriedBikes.iterator();
+        while(queriedBikesIterator.hasNext()) {
+            Bike tempBike = queriedBikesIterator.next();
+            queriedTypes.add(tempBike.getType());
+            //System.out.println(tempBike.getType().toString());
+        }
+        //System.out.println(testBike1.getType().toString() + '\n');
+        
+        //Expected query results
+        ArrayList<Quote> quotesExpected = new ArrayList<Quote>();
+        quotesExpected.add(new Quote("Terrance Store", testBikeStore1, testRange1,
+                queriedBikes));
+                
+        ArrayList<Quote> quotesActual = (ArrayList<Quote>) testCustomer1.getAllQuotes(allBikeStores,
+                queriedTypes, testRange1, testCustomer1Accom);
+        
+        //Find the quote (there is only 1 so it is the next quote)
+        Iterator<Quote> quotesActualIterator = quotesActual.iterator();
+        Quote actualQuote = quotesActualIterator.next();
+        
+        //Find the quote (there is only 1 so it is the next quote)
+        Iterator<Quote> quotesExpectedIterator = quotesExpected.iterator();
+        Quote expectedQuote = quotesExpectedIterator.next();
+        
+        //Compare the quotes 
+        assertEquals(actualQuote, expectedQuote);
+    }
     
     //Test use case 2: Book a quote
     @Test
@@ -237,6 +237,49 @@ public class SystemTests {
         assertEquals( temp,true );
     }
     
+    @Test
+    @DisplayName("Returned to Partner and send on delivery")
+    void ReturnViaPartner() {      
+        Collection<Bike> quoteBikes = new ArrayList<Bike>();
+        quoteBikes.add(testBike1);
+        quoteBikes.add(testBike2);
+        Quote quoteToBook = new Quote("Terrance Store", testBikeStore1, testRange1, quoteBikes);    
+        
+        testCustomer1.bookQuote(quoteToBook, true); 
+        //testBike1.bikeUnavailable();
+        //testBike2.bikeUnavailable();  
+        testBikeStore3.returnBikesAsPartner(0);
+        //System.out.println(testBike2.getStatus());
+        Boolean temp = false;
+        if(testBike2.getStatus() == "BEING_DELIVERED" && testBike1.getStatus() == "BEING_DELIVERED" ) {
+            temp = true;
+        }
+        assertEquals( temp,true );
+    }
+    
+    @Test
+    @DisplayName("Returned to provider via delivery")
+    void ReturnViaDeliverytoProvider() {      
+        Collection<Bike> quoteBikes = new ArrayList<Bike>();
+        quoteBikes.add(testBike1);
+        quoteBikes.add(testBike2);
+        Quote quoteToBook = new Quote("Terrance Store", testBikeStore1, testRange1, quoteBikes);    
+        
+        testCustomer1.bookQuote(quoteToBook, true); 
+        //testBike1.bikeUnavailable();
+        //testBike2.bikeUnavailable();  
+        
+        testBikeStore3.returnBikesAsPartner(0);
+        //System.out.println(testBike2.getStatus());
+        testBikeStore1.returnBikesFromPartner(0);
+        //System.out.println(testBike2.getStatus());
+        
+        Boolean temp = false;
+        if(testBike2.getStatus() == "AVAILABLE" && testBike1.getStatus() == "AVAILABLE" ) {
+            temp = true;
+        }
+        assertEquals( temp,true );
+    }
     //Test multiple use cases in a single test
     //...
     
