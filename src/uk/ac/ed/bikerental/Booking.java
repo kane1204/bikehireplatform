@@ -78,7 +78,7 @@ public class Booking {
     //String to return to customer with all the booking details
     public String orderSummary() {
         return  "Customer: "+ customer.getFirstName()+"\n Stores Name: " + store.storeName + 
-                "\n Total Price: "+ totalPrice + "\n Total Deposit: "+ totalDeposit ;
+                "\n Total Price: "+ totalPrice + "\n Total Deposit: "+ totalDeposit +"\n";
     }
     
     //Deposit statuses
@@ -195,8 +195,6 @@ public class Booking {
             if (other.range != null)
                 return false;
         } else if (!range.equals(other.range))
-            return false;
-        if (ref != other.ref)
             return false;
         if (store == null) {
             if (other.store != null)
