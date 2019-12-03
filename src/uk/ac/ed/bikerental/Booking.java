@@ -117,7 +117,7 @@ public class Booking {
         
         while(bikeIterator.hasNext()){
             Bike tempBike = bikeIterator.next();
-            if(this.bikeDelivery) {
+            if(this.deliveryService != null) {
                 tempBike.onDropoff(); //available
             }
             else {
@@ -125,7 +125,7 @@ public class Booking {
             }
         }
         
-        if(this.bikeDelivery) {
+        if(this.deliveryService != null) {
             this.depositInDelivery(); //deposit going back to original provider
         }
         else {
@@ -140,7 +140,7 @@ public class Booking {
         
         while(bikeIterator.hasNext()){
             Bike tempBike = bikeIterator.next();
-            if(this.bikeDelivery) {
+            if(this.deliveryService != null) {
                 tempBike.onPickup(); //being delivered
             }
             else {
@@ -148,7 +148,7 @@ public class Booking {
             }
         }
         
-        if(this.bikeDelivery) {
+        if(this.deliveryService != null) {
             this.depositInDelivery(); //deposit going back to original provider
         }
         else {
