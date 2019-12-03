@@ -169,7 +169,11 @@ public class BikeStore {
         }
         
         //Return all available bikes
-        return returnBikes;
+        if(returnBikes.isEmpty()) {
+            return null;
+        } else {
+            return returnBikes;
+        }
     }
     @Override
     public int hashCode() {

@@ -73,7 +73,11 @@ public class Customer {
         }
         
         //Return all available quotes
-        return availableQuotes;
+        if(availableQuotes.isEmpty()) {
+            return null;
+        } else {
+            return availableQuotes;
+        }
     }
     
     // Adds the booking created to the collection of booking for each customer
