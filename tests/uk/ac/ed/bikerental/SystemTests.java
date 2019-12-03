@@ -90,11 +90,7 @@ public class SystemTests {
         
         testBikeStore1.setDepositRate(new BigDecimal("0.1"));
         testBikeStore2.setDepositRate(new BigDecimal("0.2"));
-        testBikeStore3.setDepositRate(new BigDecimal("0.3"));
-        
-        testBikeStore1.setDepreciationRate(new BigDecimal("0.3"));
-        testBikeStore2.setDepreciationRate(new BigDecimal("0.2"));
-        testBikeStore3.setDepreciationRate(new BigDecimal("0.1"));     
+        testBikeStore3.setDepositRate(new BigDecimal("0.3"));   
         
         testRange1 = new DateRange(testDate1, testDate2);
         testRange2 = new DateRange(testDate2, testDate3);

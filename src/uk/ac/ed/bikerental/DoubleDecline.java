@@ -5,13 +5,12 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 
 public class DoubleDecline implements ValuationPolicy {
-    //public BigDecimal depriciationRate; // Store will set their own depreciation rate
+    public BigDecimal depreciationRate; // Store will set their own depreciation rate
     
     // Use the method defined in the ValuationPolicy interface
     @Override
     public BigDecimal calculateValue(Bike bike, LocalDate date) {
         BikeType bikeType = bike.getType(); // Get the bike object's bike type
-        BigDecimal depriciationRate = bike.store.getDepreciationRate(); // Store will set their own depreciation rate
         
         /* 
          * Calculate the age of the bike by finding the range between passed in and today's date.
@@ -32,10 +31,10 @@ public class DoubleDecline implements ValuationPolicy {
         BigDecimal one = new BigDecimal("1");
         BigDecimal two = new BigDecimal("2");
         BigDecimal repVal = bikeType.getReplacementValue();
-        BigDecimal doubleDepRate = depriciationRate.multiply(two);
-        BigDecimal depriationPt1 = one.subtract(doubleDepRate);
-        BigDecimal depriationPt2 = depriationPt1.pow(yearsOld);
-        BigDecimal value = repVal.multiply(depriationPt2);
+        BigDecimal doubleDepRate = depreciationRate.multiply(two);
+        BigDecimal depreciationPt1 = one.subtract(doubleDepRate);
+        BigDecimal depreciationPt2 = depreciationPt1.pow(yearsOld);
+        BigDecimal value = repVal.multiply(depreciationPt2);
         value = value.setScale(2, RoundingMode.CEILING); // Round to 2 decimal places as it's money
         
         // Return the new cost of the bike

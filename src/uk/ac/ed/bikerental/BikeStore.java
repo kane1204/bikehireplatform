@@ -39,10 +39,6 @@ public class BikeStore {
     public BigDecimal getDepositRate() {
         return this.depositRate;
     }
-    
-    public BigDecimal getDepreciationRate() {
-        return this.depreciationRate;
-    }
 
     //Setters
     public void setValuationPolicy(String policy) { //set in test
@@ -51,10 +47,6 @@ public class BikeStore {
  
     public void setDepositRate(BigDecimal rate) { //set in test
         this.depositRate = rate;
-    }
-    
-    public void setDepreciationRate(BigDecimal rate) { //set in test
-        this.depreciationRate = rate;
     }
     
     //Methods
