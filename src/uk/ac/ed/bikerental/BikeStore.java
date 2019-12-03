@@ -2,6 +2,7 @@ package uk.ac.ed.bikerental;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Objects;
@@ -166,8 +167,20 @@ public class BikeStore {
         return returnBikes;
     }
     @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((bikeStock == null) ? 0 : bikeStock.hashCode());
+        result = prime * result + ((depositRate == null) ? 0 : depositRate.hashCode());
+        result = prime * result + ((locationOfStore == null) ? 0 : locationOfStore.hashCode());
+        result = prime * result + Arrays.hashCode(partnerships);
+        result = prime * result + ((storeName == null) ? 0 : storeName.hashCode());
+        result = prime * result + ((valuationPolicy == null) ? 0 : valuationPolicy.hashCode());
+        return result;
+    }
+
+    @Override
     public boolean equals(Object obj) {
-        // equals method for testing equality in tests
         if (this == obj)
             return true;
         if (obj == null)
@@ -175,7 +188,33 @@ public class BikeStore {
         if (getClass() != obj.getClass())
             return false;
         BikeStore other = (BikeStore) obj;
-        return Objects.equals(storeName, other.storeName) && 
-               Objects.equals(locationOfStore, other.locationOfStore);
+        if (bikeStock == null) {
+            if (other.bikeStock != null)
+                return false;
+        } else if (!bikeStock.equals(other.bikeStock))
+            return false;
+        if (depositRate == null) {
+            if (other.depositRate != null)
+                return false;
+        } else if (!depositRate.equals(other.depositRate))
+            return false;
+        if (locationOfStore == null) {
+            if (other.locationOfStore != null)
+                return false;
+        } else if (!locationOfStore.equals(other.locationOfStore))
+            return false;
+        if (!Arrays.equals(partnerships, other.partnerships))
+            return false;
+        if (storeName == null) {
+            if (other.storeName != null)
+                return false;
+        } else if (!storeName.equals(other.storeName))
+            return false;
+        if (valuationPolicy == null) {
+            if (other.valuationPolicy != null)
+                return false;
+        } else if (!valuationPolicy.equals(other.valuationPolicy))
+            return false;
+        return true;
     }
 }

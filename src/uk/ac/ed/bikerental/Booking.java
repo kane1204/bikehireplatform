@@ -153,4 +153,77 @@ public class Booking {
             this.depositCollected(); //deposit collected
         }
     }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((bikeDelivery == null) ? 0 : bikeDelivery.hashCode());
+        result = prime * result + ((bikes == null) ? 0 : bikes.hashCode());
+        result = prime * result + ((customer == null) ? 0 : customer.hashCode());
+        result = prime * result + ((depositStatus == null) ? 0 : depositStatus.hashCode());
+        result = prime * result + ((paid == null) ? 0 : paid.hashCode());
+        result = prime * result + ((range == null) ? 0 : range.hashCode());
+        result = prime * result + ref;
+        result = prime * result + ((store == null) ? 0 : store.hashCode());
+        result = prime * result + ((totalDeposit == null) ? 0 : totalDeposit.hashCode());
+        result = prime * result + ((totalPrice == null) ? 0 : totalPrice.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Booking other = (Booking) obj;
+        if (bikeDelivery == null) {
+            if (other.bikeDelivery != null)
+                return false;
+        } else if (!bikeDelivery.equals(other.bikeDelivery))
+            return false;
+        if (bikes == null) {
+            if (other.bikes != null)
+                return false;
+        } else if (!bikes.equals(other.bikes))
+            return false;
+        if (customer == null) {
+            if (other.customer != null)
+                return false;
+        } else if (!customer.equals(other.customer))
+            return false;
+        if (depositStatus != other.depositStatus)
+            return false;
+        if (paid == null) {
+            if (other.paid != null)
+                return false;
+        } else if (!paid.equals(other.paid))
+            return false;
+        if (range == null) {
+            if (other.range != null)
+                return false;
+        } else if (!range.equals(other.range))
+            return false;
+        if (ref != other.ref)
+            return false;
+        if (store == null) {
+            if (other.store != null)
+                return false;
+        } else if (!store.equals(other.store))
+            return false;
+        if (totalDeposit == null) {
+            if (other.totalDeposit != null)
+                return false;
+        } else if (!totalDeposit.equals(other.totalDeposit))
+            return false;
+        if (totalPrice == null) {
+            if (other.totalPrice != null)
+                return false;
+        } else if (!totalPrice.equals(other.totalPrice))
+            return false;
+        return true;
+    }
 }
