@@ -37,7 +37,7 @@ public class SystemTests {
         // Setup mock delivery service before each tests
         DeliveryServiceFactory.setupMockDeliveryService();
         
-        Collection<BikeStore> allBikeStores = new ArrayList<BikeStore>();
+        this.allBikeStores = new ArrayList<BikeStore>();
         
         testCustomer1Address = new Location("KY118LJ","123 Steeve Street");
         testCustomer1Accom = new Location("EH18LB","123 Life Street");
