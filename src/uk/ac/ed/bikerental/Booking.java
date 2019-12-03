@@ -44,6 +44,7 @@ public class Booking {
         this.totalPrice = totalPrice;
         this.totalDeposit = totalDeposit;    
         this.paid = false;
+        this.depositStatus = depositStatuses.COLLECT;
         
         
         if(this.bikeDelivery) {

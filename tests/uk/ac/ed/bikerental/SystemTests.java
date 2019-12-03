@@ -106,7 +106,7 @@ public class SystemTests {
     // TODO: Write system tests covering the three main use cases
 
     @Test
-    @DisplayName("System Test on Getting Quotes No Bookings")
+    @DisplayName("System Test on Getting 1 Quote, No Bookings")
     void GetQuotes() {
         //Actual actual results
         Collection<Bike> queriedBikes = new ArrayList<Bike>();
@@ -121,8 +121,13 @@ public class SystemTests {
         }
         System.out.println(testBike1.getType().toString() + '\n');
         
-        Collection<Quote> quotesActual = testCustomer1.getAllQuotes(allBikeStores, queriedTypes, 
-                testRange1, testCustomer1Accom);
+        //Expected query results
+        ArrayList<Quote> quotesExpected = new ArrayList<Quote>();
+        quotesExpected.add(new Quote("Terrance Store", testBikeStore1, testRange1,
+                queriedBikes));
+        
+        ArrayList<Quote> quotesActual = (ArrayList<Quote>) testCustomer1.getAllQuotes(allBikeStores,
+                queriedTypes, testRange1, testCustomer1Accom);
         
         Iterator<Quote> x = quotesActual.iterator();
         while(x.hasNext()) {
@@ -134,12 +139,6 @@ public class SystemTests {
             System.out.println("");
         }
         
-        //Expected query results
-        Collection<Quote> quotesExpected = new ArrayList<Quote>();
-        Quote expectedQuote1 = new Quote("Terrance Store", testBikeStore1, testRange1,
-                queriedBikes);
-        quotesExpected.add(expectedQuote1);
-        
         Iterator<Quote> y = quotesActual.iterator();
         while(y.hasNext()) {
             Quote z = y.next();
@@ -150,8 +149,9 @@ public class SystemTests {
             System.out.println("");
         }
         
-        assertEquals(quotesActual, quotesExpected);
-        assert(quotesActual.size() == quotesExpected.size());
+        System.out.println(quotesExpected);
+        System.out.println(quotesActual);
+        assertEquals(quotesExpected, quotesActual);
     }
     
     @Test
