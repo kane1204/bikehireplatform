@@ -1,6 +1,7 @@
 package uk.ac.ed.bikerental;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Iterator;
@@ -46,9 +47,7 @@ public class Quote {
             LocalDate dateBikeNew = nextBike.getDateNew();
             
             if(valuationPolicy=="Linear Depreciation") {
-                System.out.println("hi");
                 totalPrice = totalPrice.add(ld.calculateValue(nextBike, dateBikeNew));
-                System.out.println(totalPrice);
             }
             else if(valuationPolicy=="Double Declining Balance Depreciation") totalPrice =
                 totalPrice.add(dd.calculateValue(nextBike,dateBikeNew));
@@ -63,6 +62,7 @@ public class Quote {
     //Calculate the total deposit using the total cost global variable and passed in deposit rate. 
     public BigDecimal calcTotalDeposit(BigDecimal depositRate) {
         totalDeposit = totalPrice.multiply(depositRate);
+        totalDeposit = totalDeposit.setScale(2, RoundingMode.CEILING); // Round to 2 decimal places as it's money
         return totalDeposit;
     }
     

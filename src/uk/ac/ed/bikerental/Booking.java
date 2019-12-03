@@ -181,11 +181,6 @@ public class Booking {
         if (getClass() != obj.getClass())
             return false;
         Booking other = (Booking) obj;
-        if (bikeDelivery == null) {
-            if (other.bikeDelivery != null)
-                return false;
-        } else if (!bikeDelivery.equals(other.bikeDelivery))
-            return false;
         if (bikes == null) {
             if (other.bikes != null)
                 return false;
@@ -195,13 +190,6 @@ public class Booking {
             if (other.customer != null)
                 return false;
         } else if (!customer.equals(other.customer))
-            return false;
-        if (depositStatus != other.depositStatus)
-            return false;
-        if (paid == null) {
-            if (other.paid != null)
-                return false;
-        } else if (!paid.equals(other.paid))
             return false;
         if (range == null) {
             if (other.range != null)
