@@ -43,4 +43,18 @@ public class BikeType {
     public void setDailyPrice(BigDecimal x) {
         this.dailyPrice = x;
     }
+    @Override
+    public boolean equals(Object obj) {
+        // equals method for testing equality in tests
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        BikeType other = (BikeType) obj;
+        return Objects.equals(nameOfType, other.nameOfType) && 
+               Objects.equals(replacementCost, other.replacementCost)&& 
+               Objects.equals(dailyPrice, other.dailyPrice);
+    }
 }

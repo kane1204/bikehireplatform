@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Objects;
 
 public class BikeStore {
     //Info about the store
@@ -161,5 +162,18 @@ public class BikeStore {
         
         //Return all available bikes
         return returnBikes;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        // equals method for testing equality in tests
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        BikeStore other = (BikeStore) obj;
+        return Objects.equals(storeName, other.storeName) && 
+               Objects.equals(locationOfStore, other.locationOfStore);
     }
 }
