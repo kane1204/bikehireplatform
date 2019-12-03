@@ -15,7 +15,7 @@ public class LinearDepreciation implements ValuationPolicy {
         /* 
          * Calculate the age of the bike by finding the range between passed in and today's date.
          * BigDecimal's can only be modified by another BigDecimal, so some numbers have been
-         * converted to do so.
+         * converted to do so. 
         */
         LocalDate dateNow = LocalDate.now(); // Get today's date
         
