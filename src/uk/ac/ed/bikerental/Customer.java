@@ -60,12 +60,12 @@ public class Customer {
         //Next check if a store that's near enough can fulfil the quote
         while(nearByStoreIterator.hasNext()){
             BikeStore tempStore = nearByStoreIterator.next(); 
-            Collection<Bike> quoteBikes = tempStore.checkBikeAvailability(dateRange, bikeTypes);
+            Collection<BikeType> quoteBikeTypes = tempStore.checkBikeAvailability(dateRange, bikeTypes);
             
             //Add all available quotes to a list with the total cost and deposit calculated
-            if(quoteBikes != null) {
+            if(quoteBikeTypes != null) {
                 Quote newQuote = new Quote(tempStore.storeName, tempStore, dateRange, 
-                        quoteBikes);         
+                        quoteBikeTypes);         
                 newQuote.calcTotalPrice(tempStore, quoteBikes);
                 newQuote.calcTotalDeposit(tempStore.getDepositRate());
                 availableQuotes.add(newQuote);

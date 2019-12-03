@@ -23,6 +23,7 @@ public class BikeStore {
         this.storeName = storeName;
         this.locationOfStore = locationOfStore;
         this.partnerships = partnerships;
+        this.bikeStock = new ArrayList<Bike>();
     }
     
     //Getters
@@ -125,7 +126,7 @@ public class BikeStore {
     //Check if the store has enough of each type of bike queried and for the right dates.
     public Collection<Bike> checkBikeAvailability(DateRange dateRange,
             Collection<BikeType> bikeTypes) { 
-        Collection<Bike> allAvailableBikes = new ArrayList<Bike>();
+        Collection<BikeType> allAvailableBikes = new ArrayList<BikeType>();
         Collection<Bike> returnBikes = new ArrayList<Bike>();
         Iterator<Bike> bikeStockIterator = bikeStock.iterator();
         
