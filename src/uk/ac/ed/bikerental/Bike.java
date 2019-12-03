@@ -1,6 +1,7 @@
 package uk.ac.ed.bikerental;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -21,11 +22,12 @@ public class Bike implements Deliverable{
     public BikeStore store;
     
     //Define constructor
-    public Bike(BikeStore store,  BikeType type) {
+    public Bike(BikeType type) {
         super();
         this.type = type;
         this.typeOfBike = type.nameOfType;
         this.status = statuses.AVAILABLE;
+        this.unavailableDates = new ArrayList<DateRange>();
     }
     
     //Getters    
@@ -38,13 +40,18 @@ public class Bike implements Deliverable{
     }
     
     public LocalDate getDateNew() {
-        return this.dateNew;
+        return dateNew;
     }
-
+    
+    public Collection<DateRange> getUnavailableDates() {
+        return this.unavailableDates;
+    }
     
     //Methods
     //Add all unavailable dates to a collection
     public void addBooking(DateRange dates) {
+        boolean overlaps = this.checkDates(dates);
+        assert(overlaps);
         unavailableDates.add(dates);
     }
     

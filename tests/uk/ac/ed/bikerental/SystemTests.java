@@ -22,13 +22,61 @@ public class SystemTests {
         DeliveryServiceFactory.setupMockDeliveryService();
         
         // Put your test setup here
+        setUpBikes();
+        setUpDates();
+        setUpLocations();
+        setUpPartners();
+    }
+
+    private void setUpBikes() {
+        // TODO Auto-generated method stub
+        
     }
     
+    private void setUpDates() {
+        // TODO Auto-generated method stub
+        
+    }
+    
+    private void setUpLocations() {
+        // TODO Auto-generated method stub
+        
+    }
+    
+    private void setUpPartners() {
+        // TODO Auto-generated method stub
+        
+    }
+
+
     // TODO: Write system tests covering the three main use cases
 
     @Test
-    void myFirstTest() {
+    @DisplayName("Finding a quote")
+    void FindingAQuote() {
         // JUnit tests look like this
         assertEquals("The moon", "cheese"); // Should fail
     }
+    
+    @Test
+    @DisplayName("Finding a quote")
+    void BookingAQuote() {
+        // JUnit tests look like this
+        assertEquals("The moon", "cheese"); // Should fail
+    }
+    
+    @Test
+    @DisplayName("Returning a bike to it's original provider")
+    void ReturningABikeToProvider() {
+        // JUnit tests look like this
+        assertEquals("The moon", "cheese"); // Should fail
+    }
+    
+    @Test
+    @DisplayName("Returning a bike to a partner of the original provider")
+    void ReturningABikeToPartner() {
+        // JUnit tests look like this
+        assertEquals("The moon", "cheese"); // Should fail
+    }
+
 }

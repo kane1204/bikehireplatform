@@ -27,12 +27,20 @@ public class BikeType {
         return dailyPrice;
     }
     
+    public String getType() {
+        return nameOfType;
+    }
+    
     //Setters
     public void setReplacementValue(BigDecimal x) {
         this.replacementCost = x;
     }
     
     public void setDailyprice(BigDecimal x) {
+        this.dailyPrice = x;
+    }
+    
+    public void setDailyPrice(BigDecimal x) {
         this.dailyPrice = x;
     }
 }

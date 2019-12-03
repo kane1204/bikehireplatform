@@ -45,6 +45,9 @@ public class Quote {
                     totalPrice.add(ld.calculateValue(nextBike, dateBikeNew));
             else if(valuationPolicy=="Double Declining Balance Depreciation") totalPrice =
                     totalPrice.add(dd.calculateValue(nextBike,dateBikeNew));
+            else {
+               //..
+            }
         }
         return totalPrice;
     }

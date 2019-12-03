@@ -33,11 +33,6 @@ public class BikeStore {
     public BigDecimal getDepositRate() {
         return this.depositRate;
     }
-    
-    //Setters
-    public void setDailyPrice(BikeType typeOfBike, BigDecimal dailyPrice) {
-        //TODO: set Daily price on a specified bike type
-    }
 
     public void setValuationPolicy(String policy) { //set in test
         this.valuationPolicy = policy;
