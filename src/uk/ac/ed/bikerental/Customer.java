@@ -66,8 +66,6 @@ public class Customer {
             if(quoteBikes != null) {
                 Quote newQuote = new Quote(tempStore.storeName, tempStore, dateRange, 
                         quoteBikes);         
-                newQuote.calcTotalPrice(tempStore, quoteBikes);
-                newQuote.calcTotalDeposit(tempStore.getDepositRate());
                 availableQuotes.add(newQuote);
             }
         }

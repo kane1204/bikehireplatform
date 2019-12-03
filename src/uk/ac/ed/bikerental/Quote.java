@@ -25,6 +25,8 @@ public class Quote {
         this.dates = dates;
         this.bikes = bikes;
         this.totalPrice = new BigDecimal("0");
+        this.calcTotalPrice(bikeStore, bikes);
+        this.calcTotalDeposit(bikeStore.getDepositRate());  
     }
     
     //Methods

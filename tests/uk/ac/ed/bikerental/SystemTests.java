@@ -127,31 +127,28 @@ public class SystemTests {
         ArrayList<Quote> quotesExpected = new ArrayList<Quote>();
         quotesExpected.add(new Quote("Terrance Store", testBikeStore1, testRange1,
                 queriedBikes));
-        
+                
         ArrayList<Quote> quotesActual = (ArrayList<Quote>) testCustomer1.getAllQuotes(allBikeStores,
                 queriedTypes, testRange1, testCustomer1Accom);
         
         Iterator<Quote> x = quotesActual.iterator();
         Quote y = x.next();
-//        while(x.hasNext()) {
-//            Quote y = x.next();
-//            System.out.println(y.providerName.toString());
-//            System.out.println(y.bikeStore.toString());
-//            System.out.println(y.dates.toString());
-//            System.out.println(y.bikes.toString());
-//            System.out.println("");
-//        }
+        System.out.println(y.providerName);
+        System.out.println(y.bikeStore);
+        System.out.println(y.dates);
+        System.out.println(y.bikes);
+        System.out.println(y.totalPrice);
+        System.out.println("");
         
-        Iterator<Quote> bob = quotesActual.iterator();
+        Iterator<Quote> bob = quotesExpected.iterator();
         Quote z = bob.next();
-//        while(y.hasNext()) {
-//            Quote z = y.next();
-//            System.out.println(z.providerName.toString());
-//            System.out.println(z.bikeStore.toString());
-//            System.out.println(z.dates.toString());
-//            System.out.println(z.bikes.toString());
-//            System.out.println("");
-//        }
+        
+            System.out.println(z.providerName);
+            System.out.println(z.bikeStore);
+            System.out.println(z.dates);
+            System.out.println(z.bikes);
+            System.out.println(z.totalPrice);
+            System.out.println("");
         
         System.out.println(quotesExpected);
         System.out.println(quotesActual);
@@ -167,8 +164,6 @@ public class SystemTests {
         Booking expBooking = new Booking(testCustomer1, testBikeStore1, testRange1, quoteBikes, 0,
                 false, new BigDecimal("880.00"), new BigDecimal("88.00"));
         Quote quoteToBook = new Quote("Terrance Store", testBikeStore1, testRange1, quoteBikes);
-        quoteToBook.calcTotalPrice(testBikeStore1, quoteBikes);
-        quoteToBook.calcTotalDeposit(testBikeStore1.getDepositRate());
         
         
         Booking returnedBooking = testCustomer1.bookQuote(quoteToBook, false);
@@ -185,8 +180,6 @@ public class SystemTests {
         Booking expBooking = new Booking(testCustomer1, testBikeStore1, testRange1, quoteBikes, 0,
                 true, new BigDecimal("400.00"), new BigDecimal("40.00"));
         Quote quoteToBook = new Quote("Terrance Store", testBikeStore1, testRange1, quoteBikes);
-        quoteToBook.calcTotalPrice(testBikeStore1, quoteBikes);
-        quoteToBook.calcTotalDeposit(testBikeStore1.getDepositRate());
         
         
         Booking returnedBooking = testCustomer1.bookQuote(quoteToBook, true);
@@ -202,8 +195,6 @@ public class SystemTests {
         quoteBikes.add(testBike1);
         quoteBikes.add(testBike2);
         Quote quoteToBook = new Quote("Terrance Store", testBikeStore1, testRange1, quoteBikes);
-        quoteToBook.calcTotalPrice(testBikeStore1, quoteBikes);
-        quoteToBook.calcTotalDeposit(testBikeStore1.getDepositRate());
         
         
         Booking returnedBooking = testCustomer1.bookQuote(quoteToBook, true);
