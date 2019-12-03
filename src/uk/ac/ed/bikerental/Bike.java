@@ -52,8 +52,7 @@ public class Bike implements Deliverable{
     //Methods
     //Add all unavailable dates to a collection
     public void addBooking(DateRange dates) {
-        boolean overlaps = this.checkDates(dates);
-        assert(overlaps);
+        //boolean overlaps = this.checkDates(dates);
         unavailableDates.add(dates);
     }
     
