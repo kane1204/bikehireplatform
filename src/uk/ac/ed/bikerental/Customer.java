@@ -92,5 +92,66 @@ public class Customer {
             return newBooking;
         }
         return null;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((accommodation == null) ? 0 : accommodation.hashCode());
+        result = prime * result + ((bookings == null) ? 0 : bookings.hashCode());
+        result = prime * result + ((contactNo == null) ? 0 : contactNo.hashCode());
+        result = prime * result + ((email == null) ? 0 : email.hashCode());
+        result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+        result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+        result = prime * result + ((locationInfo == null) ? 0 : locationInfo.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Customer other = (Customer) obj;
+        if (accommodation == null) {
+            if (other.accommodation != null)
+                return false;
+        } else if (!accommodation.equals(other.accommodation))
+            return false;
+        if (bookings == null) {
+            if (other.bookings != null)
+                return false;
+        } else if (!bookings.equals(other.bookings))
+            return false;
+        if (contactNo == null) {
+            if (other.contactNo != null)
+                return false;
+        } else if (!contactNo.equals(other.contactNo))
+            return false;
+        if (email == null) {
+            if (other.email != null)
+                return false;
+        } else if (!email.equals(other.email))
+            return false;
+        if (firstName == null) {
+            if (other.firstName != null)
+                return false;
+        } else if (!firstName.equals(other.firstName))
+            return false;
+        if (lastName == null) {
+            if (other.lastName != null)
+                return false;
+        } else if (!lastName.equals(other.lastName))
+            return false;
+        if (locationInfo == null) {
+            if (other.locationInfo != null)
+                return false;
+        } else if (!locationInfo.equals(other.locationInfo))
+            return false;
+        return true;
     }  
 }

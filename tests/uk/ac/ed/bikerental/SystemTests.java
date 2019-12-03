@@ -131,13 +131,25 @@ public class SystemTests {
         assert(quotesRecived.size() == 2);
     }
     
-//    @Test
-//    @DisplayName("System Test on Getting Quotes 2")
-//    void mySecondTest() {
-//        // JUnit tests look like this
-//        
-//        
-//        
-//        assertEquals("The moon", "cheese"); // Should fail
-//    }
+    @Test
+    @DisplayName("System Test on Getting Quotes 2")
+    void mySecondTest() {
+        // JUnit tests look like this
+        
+        
+        
+        assertEquals("The moon", "cheese"); // Should fail
+    }
+    
+    @Test
+    @DisplayName("System Test on Booking Quotes w/out Delivery")
+    void mythirdTest() {
+        // JUnit tests look like this
+        Booking expBooking = new Booking(testCustomer1, testBikeStore1, testRange1, null, 0, null, null, null);
+        Quote quoteToBook = new Quote(null, testBikeStore1, testRange1, null);
+        
+        Booking returnedBooking = testCustomer1.bookQuote(quoteToBook, false);
+        assertEquals(returnedBooking, "cheese"); // Should fail
+    }
+        
 }
