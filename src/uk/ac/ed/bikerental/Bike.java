@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Objects;
 
 public class Bike implements Deliverable{
     //Info on bike
@@ -88,6 +89,19 @@ public class Bike implements Deliverable{
         this.status = statuses.UNAVAILABLE;       
     }
     
-    
+    @Override
+    public boolean equals(Object obj) {
+        // equals method for testing equality in tests
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Bike other = (Bike) obj;
+        return Objects.equals(typeOfBike, other.typeOfBike) && 
+               Objects.equals(typeOfBike, other.typeOfBike) && 
+               Objects.equals(unavailableDates, other.unavailableDates);
+    }
     
 }
