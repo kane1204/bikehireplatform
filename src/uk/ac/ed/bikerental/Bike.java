@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public class Bike implements Deliverable{
     //Info on bike
-    private enum statuses {
+    public enum statuses {
         AVAILABLE,
         UNAVAILABLE,
         BEING_DELIVERED

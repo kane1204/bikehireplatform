@@ -32,7 +32,7 @@ class TestLocation {
     void secondTest() {
         String testPostcode = "EH92 2GA";
         Location testAnotherLocation = new Location(testPostcode,"");
-        Boolean expectedResult = true;
+        Boolean expectedResult = false;
         assertEquals(expectedResult, testStoresLocation.isNearTo(testAnotherLocation));
     }
     @Test
@@ -40,7 +40,7 @@ class TestLocation {
     void thirdTest() {
         String testPostcode = "KH12 8LJ";
         Location testAnotherLocation = new Location(testPostcode,"");
-        Boolean expectedResult = true;
+        Boolean expectedResult = false;
         assertEquals(expectedResult, testStoresLocation.isNearTo(testAnotherLocation));
     }
     

@@ -2,6 +2,8 @@ package uk.ac.ed.bikerental;
 
 import org.junit.jupiter.api.*;
 
+import uk.ac.ed.bikerental.Bike.statuses;
+
 import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -204,7 +206,15 @@ public class SystemTests {
         
         Booking returnedBooking = testCustomer1.bookQuote(quoteToBook, true);
         
+        testBike1.bikeUnavailable();
+        testBike2.bikeUnavailable();
+        
         testBikeStore1.returnBikeToProvider(0);
+        Boolean temp = false;
+        if(testBike2.getStatus() == "AVAILABLE" && testBike1.getStatus() == "AVAILABLE" ) {
+            temp = true;
+        }
+        assertEquals( temp,true );
     }
     
 }
