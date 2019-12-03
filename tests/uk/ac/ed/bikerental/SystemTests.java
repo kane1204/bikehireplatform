@@ -30,6 +30,8 @@ public class SystemTests {
     private Collection<BikeStore> allBikeStores;
     private LocalDate testDate1, testDate2, testDate3, testDate4, testDate5, testDate6, testDate7;
     private DateRange testRange1, testRange2, testRange3, testRange4, testRange5, testRange6;
+    private LinearDepreciation ld;
+    private DoubleDecline dd;
     
 
     @BeforeEach
@@ -97,6 +99,9 @@ public class SystemTests {
         testRange3 = new DateRange(testDate2, testDate4);
         testRange5 = new DateRange(testDate6, testDate7);
         testRange6 = new DateRange(testDate5, testDate4);
+        
+        ld = new LinearDepreciation();
+        dd = new DoubleDecline();
     }
     
     // TODO: Write system tests covering the three main use cases
@@ -164,7 +169,11 @@ public class SystemTests {
     @Test
     @DisplayName("System Test on Booking Quotes w/out Delivery")
     void mythirdTest() {
-        // JUnit tests look like this
+        //dummy depreciation rate that would be set by the store
+        //we had ran into issues trying to implement this
+        ld.depreciationRate = new BigDecimal("0.3"); 
+        dd.depreciationRate = new BigDecimal("0.3");
+        
         Collection<Bike> quoteBikes = new ArrayList<Bike>();
         quoteBikes.add(testBike1);
         quoteBikes.add(testBike2);
