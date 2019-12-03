@@ -43,11 +43,12 @@ public class Quote {
             LocalDate dateBikeNew = nextBike.getDateNew();
             
             if(valuationPolicy=="Linear Depreciation") totalPrice = 
-                    totalPrice.add(ld.calculateValue(nextBike, dateBikeNew));
+                totalPrice.add(ld.calculateValue(nextBike, dateBikeNew));
             else if(valuationPolicy=="Double Declining Balance Depreciation") totalPrice =
-                    totalPrice.add(dd.calculateValue(nextBike,dateBikeNew));
+                totalPrice.add(dd.calculateValue(nextBike,dateBikeNew));
             else {
-               //..
+                BikeType type = nextBike.getType();
+                totalPrice = type.getReplacementValue();
             }
         }
         return totalPrice;

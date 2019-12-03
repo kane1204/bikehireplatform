@@ -73,6 +73,14 @@ public class SystemTests {
         testBikeStore3.bikeStock.add(testBike5);
         testBikeStore3.bikeStock.add(testBike6);
         
+        testBikeStore1.setValuationPolicy("Linear Depreciation");
+        testBikeStore2.setValuationPolicy("Double Declining Balance Depreciation");
+        testBikeStore3.setValuationPolicy("default");
+        
+        testBikeStore1.setDepositRate(new BigDecimal("0.1"));
+        testBikeStore2.setDepositRate(new BigDecimal("0.2"));
+        testBikeStore3.setDepositRate(new BigDecimal("0.3"));
+        
         testDate1 = LocalDate.of(2000, 1, 1);
         testDate2 = LocalDate.of(2000, 1, 10);
         testDate3 = LocalDate.of(2000, 1, 5);
@@ -86,9 +94,6 @@ public class SystemTests {
         testRange3 = new DateRange(testDate2, testDate4);
         testRange5 = new DateRange(testDate6, testDate7);
         testRange6 = new DateRange(testDate5, testDate4);
-        
-        
-
     }
     
     // TODO: Write system tests covering the three main use cases
@@ -96,6 +101,8 @@ public class SystemTests {
     @Test
     @DisplayName("System Test on Getting Quotes")
     void myFirstTest() {
+        
+        
         Collection<Bike> queriedBikes = new ArrayList<Bike>();
         queriedBikes.add(testBike1);
         queriedBikes.add(testBike2);
@@ -109,11 +116,8 @@ public class SystemTests {
         //testBike1.addBooking(testRange2); 
         testBike2.addBooking(testRange2); //testtype2
         
-        Quote expectedQuote1 = new Quote("Terrance Store", testBikeStore1, testRange1, queriedBikes);
-        Quote expectedQuote2 = new Quote("NeverBike", testBikeStore3, testRange1, queriedBikes);
-        
-        Iterator<Bike> queriedBikesIterator = quoteBikes1.iterator();
         Collection<BikeType> queriedTypes = new ArrayList<BikeType>();
+        Iterator<Bike> queriedBikesIterator = quoteBikes1.iterator();
         while(queriedBikesIterator.hasNext()) {
             Bike tempBike = queriedBikesIterator.next();
             queriedTypes.add(tempBike.getType());
@@ -121,11 +125,24 @@ public class SystemTests {
         
         Collection<Quote> quotesRecived = testCustomer1.getAllQuotes(allBikeStores, queriedTypes, 
                 testRange6, testCustomer1Accom);
-        //testCustomer1.getAllQuotes(allStores, bikeTypes, dateRange, locationOfHire)
+        
+        Quote expectedQuote1 = new Quote("Terrance Store", testBikeStore1, testRange1, queriedBikes);
+        Quote expectedQuote2 = new Quote("NeverBike", testBikeStore3, testRange1, queriedBikes);
+        
         Collection<Quote> quotesActual = new ArrayList<Quote>();
         
         quotesActual.add(expectedQuote1);
         quotesActual.add(expectedQuote2);
+        
+        Iterator<Quote> x = quotesActual.iterator();
+        while(x.hasNext()) {
+            Quote y = x.next();
+            System.out.println(y.providerName.toString());
+            System.out.println(y.bikeStore.toString());
+            System.out.println(y.dates.toString());
+            System.out.println(y.bikes.toString());
+            System.out.println("");
+        }
         
         assert(quotesActual.containsAll(quotesRecived));
         assert(quotesRecived.size() == 2);
