@@ -23,9 +23,9 @@ public class TestBike {
         standard = new BikeType("BMX", new BigDecimal(100), new BigDecimal(80));
         offroad = new BikeType("BMX", new BigDecimal(100), new BigDecimal(80));
         
-        testBike1 = new Bike(bmx);
-        testBike2 = new Bike(standard);
-        testBike3 = new Bike(offroad);
+        testBike1 = new Bike(bmx, null);
+        testBike2 = new Bike(standard,null);
+        testBike3 = new Bike(offroad,null);
         
         testDate1 = LocalDate.of(2000, 1, 1);
         testDate2 = LocalDate.of(2000, 1, 10);

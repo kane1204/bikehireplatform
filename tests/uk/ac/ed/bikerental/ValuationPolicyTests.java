@@ -28,7 +28,7 @@ public class ValuationPolicyTests {
         testStoresLocation = new Location("KY12 5EB", "123 bobs Street");
         testStore = new BikeStore("Test Store",testStoresLocation,testPartnerShips);
         testBikeType = new BikeType("Race", new BigDecimal("0"), new BigDecimal("0"));
-        testbike = new Bike(testBikeType);
+        testbike = new Bike(testBikeType,null);
         testbike.type = testBikeType;
         ld = new LinearDepreciation();
         dd = new DoubleDecline();
