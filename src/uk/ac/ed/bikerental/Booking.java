@@ -1,12 +1,13 @@
 package uk.ac.ed.bikerental;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
 public class Booking {
     public static int BOOKINGS = 0; // global
-    public static Collection<Booking> ALLBOOKINGS;
+    public static Collection<Booking> ALLBOOKINGS = new ArrayList<Booking>();
     
     //Booking info
     public Customer customer;

@@ -23,12 +23,13 @@ public class Bike implements Deliverable{
     public BikeStore store;
     
     //Define constructor
-    public Bike(BikeType type) {
+    public Bike(BikeType type, LocalDate dateNew) {
         super();
         this.type = type;
         this.typeOfBike = type.nameOfType;
         this.status = statuses.AVAILABLE;
         this.unavailableDates = new ArrayList<DateRange>();
+        this.dateNew = dateNew;
     }
     
     //Getters    
