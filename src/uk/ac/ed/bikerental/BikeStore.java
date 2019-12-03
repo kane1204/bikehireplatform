@@ -18,6 +18,7 @@ public class BikeStore {
     private String[] partnerships;
     private String valuationPolicy;
     private BigDecimal depositRate;
+    private BigDecimal depreciationRate;
     
     //Define constructor
     public BikeStore(String storeName, Location locationOfStore, String[] partnerships) {
@@ -27,6 +28,7 @@ public class BikeStore {
         this.partnerships = partnerships;
         this.bikeStock = new ArrayList<Bike>();
         this.depositRate = new BigDecimal("0");
+        this.depreciationRate = new BigDecimal("0");
     }
     
     //Getters
@@ -37,6 +39,10 @@ public class BikeStore {
     public BigDecimal getDepositRate() {
         return this.depositRate;
     }
+    
+    public BigDecimal getDepreciationRate() {
+        return this.depreciationRate;
+    }
 
     //Setters
     public void setValuationPolicy(String policy) { //set in test
@@ -45,6 +51,10 @@ public class BikeStore {
  
     public void setDepositRate(BigDecimal rate) { //set in test
         this.depositRate = rate;
+    }
+    
+    public void setDepreciationRate(BigDecimal rate) { //set in test
+        this.depreciationRate = rate;
     }
     
     //Methods

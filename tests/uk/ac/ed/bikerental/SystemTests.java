@@ -24,8 +24,8 @@ public class SystemTests {
     private Location testCustomer1Address;
     private Location testCustomer1Accom;
     private BikeStore testBikeStore1,testBikeStore2, testBikeStore3;
-    private Bike testBike1, testBike2, testBike3, testBike4, testBike5, testBike6, testBike7, testBike8, 
-                    testBike9;
+    private Bike testBike1, testBike2, testBike3, testBike4, testBike5, testBike6, testBike7,
+            testBike8, testBike9;
     private BikeType testType1, testType2, testType3;
     private Collection<BikeStore> allBikeStores;
     private LocalDate testDate1, testDate2, testDate3, testDate4, testDate5, testDate6, testDate7;
@@ -52,9 +52,12 @@ public class SystemTests {
         testCustomer1 = new Customer("Joe", "Mama", testCustomer1Address, "joemama@yahoo.com", 
                 "01245262525", testCustomer1Accom);
         
-        testBikeStore1 = new BikeStore("Terrance Store", new Location("EH115LC","123 Hi St"), new String[]{"NeverBike"} ) ;
-        testBikeStore2 = new BikeStore("Jeffs Shop", new Location("EH13LC","123 Hola St"), new String[]{""});
-        testBikeStore3 = new BikeStore("NeverBike", new Location("KY15LC","123 Bye St"), new String[]{"Terrance Store"} );
+        testBikeStore1 = new BikeStore("Terrance Store", new Location("EH115LC","123 Hi St"),
+                new String[]{"NeverBike"} ) ;
+        testBikeStore2 = new BikeStore("Jeffs Shop", new Location("EH13LC","123 Hola St"),
+                new String[]{""});
+        testBikeStore3 = new BikeStore("NeverBike", new Location("KY15LC","123 Bye St"),
+                new String[]{"Terrance Store"} );
         
         allBikeStores.add(testBikeStore1);
         allBikeStores.add(testBikeStore2);
@@ -89,6 +92,9 @@ public class SystemTests {
         testBikeStore2.setDepositRate(new BigDecimal("0.2"));
         testBikeStore3.setDepositRate(new BigDecimal("0.3"));
         
+        testBikeStore1.setDepreciationRate(new BigDecimal("0.3"));
+        testBikeStore2.setDepreciationRate(new BigDecimal("0.2"));
+        testBikeStore3.setDepreciationRate(new BigDecimal("0.1"));     
         
         testRange1 = new DateRange(testDate1, testDate2);
         testRange2 = new DateRange(testDate2, testDate3);
@@ -166,7 +172,8 @@ public class SystemTests {
         Collection<Bike> quoteBikes = new ArrayList<Bike>();
         quoteBikes.add(testBike1);
         quoteBikes.add(testBike2);
-        Booking expBooking = new Booking(testCustomer1, testBikeStore1, testRange1, quoteBikes, 0, false, null, null);
+        Booking expBooking = new Booking(testCustomer1, testBikeStore1, testRange1, quoteBikes, 0,
+                false, null, null);
         Quote quoteToBook = new Quote("Terrance Store", testBikeStore1, testRange1, quoteBikes);
         quoteToBook.calcTotalPrice(testBikeStore1, quoteBikes);
         quoteToBook.calcTotalDeposit(testBikeStore1.getDepositRate());
