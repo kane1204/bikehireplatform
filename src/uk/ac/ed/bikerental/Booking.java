@@ -196,6 +196,8 @@ public class Booking {
                 return false;
         } else if (!range.equals(other.range))
             return false;
+        if (ref != other.ref)
+            return false;
         if (store == null) {
             if (other.store != null)
                 return false;
