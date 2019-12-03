@@ -169,17 +169,14 @@ public class SystemTests {
         Quote quoteToBook = new Quote("Terrance Store", testBikeStore1, testRange1, quoteBikes);
         quoteToBook.calcTotalPrice(testBikeStore1, quoteBikes);
         quoteToBook.calcTotalDeposit(testBikeStore1.getDepositRate());
-        
-        
+           
         Booking returnedBooking = testCustomer1.bookQuote(quoteToBook, false);
+        
         assertEquals(returnedBooking, expBooking);
     }
     @Test
     @DisplayName("System Test on Booking Quotes w/ Delivery")
-    void myfourthTest() {
-        //dummy depreciation rate that would be set by the store
-        //we had ran into issues trying to implement this
-        
+    void myfourthTest() {        
         Collection<Bike> quoteBikes = new ArrayList<Bike>();
         quoteBikes.add(testBike1);
         Booking expBooking = new Booking(testCustomer1, testBikeStore1, testRange1, quoteBikes, 0,
@@ -187,17 +184,13 @@ public class SystemTests {
         Quote quoteToBook = new Quote("Terrance Store", testBikeStore1, testRange1, quoteBikes);
         quoteToBook.calcTotalPrice(testBikeStore1, quoteBikes);
         quoteToBook.calcTotalDeposit(testBikeStore1.getDepositRate());
-        
-        
+            
         Booking returnedBooking = testCustomer1.bookQuote(quoteToBook, true);
         assertEquals(returnedBooking, expBooking);
     }
     @Test
     @DisplayName("Return via Original Provider")
-    void myfifthTest() {
-        //dummy depreciation rate that would be set by the store
-        //we had ran into issues trying to implement this
-        
+    void myfifthTest() {       
         Collection<Bike> quoteBikes = new ArrayList<Bike>();
         quoteBikes.add(testBike1);
         quoteBikes.add(testBike2);
@@ -205,18 +198,18 @@ public class SystemTests {
         quoteToBook.calcTotalPrice(testBikeStore1, quoteBikes);
         quoteToBook.calcTotalDeposit(testBikeStore1.getDepositRate());
         
-        
-        Booking returnedBooking = testCustomer1.bookQuote(quoteToBook, true);
+        testCustomer1.bookQuote(quoteToBook, true);
         
         testBike1.bikeUnavailable();
         testBike2.bikeUnavailable();
         
         testBikeStore1.returnBikeToProvider(0);
         Boolean temp = false;
-        if(testBike2.getStatus() == "AVAILABLE" && testBike1.getStatus() == "AVAILABLE" ) {
+        if(testBike2.getStatus() == "AVAILABLE" && testBike1.getStatus() == "AVAILABLE") {
             temp = true;
         }
-        assertEquals( temp,true );
+        
+        assertEquals(temp, true);
     }
     
 }
