@@ -44,8 +44,17 @@ public class BikeType {
         this.dailyPrice = x;
     }
     @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((dailyPrice == null) ? 0 : dailyPrice.hashCode());
+        result = prime * result + ((nameOfType == null) ? 0 : nameOfType.hashCode());
+        result = prime * result + ((replacementCost == null) ? 0 : replacementCost.hashCode());
+        return result;
+    }
+
+    @Override
     public boolean equals(Object obj) {
-        // equals method for testing equality in tests
         if (this == obj)
             return true;
         if (obj == null)
@@ -53,8 +62,21 @@ public class BikeType {
         if (getClass() != obj.getClass())
             return false;
         BikeType other = (BikeType) obj;
-        return Objects.equals(nameOfType, other.nameOfType) && 
-               Objects.equals(replacementCost, other.replacementCost)&& 
-               Objects.equals(dailyPrice, other.dailyPrice);
+        if (dailyPrice == null) {
+            if (other.dailyPrice != null)
+                return false;
+        } else if (!dailyPrice.equals(other.dailyPrice))
+            return false;
+        if (nameOfType == null) {
+            if (other.nameOfType != null)
+                return false;
+        } else if (!nameOfType.equals(other.nameOfType))
+            return false;
+        if (replacementCost == null) {
+            if (other.replacementCost != null)
+                return false;
+        } else if (!replacementCost.equals(other.replacementCost))
+            return false;
+        return true;
     }
 }
