@@ -25,6 +25,8 @@ public class Quote {
         this.dates = dates;
         this.bikes = bikes;
         this.totalPrice = new BigDecimal("0");
+        this.calcTotalPrice(bikeStore, bikes);
+        this.calcTotalDeposit(bikeStore.getDepositRate());  
     }
     
     //Methods
@@ -51,7 +53,7 @@ public class Quote {
             }
             else if(valuationPolicy=="Double Declining Balance Depreciation") totalPrice =
                 totalPrice.add(dd.calculateValue(nextBike,dateBikeNew));
-            else {
+            else if(valuationPolicy=="default"){
                 BikeType type = nextBike.getType();
                 totalPrice = type.getReplacementValue();
             }
