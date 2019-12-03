@@ -23,6 +23,7 @@ public class Quote {
         this.bikeStore = bikeStore;
         this.dates = dates;
         this.bikes = bikes;
+        this.totalPrice = new BigDecimal("0");
     }
     
     //Methods
@@ -34,7 +35,9 @@ public class Quote {
     public BigDecimal calcTotalPrice(BikeStore store, Collection<Bike> bikes) {
         String valuationPolicy = store.getValuationPolicy();
         LinearDepreciation ld = new LinearDepreciation();
-        DoubleDecline dd = new DoubleDecline();
+        DoubleDecline dd = new DoubleDecline();    
+        ld.depreciationRate = store.getDepreciationRate();
+        dd.depreciationRate = store.getDepreciationRate();
         
         Iterator<Bike> bikesInQuoteIterator = bikes.iterator();
 
@@ -42,8 +45,11 @@ public class Quote {
             Bike nextBike = bikesInQuoteIterator.next();
             LocalDate dateBikeNew = nextBike.getDateNew();
             
-            if(valuationPolicy=="Linear Depreciation") totalPrice = 
-                totalPrice.add(ld.calculateValue(nextBike, dateBikeNew));
+            if(valuationPolicy=="Linear Depreciation") {
+                System.out.println("hi");
+                totalPrice = totalPrice.add(ld.calculateValue(nextBike, dateBikeNew));
+                System.out.println(totalPrice);
+            }
             else if(valuationPolicy=="Double Declining Balance Depreciation") totalPrice =
                 totalPrice.add(dd.calculateValue(nextBike,dateBikeNew));
             else {

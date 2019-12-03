@@ -9,8 +9,7 @@ public class LinearDepreciation implements ValuationPolicy {
     // Use the method defined in the ValuationPolicy interface
     @Override
     public BigDecimal calculateValue(Bike bike, LocalDate date) {   
-        BikeType bikeType = bike.getType(); // Get the bike object's bike type
-        
+        BikeType bikeType = bike.getType(); // Get the bike object's bike type   
         
         /* 
          * Calculate the age of the bike by finding the range between passed in and today's date.
@@ -18,7 +17,6 @@ public class LinearDepreciation implements ValuationPolicy {
          * converted to do so. 
         */
         LocalDate dateNow = LocalDate.now(); // Get today's date
-        
         // Create the date range using the date passed (day bike was new) in and today's date
         DateRange range = new DateRange(date, dateNow);
         // Find the range in years, then format as a BigDecimal
