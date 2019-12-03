@@ -13,16 +13,16 @@ public class Quote {
     public DateRange dates;
     public BigDecimal totalPrice;
     public BigDecimal totalDeposit;
-    public Collection<BikeType> bikeTypes;
+    public Collection<Bike> bikes;
     
     //Define constructor
     public Quote(String providerName, BikeStore bikeStore, DateRange dates,
-            Collection<BikeType> bikeTypes) {
+            Collection<Bike> bikes) {
         super();
         this.providerName = providerName;
         this.bikeStore = bikeStore;
         this.dates = dates;
-        this.bikeTypes = bikeTypes;
+        this.bikes = bikes;
     }
     
     //Methods
@@ -72,6 +72,6 @@ public class Quote {
         return Objects.equals(totalDeposit, other.totalDeposit) && 
                Objects.equals(providerName, other.providerName) && 
                Objects.equals(dates, other.dates) &&
-               bikeTypes.equals(other.bikeTypes);
+               bikes.equals(other.bikes);
     }
 }

@@ -24,10 +24,10 @@ public class SystemTests {
     private Location testCustomer1Address;
     private Location testCustomer1Accom;
     private BikeStore testBikeStore1,testBikeStore2, testBikeStore3;
-    private Bike testBike1, testBike2, testBike3;
+    private Bike testBike1, testBike2, testBike3, testBike4, testBike5, testBike6, testBike7, testBike8, 
+                    testBike9;
     private BikeType testType1, testType2, testType3;
     private Collection<BikeStore> allBikeStores;
-    private Collection<BikeType> quoteBikeTypes1, quoteBikeTypes2, quoteBikeTypes3;
     private LocalDate testDate1, testDate2, testDate3, testDate4, testDate5, testDate6, testDate7;
     private DateRange testRange1, testRange2, testRange3, testRange4, testRange5, testRange6;
     
@@ -38,9 +38,6 @@ public class SystemTests {
         DeliveryServiceFactory.setupMockDeliveryService();
         
         Collection<BikeStore> allBikeStores = new ArrayList<BikeStore>();
-        Collection<BikeType> quoteBikeTypes1 = new ArrayList<BikeType>();
-        Collection<BikeType> quoteBikeTypes2 = new ArrayList<BikeType>();
-        Collection<BikeType> quoteBikeTypes3 = new ArrayList<BikeType>();
         
         testCustomer1Address = new Location("KY118LJ","123 Steeve Street");
         testCustomer1Accom = new Location("EH18LB","123 Life Street");
@@ -59,26 +56,22 @@ public class SystemTests {
         testType2 = new BikeType("Mountain", new BigDecimal("1200"), new BigDecimal("300"));
         testType3 = new BikeType("BMX", new BigDecimal("2000"), new BigDecimal("900"));
         
-        quoteBikeTypes1.add(testType1);
-        quoteBikeTypes1.add(testType2);
-        
-        quoteBikeTypes2.add(testType1);
-        quoteBikeTypes2.add(testType3);
-        
-        quoteBikeTypes3.add(testType1);
-        quoteBikeTypes3.add(testType2);
-        quoteBikeTypes3.add(testType3);
-        
         testBike1 = new Bike(testType1);
         testBike2 = new Bike(testType2);
         testBike3 = new Bike(testType3);
+        testBike4 = new Bike(testType1);
+        testBike5 = new Bike(testType2);
+        testBike6 = new Bike(testType3);
+        testBike7 = new Bike(testType1);
+        testBike8 = new Bike(testType2);
+        testBike9 = new Bike(testType3);
         
         testBikeStore1.bikeStock.add(testBike1);
         testBikeStore1.bikeStock.add(testBike2);
-        testBikeStore2.bikeStock.add(testBike1);
-        testBikeStore3.bikeStock.add(testBike1);
-        testBikeStore3.bikeStock.add(testBike2);
-        testBikeStore3.bikeStock.add(testBike3);
+        testBikeStore2.bikeStock.add(testBike3);
+        testBikeStore3.bikeStock.add(testBike4);
+        testBikeStore3.bikeStock.add(testBike5);
+        testBikeStore3.bikeStock.add(testBike6);
         
         testDate1 = LocalDate.of(2000, 1, 1);
         testDate2 = LocalDate.of(2000, 1, 10);
@@ -93,6 +86,8 @@ public class SystemTests {
         testRange3 = new DateRange(testDate2, testDate4);
         testRange5 = new DateRange(testDate6, testDate7);
         testRange6 = new DateRange(testDate5, testDate4);
+        
+        
 
     }
     
@@ -101,19 +96,32 @@ public class SystemTests {
     @Test
     @DisplayName("System Test on Getting Quotes")
     void myFirstTest() {
-        Collection<BikeType> queriedTypes = new ArrayList<BikeType>();
-        queriedTypes.add(testType1);
-        queriedTypes.add(testType2);
+        Collection<Bike> queriedBikes = new ArrayList<Bike>();
+        queriedBikes.add(testBike1);
+        queriedBikes.add(testBike2);
+        
+        
+        Collection<Bike> quoteBikes1 = new ArrayList<Bike>();
+        quoteBikes1.add(testBike1);
+        quoteBikes1.add(testBike2);
         
         testBike1.addBooking(testRange1); //testtype 1
         //testBike1.addBooking(testRange2); 
         testBike2.addBooking(testRange2); //testtype2
         
-        Quote expectedQuote1 = new Quote("Terrance Store", testBikeStore1, testRange1, queriedTypes);
-        Quote expectedQuote2 = new Quote("NeverBike", testBikeStore3, testRange1, queriedTypes);
+        Quote expectedQuote1 = new Quote("Terrance Store", testBikeStore1, testRange1, queriedBikes);
+        Quote expectedQuote2 = new Quote("NeverBike", testBikeStore3, testRange1, queriedBikes);
         
-        Collection<Quote> quotesRecived = testCustomer1.getAllQuotes(allBikeStores, quoteBikeTypes1, 
+        Iterator<Bike> queriedBikesIterator = quoteBikes1.iterator();
+        Collection<BikeType> queriedTypes = new ArrayList<BikeType>();
+        while(queriedBikesIterator.hasNext()) {
+            Bike tempBike = queriedBikesIterator.next();
+            queriedTypes.add(tempBike.getType());
+        }
+        
+        Collection<Quote> quotesRecived = testCustomer1.getAllQuotes(allBikeStores, queriedTypes, 
                 testRange6, testCustomer1Accom);
+        //testCustomer1.getAllQuotes(allStores, bikeTypes, dateRange, locationOfHire)
         Collection<Quote> quotesActual = new ArrayList<Quote>();
         
         quotesActual.add(expectedQuote1);

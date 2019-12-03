@@ -46,8 +46,8 @@ public class Customer {
             Collection<BikeType> bikeTypes, DateRange dateRange, Location locationOfHire){       
         Collection<BikeStore> nearByStores = new ArrayList<BikeStore>();
         Collection<Quote> availableQuotes = new ArrayList<Quote>();     
-        Iterator<BikeStore> allStoresIterator = allStores.iterator();
         
+        Iterator<BikeStore> allStoresIterator = allStores.iterator();
         //First check locations in area by bike store
         while(allStoresIterator.hasNext()){
             BikeStore tempStore = allStoresIterator.next();
@@ -60,12 +60,12 @@ public class Customer {
         //Next check if a store that's near enough can fulfil the quote
         while(nearByStoreIterator.hasNext()){
             BikeStore tempStore = nearByStoreIterator.next(); 
-            Collection<BikeType> quoteBikeTypes = tempStore.checkBikeAvailability(dateRange, bikeTypes);
+            Collection<Bike> quoteBikes = tempStore.checkBikeAvailability(dateRange, bikeTypes);
             
             //Add all available quotes to a list with the total cost and deposit calculated
-            if(quoteBikeTypes != null) {
+            if(quoteBikes != null) {
                 Quote newQuote = new Quote(tempStore.storeName, tempStore, dateRange, 
-                        quoteBikeTypes);         
+                        quoteBikes);         
                 newQuote.calcTotalPrice(tempStore, quoteBikes);
                 newQuote.calcTotalDeposit(tempStore.getDepositRate());
                 availableQuotes.add(newQuote);
