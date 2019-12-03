@@ -114,7 +114,7 @@ public class SystemTests {
         Collection<Bike> queriedBikes = new ArrayList<Bike>();
         queriedBikes.add(testBike1);
         
-        Collection<BikeType> queriedTypes = new ArrayList<BikeType>();
+        ArrayList<BikeType> queriedTypes = new ArrayList<BikeType>();
         Iterator<Bike> queriedBikesIterator = queriedBikes.iterator();
         while(queriedBikesIterator.hasNext()) {
             Bike tempBike = queriedBikesIterator.next();
