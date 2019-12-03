@@ -1,6 +1,8 @@
 package uk.ac.ed.bikerental;
 
 import org.junit.jupiter.api.*;
+
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
@@ -10,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -26,6 +29,7 @@ public class SystemTests {
     private Bike testBike1, testBike2;
     private BikeType testType1, testType2;
     private Collection<BikeStore> allBikeStores;
+    private Collection<BikeType> quoteBikeTypes;
     
 
     @BeforeEach
@@ -34,6 +38,8 @@ public class SystemTests {
         DeliveryServiceFactory.setupMockDeliveryService();
         
         Collection<BikeStore> allBikeStores = new ArrayList<BikeStore>();
+        Collection<BikeType> quoteBikeTypes = new ArrayList<BikeType>();
+        
         testCustomersAddress = new Location("KY118LJ","123 Steeve Street");
         testCustomersAccom = new Location("EH18LB","123 Life Street");
         testCustomer = new Customer("Joe", "Mama", testCustomersAddress, "joemama@yahoo.com", 
@@ -48,6 +54,9 @@ public class SystemTests {
         
         testType1 = new BikeType("Road", new BigDecimal("1000"), new BigDecimal("300"));
         testType2 = new BikeType("Mountain", new BigDecimal("1200"), new BigDecimal("300"));
+        quoteBikeTypes.add(testType1);
+        quoteBikeTypes.add(testType2);
+        
         testBike1 = new Bike(testBikeType);
         testBike2 = new Bike(testBikeType);
         testBikeStore1.bikeStock.add(testBike1);
@@ -67,10 +76,24 @@ public class SystemTests {
     @DisplayName("System Test on Getting Quotes")
     void myFirstTest() {
         // JUnit tests look like this
+        Quote expectedQuote1 = new Quote(null, testBikeStore1, null, null);
+        Quote expectedQuote2 = new Quote(null, testBikeStore2, null, null);
+        Collection<Quote> quotesRecived = testCustomer.getAllQuotes(allBikeStores, quoteBikeTypes, 
+                new DateRange(LocalDate.of(2019, 1, 7),LocalDate.of(2019, 1, 10)), 
+                testCustomer.getAccommodation());
+        Collection<Quote> quotesActual = new ArrayList<Quote>();
+        quotesActual.add(expectedQuote1);
+        quotesActual.add(expectedQuote2);
         
-        //testCustomer.getAllQuotes(allBikeStores, bikeTypes, dateRange, locationOfHire);
+//        Iterator<Quote> quotesRecivedIterator = quotesRecived.iterator();
+//        while(quotesRecivedIterator.hasNext()) {
+//            Quote tempQuote = quotesRecivedIterator.next();
+//            
+//        }
         
-        assertEquals("The moon", "cheese"); // Should fail
+        
+        assert(quotesActual.containsAll(quotesRecived));
+        assert(quotesRecived.size() == 2);
     }
     @Test
     @DisplayName("System Test on Getting Quotes 2")

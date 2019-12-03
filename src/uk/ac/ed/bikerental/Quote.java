@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Objects;
 
 public class Quote {
     //Quote info
@@ -56,5 +57,21 @@ public class Quote {
     public BigDecimal calcTotalDeposit(BigDecimal depositRate) {
         totalDeposit = totalPrice.multiply(depositRate);
         return totalDeposit;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        // equals method for testing equality in tests
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Quote other = (Quote) obj;
+        return Objects.equals(totalDeposit, other.totalDeposit) && 
+               Objects.equals(providerName, other.providerName) && 
+               Objects.equals(dates, other.dates) &&
+               bikes.equals(other.bikes);
     }
 }
