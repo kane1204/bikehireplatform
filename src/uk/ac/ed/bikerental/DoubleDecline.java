@@ -17,6 +17,7 @@ public class DoubleDecline implements ValuationPolicy {
          * BigDecimal's can only be modified by another BigDecimal, so some numbers have been
          * converted to do so.
         */
+        
         LocalDate dateNow = LocalDate.now();
         
         // Create the date range using the date passed (day bike was new) in and today's date
@@ -28,6 +29,7 @@ public class DoubleDecline implements ValuationPolicy {
          * Calculate the value of the bike.
          * Formula: Replacement Value * (1 - (2 * Depreciation Value))^(Bike's Age)
          */
+        
         BigDecimal one = new BigDecimal("1");
         BigDecimal two = new BigDecimal("2");
         BigDecimal repVal = bikeType.getReplacementValue();

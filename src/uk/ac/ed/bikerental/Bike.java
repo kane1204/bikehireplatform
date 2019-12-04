@@ -89,6 +89,7 @@ public class Bike implements Deliverable{
         this.status = statuses.UNAVAILABLE;       
     }
     
+    //Equals
     @Override
     public boolean equals(Object obj) {
         // equals method for testing equality in tests

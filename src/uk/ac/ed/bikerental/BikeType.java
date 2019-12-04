@@ -32,17 +32,15 @@ public class BikeType {
     }
     
     //Setters
-    public void setReplacementValue(BigDecimal x) {
-        this.replacementCost = x;
+    public void setReplacementValue(BigDecimal cost) {
+        this.replacementCost = cost;
     }
     
-    public void setDailyprice(BigDecimal x) {
-        this.dailyPrice = x;
+    public void setDailyPrice(BigDecimal price) {
+        this.dailyPrice = price;
     }
     
-    public void setDailyPrice(BigDecimal x) {
-        this.dailyPrice = x;
-    }
+    //Hashcode and equals
     @Override
     public int hashCode() {
         final int prime = 31;

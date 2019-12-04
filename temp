@@ -1,8 +1,0 @@
-	while(x.hasNext()) {
-		Quote y = x.next();
-		System.out.println(y.providerName.toString());
-		System.out.println(y.bikeStore.toString());
-		System.out.println(y.dates.toString());
-		System.out.println(y.bikes.toString());
- 		System.out.println("");
-	}

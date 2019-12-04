@@ -102,7 +102,4 @@ public class Location {
             return false;
         return true;
     }
-    
-    // You can add your own methods here
-
 }

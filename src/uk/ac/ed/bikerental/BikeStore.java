@@ -79,11 +79,11 @@ public class BikeStore {
     
     //Customer returns bikes to partner of provider
     public void returnBikesAsPartner(int ref) {
-        // input validation if the reference exists
+        //Input validation if the reference exists
         assert ref < Booking.BOOKINGS;
        
-        //partner store enters booking ref and finds the original store
-        //if it isnt found then exit
+        //Partner store enters booking reference (number) and finds the original store if the
+        //partnership exists.
         Iterator<Booking> allBookingsIterator = Booking.ALLBOOKINGS.iterator();
         while(allBookingsIterator.hasNext()) {
             Booking tempBooking = allBookingsIterator.next();
@@ -105,11 +105,11 @@ public class BikeStore {
     
     //Partner returns bikes to original provider
     public void returnBikesFromPartner(int ref) {
-        // input validation if the reference exists
+        //Input validation if the reference exists
         assert ref < Booking.BOOKINGS;
        
-        //partner store enters booking ref and finds the original store
-        //if it isnt found then exit
+        //Partner store enters booking reference (number) and finds the original store if the
+        //partnership exists.
         Iterator<Booking> allBookingsIterator = Booking.ALLBOOKINGS.iterator();
         while(allBookingsIterator.hasNext()) {
             Booking tempBooking = allBookingsIterator.next();
@@ -130,9 +130,9 @@ public class BikeStore {
             Collection<BikeType> bikeTypes) { 
         Collection<Bike> allAvailableBikes = new ArrayList<Bike>();
         Collection<Bike> returnBikes = new ArrayList<Bike>();
+   
+        //Check if the store has enough of each type of bike on the specified dates
         Iterator<Bike> bikeStockIterator = bikeStock.iterator();
-        
-        //Check if the store has enough of each type of bike
         while(bikeStockIterator.hasNext()){
             Bike tempBike = bikeStockIterator.next();
             Iterator<BikeType> bikeTypeIterator = bikeTypes.iterator();
@@ -145,8 +145,8 @@ public class BikeStore {
             }   
         }
         
+        //Check if for each type of bike, it's present in available bikes
         Iterator<BikeType> bikeTypeIterator = bikeTypes.iterator();
-        
         while(bikeTypeIterator.hasNext()){
             int i = 0;
             BikeType tempBikeType = bikeTypeIterator.next();
@@ -160,13 +160,15 @@ public class BikeStore {
             }
         }
         
-        //Return all available bikes
+        //Return all available bikes, else return nothing
         if(returnBikes.isEmpty()) {
             return null;
         } else {
             return returnBikes;
         }
     }
+    
+    //Hashcode and equals
     @Override
     public int hashCode() {
         final int prime = 31;

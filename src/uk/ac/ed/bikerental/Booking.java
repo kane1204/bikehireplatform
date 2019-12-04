@@ -46,7 +46,7 @@ public class Booking {
         this.paid = false;
         this.depositStatus = depositStatuses.COLLECT;
         
-        
+        //Set up delivery service
         if(this.bikeDelivery) {
             this.deliveryService = DeliveryServiceFactory.getDeliveryService();
             Iterator<Bike> bikeIterator = bikes.iterator();
@@ -161,6 +161,7 @@ public class Booking {
         }
     }
 
+    //Hashcode and equals
     @Override
     public int hashCode() {
         final int prime = 31;

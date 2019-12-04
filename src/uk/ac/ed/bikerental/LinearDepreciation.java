@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 public class LinearDepreciation implements ValuationPolicy {
     public BigDecimal depreciationRate; // Store will set their own depreciation rate
+    
     // Use the method defined in the ValuationPolicy interface
     @Override
     public BigDecimal calculateValue(Bike bike, LocalDate date) {   
@@ -16,6 +17,7 @@ public class LinearDepreciation implements ValuationPolicy {
          * BigDecimal's can only be modified by another BigDecimal, so some numbers have been
          * converted to do so. 
         */
+        
         LocalDate dateNow = LocalDate.now(); // Get today's date
         // Create the date range using the date passed (day bike was new) in and today's date
         DateRange range = new DateRange(date, dateNow);
@@ -26,6 +28,7 @@ public class LinearDepreciation implements ValuationPolicy {
          * Calculate the value of the bike.
          * Formula: Replacement Value - (Depreciation Rate * Bike's Age * Replacement Value)
          */
+        
         BigDecimal repVal = bikeType.getReplacementValue();
         BigDecimal depreciationPt1 = depreciationRate.multiply(yearsOld);
         BigDecimal depreciationPt2 = depreciationPt1.multiply(repVal);

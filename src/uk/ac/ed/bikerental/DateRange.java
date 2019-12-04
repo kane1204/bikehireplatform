@@ -119,8 +119,5 @@ public class DateRange {
             return false;
         DateRange other = (DateRange) obj;
         return Objects.equals(end, other.end) && Objects.equals(start, other.start);
-    }
-    
-    // You can add your own methods here
-    
+    }  
 }

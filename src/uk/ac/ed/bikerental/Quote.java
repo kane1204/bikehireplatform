@@ -35,6 +35,7 @@ public class Quote {
      * For each available bike a store has for the query, calculate it's cost with the specified
      * depreciation rate, then add it to the total cost.
      */
+    
     public BigDecimal calcTotalPrice(BikeStore store, Collection<Bike> bikes) {
         String valuationPolicy = store.getValuationPolicy();
         LinearDepreciation ld = new LinearDepreciation();
@@ -67,7 +68,8 @@ public class Quote {
         totalDeposit = totalDeposit.setScale(2, RoundingMode.CEILING); // Round to 2 decimal places as it's money
         return totalDeposit;
     }
-
+    
+    //Hashcode and equals
     @Override
     public int hashCode() {
         final int prime = 31;

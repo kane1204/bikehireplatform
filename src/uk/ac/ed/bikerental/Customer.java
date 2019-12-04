@@ -47,17 +47,16 @@ public class Customer {
         Collection<BikeStore> nearByStores = new ArrayList<BikeStore>();
         Collection<Quote> availableQuotes = new ArrayList<Quote>();     
         
-        Iterator<BikeStore> allStoresIterator = allStores.iterator();
         //First check locations in area by bike store
+        Iterator<BikeStore> allStoresIterator = allStores.iterator();
         while(allStoresIterator.hasNext()){
             BikeStore tempStore = allStoresIterator.next();
             Location tempStoreLocation = tempStore.locationOfStore;
             if (tempStoreLocation.isNearTo(locationOfHire)) nearByStores.add(tempStore);
         }
 
-        Iterator<BikeStore> nearByStoreIterator = nearByStores.iterator();
-
         //Next check if a store that's near enough can fulfil the quote
+        Iterator<BikeStore> nearByStoreIterator = nearByStores.iterator();
         while(nearByStoreIterator.hasNext()){
             BikeStore tempStore = nearByStoreIterator.next(); 
             Collection<Bike> quoteBikes = tempStore.checkBikeAvailability(dateRange, bikeTypes);
@@ -85,17 +84,19 @@ public class Customer {
         Booking newBooking =  new Booking(this,quote.bikeStore, quote.dates, quote.bikes, ref,
                 delivery, quote.totalPrice, quote.totalDeposit);
         
+        //Return the booking objects, i no bookings return nothing
         Boolean paid = newBooking.payment();
         if (paid) {      
             System.out.print(newBooking.orderSummary());
             Booking.BOOKINGS +=1;
             Booking.ALLBOOKINGS.add(newBooking);
-            //Return the booking objects
             return newBooking;
-        }
-        return null;
+        } else {
+            return null;
+        }    
     }
 
+    //Hashcode and equals
     @Override
     public int hashCode() {
         final int prime = 31;
