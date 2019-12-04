@@ -69,7 +69,8 @@ public class SystemTests {
                 "01245262525", testCustomer1Accom);
         
         //Test data for different stores
-        testBikeStore1 = new BikeStore("Terrance Store", new Location("EH115LC","123 It's Everyday St"),
+        testBikeStore1 = new BikeStore("Terrance Store",
+                new Location("EH115LC","123 It's Everyday St"),
                 new String[]{"NeverBike"} ) ;
         testBikeStore2 = new BikeStore("Jeffs Shop", new Location("G42 5AF","123 Bro St"),
                 new String[]{""});
