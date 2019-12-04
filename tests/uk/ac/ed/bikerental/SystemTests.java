@@ -456,8 +456,8 @@ public class SystemTests {
         Booking returnedBooking = testCustomer1.bookQuote(wantedQuote, false);
         
         //Expected booking
-        Booking expBooking = new Booking(testCustomer1, testBikeStore1, testRange2, expectedBikes1, 0,
-                false, new BigDecimal("880.00"), new BigDecimal("88.00"));
+        Booking expBooking = new Booking(testCustomer1, testBikeStore1, testRange2, expectedBikes1, 
+                0, false, new BigDecimal("880.00"), new BigDecimal("88.00"));
         
         //Compare the returned booking with the expected booking
         assertEquals(returnedBooking, expBooking);
