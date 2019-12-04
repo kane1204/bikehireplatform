@@ -8,7 +8,7 @@ import java.util.Iterator;
 import java.util.Objects;
 
 public class Quote {
-    //Quote Info
+    //Quote info
     public String providerName;
     public BikeStore bikeStore;
     public DateRange dates;
