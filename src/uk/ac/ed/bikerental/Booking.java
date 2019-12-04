@@ -69,6 +69,11 @@ public class Booking {
         return depositStatus.toString();
     }
     
+    //Setters
+    public void setDeliveryService(DeliveryService ds) {
+        this.deliveryService = ds;
+    }
+    
     //Methods
     //Simulate payment system
     public Boolean payment() {

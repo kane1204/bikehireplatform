@@ -293,15 +293,16 @@ public class SystemTests {
         testBikeStore3.returnBikesAsPartner(0);
         //System.out.println(testBike2.getStatus());
         testBikeStore1.returnBikesFromPartner(0);
-        
+        System.out.println(tempBooking.getDepositStatus());
         assertEquals(tempBooking.getDepositStatus(),"BEING_DELIVERED");
+        tempBooking.setDeliveryService(null);
         testBikeStore1.returnBikeToProvider(0);
         System.out.println(tempBooking.getDepositStatus());
         Boolean temp = false;
-        if(testBike2.getStatus() == "AVAILABLE" && testBike1.getStatus() == "AVAILABLE" && tempBooking.getDepositStatus() == "COLLECTED") {
+        if(testBike2.getStatus() == "AVAILABLE" && testBike1.getStatus() == "AVAILABLE" && tempBooking.getDepositStatus() == "ORIGINAL_RETURNED") {
             temp = true;
         }
-        assertEquals( temp,true );
+        assertEquals(temp, true);
     }
     //Test multiple use cases in a single test
     //...
