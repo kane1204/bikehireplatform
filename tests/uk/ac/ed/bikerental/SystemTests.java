@@ -25,10 +25,10 @@ public class SystemTests {
     private String testPartnerShips[];
     private Location testCustomer1Address, testCustomer2Address;
     private Location testCustomer1Accom, testCustomer2Accom;
-    private BikeStore testBikeStore1,testBikeStore2, testBikeStore3;
+    private BikeStore testBikeStore1,testBikeStore2, testBikeStore3, testBikeStore4, testBikeStore5;
     private Bike testBike1, testBike2, testBike3, testBike4, testBike5, testBike6, testBike7,
             testBike8, testBike9;
-    private BikeType testType1, testType2, testType3;
+    private BikeType testType1, testType2, testType3, testType4;
     private Collection<BikeStore> allBikeStores;
     private LocalDate testDate1, testDate2, testDate3, testDate4, testDate5, testDate6, testDate7;
     private DateRange testRange1, testRange2, testRange3, testRange4, testRange5, testRange6;
@@ -69,22 +69,29 @@ public class SystemTests {
                 "01245262525", testCustomer1Accom);
         
         //Test data for different stores
-        testBikeStore1 = new BikeStore("Terrance Store", new Location("EH115LC","123 Hi St"),
+        testBikeStore1 = new BikeStore("Terrance Store", new Location("EH115LC","123 It's Everyday St"),
                 new String[]{"NeverBike"} ) ;
-        testBikeStore2 = new BikeStore("Jeffs Shop", new Location("G42 5AF","123 Hola St"),
+        testBikeStore2 = new BikeStore("Jeffs Shop", new Location("G42 5AF","123 Bro St"),
                 new String[]{""});
-        testBikeStore3 = new BikeStore("NeverBike", new Location("ML5HLC","123 Bye St"),
+        testBikeStore3 = new BikeStore("NeverBike", new Location("ML5HLC","123 With That St"),
                 new String[]{"Terrance Store"} );
+        testBikeStore4 = new BikeStore("Bikes4U", new Location("EH5HLC","123 Disney Channel St"),
+                new String[]{""} );
+        testBikeStore5 = new BikeStore("BestBikes", new Location("EH86GH","123 Flow St"),
+                new String[]{""} );
         
         //Add these stores to the list of all bike stores
         allBikeStores.add(testBikeStore1);
         allBikeStores.add(testBikeStore2);
         allBikeStores.add(testBikeStore3);
+        allBikeStores.add(testBikeStore4);
+        allBikeStores.add(testBikeStore5);
         
         //Test data for different bike types
         testType1 = new BikeType("Road", new BigDecimal("1000"), new BigDecimal("300"));
         testType2 = new BikeType("Mountain", new BigDecimal("1200"), new BigDecimal("300"));
         testType3 = new BikeType("BMX", new BigDecimal("2000"), new BigDecimal("900"));
+        testType4 = new BikeType("Electic", new BigDecimal("5000"), new BigDecimal("1500"));
         
         //Test data for different bike, assigning their type and the date they were new at
         testBike1 = new Bike(testType1,testDate7);
@@ -95,7 +102,7 @@ public class SystemTests {
         testBike6 = new Bike(testType3,testDate7);
         testBike7 = new Bike(testType1,testDate7);
         testBike8 = new Bike(testType2,testDate7);
-        testBike9 = new Bike(testType3,testDate7);
+        testBike9 = new Bike(testType4,testDate7);
         
         //Adding bikes to the stocks of different stores
         testBikeStore1.bikeStock.add(testBike1);
@@ -104,6 +111,9 @@ public class SystemTests {
         testBikeStore3.bikeStock.add(testBike4);
         testBikeStore3.bikeStock.add(testBike5);
         testBikeStore3.bikeStock.add(testBike6);
+        testBikeStore4.bikeStock.add(testBike7);
+        testBikeStore4.bikeStock.add(testBike8);
+        testBikeStore4.bikeStock.add(testBike9);
         
         //Set the valuation policy of different stores
         testBikeStore1.setValuationPolicy("Linear Depreciation"); //extension
@@ -125,41 +135,35 @@ public class SystemTests {
 
     //Test use case 1: Find a quote
     @Test
-    @DisplayName("System Test on Getting 1 Quote, No Bookings")
+    @DisplayName("Getting 1 Quote, No Bookings")
     void GetQuotesNoBookings() {
         //Actual actual results
         Collection<BikeType> queriedBikeTypes = new ArrayList<BikeType>();
-        queriedBikeTypes.add(testType1);
-        
+        queriedBikeTypes.add(testType4);
+
         //Expected query results
         Collection<Bike> expectedBikes = new ArrayList<Bike>();
-        expectedBikes.add(testBike1);
+        expectedBikes.add(testBike9);
         
         ArrayList<Quote> quotesExpected = new ArrayList<Quote>();
-        quotesExpected.add(new Quote("Terrance Store", testBikeStore1, testRange1,
+        quotesExpected.add(new Quote("Bikes4U", testBikeStore4, testRange1,
                 expectedBikes));
                 
         ArrayList<Quote> quotesActual = (ArrayList<Quote>) testCustomer1.getAllQuotes(allBikeStores,
                 queriedBikeTypes, testRange1, testCustomer1Accom);
         
-        //Find the quote (there is only 1 so it is the next quote)
-        Iterator<Quote> quotesActualIterator = quotesActual.iterator();
-        Quote actualQuote = quotesActualIterator.next();
-        
-        //Find the quote (there is only 1 so it is the next quote)
-        Iterator<Quote> quotesExpectedIterator = quotesExpected.iterator();
-        Quote expectedQuote = quotesExpectedIterator.next();
-        
         //Compare the quotes 
-        assertEquals(actualQuote, expectedQuote);
+        assertTrue(quotesExpected.containsAll(quotesActual)
+                && quotesActual.size() == 1
+                && quotesActual.size() == quotesExpected.size());
     }
     
     @Test
-    @DisplayName("System Test on Getting 1 Quote, With Bookings")
+    @DisplayName("Getting 1 Quote, With Bookings")
     void GetQuotesWithBookings() {
         //Book bikes
-        testBike5.addBooking(testRange1);
-        testBike6.addBooking(testRange2);
+        testBike5.addBooking(testRange5);
+        testBike6.addBooking(testRange5);
         
         //Actual actual results
         Collection<BikeType> queriedBikeTypes = new ArrayList<BikeType>();
@@ -177,16 +181,108 @@ public class SystemTests {
                 
         ArrayList<Quote> quotesActual = (ArrayList<Quote>) testCustomer2.getAllQuotes(allBikeStores,
                 queriedBikeTypes, testRange5, testCustomer2Accom);
-          
+        
         //Compare the quotes 
         assertTrue(quotesExpected.containsAll(quotesActual)
                 && quotesActual.size() == 1
                 && quotesActual.size() == quotesExpected.size());
     }
     
+    @Test
+    @DisplayName("Getting Multiple Quotes, With Bookings")
+    void MultipleQuotesWithBookings() {       
+        //Actual actual results
+        Collection<BikeType> queriedBikeTypes = new ArrayList<BikeType>();
+        queriedBikeTypes.add(testType1);
+        queriedBikeTypes.add(testType2);
+
+        //Expected query results
+        Collection<Bike> expectedBikes1 = new ArrayList<Bike>();
+        expectedBikes1.add(testBike1);
+        expectedBikes1.add(testBike2);
+        
+        Collection<Bike> expectedBikes2 = new ArrayList<Bike>();
+        expectedBikes2.add(testBike7);
+        expectedBikes2.add(testBike8);
+        
+        Collection<Bike> expectedBikes3 = new ArrayList<Bike>();
+        expectedBikes3.add(testBike7);
+        expectedBikes3.add(testBike8);
+        
+        ArrayList<Quote> quotesExpected = new ArrayList<Quote>();
+        quotesExpected.add(new Quote("Terrance Store", testBikeStore1, testRange2,
+                expectedBikes1));
+        quotesExpected.add(new Quote("Bikes4U", testBikeStore4, testRange2,
+                expectedBikes2));
+                
+        ArrayList<Quote> quotesActual = (ArrayList<Quote>) testCustomer1.getAllQuotes(allBikeStores,
+                queriedBikeTypes, testRange2, testCustomer1Accom);
+          
+        //Compare the quotes 
+        assertTrue(quotesExpected.containsAll(quotesActual)
+                && quotesActual.size() == 2
+                && quotesExpected.size() == quotesActual.size());
+    }
+    
+    @Test
+    @DisplayName("Getting No Quotes, With Bookings")
+    void NoQuotesNoBookings() {
+        //Book bikes
+        testBike1.addBooking(testRange2);
+        testBike2.addBooking(testRange2);
+        testBike7.addBooking(testRange2);
+        testBike8.addBooking(testRange2);
+        
+        //Actual actual results
+        Collection<BikeType> queriedBikeTypes = new ArrayList<BikeType>();
+        queriedBikeTypes.add(testType1);
+        queriedBikeTypes.add(testType2);
+
+        //Expected query results
+        Collection<Bike> expectedBikes1 = new ArrayList<Bike>();
+        expectedBikes1.add(testBike1);
+        expectedBikes1.add(testBike2);
+        
+        Collection<Bike> expectedBikes2 = new ArrayList<Bike>();
+        expectedBikes2.add(testBike7);
+        expectedBikes2.add(testBike8);
+        
+        Collection<Bike> expectedBikes3 = new ArrayList<Bike>();
+        expectedBikes3.add(testBike7);
+        expectedBikes3.add(testBike8);
+        
+        ArrayList<Quote> quotesExpected = null;
+                
+        ArrayList<Quote> quotesActual = (ArrayList<Quote>) testCustomer1.getAllQuotes(allBikeStores,
+                queriedBikeTypes, testRange2, testCustomer1Accom);
+          
+        //Compare the quotes 
+        assertEquals(quotesActual, quotesExpected);
+    }
+    
+    @Test
+    @DisplayName("Getting No Quotes, Not Near to a Store")
+    void NoQuotesNotNear() {       
+      //Actual actual results
+        Collection<BikeType> queriedBikeTypes = new ArrayList<BikeType>();
+        queriedBikeTypes.add(testType4);
+
+        //Expected query results
+        Collection<Bike> expectedBikes = new ArrayList<Bike>();
+        expectedBikes.add(testBike9);
+        
+        ArrayList<Quote> quotesExpected = null;
+                
+        ArrayList<Quote> quotesActual = (ArrayList<Quote>) testCustomer2.getAllQuotes(allBikeStores,
+                queriedBikeTypes, testRange1, testCustomer2Accom); //customer 2's acomm not near
+        
+        //Compare the quotes 
+        assertEquals(quotesActual, quotesExpected);
+    }
+
     //Test use case 2: Book a quote
     @Test
-    @DisplayName("System Test on Booking Quotes w/out Delivery")
+    @DisplayName("Booking Quotes w/out Delivery")
     void BookNoDelivery() {
         //Queried Bikes
         Collection<Bike> quoteBikes = new ArrayList<Bike>();
@@ -208,7 +304,7 @@ public class SystemTests {
     }
     
     @Test
-    @DisplayName("System Test on Booking Quotes w/ Delivery")
+    @DisplayName("Booking Quotes w/ Delivery")
     void BookWithDelivery() {
         //Queried bikes
         Collection<Bike> quoteBikes = new ArrayList<Bike>();
