@@ -406,7 +406,65 @@ public class SystemTests {
         assertEquals(tempBooking.getDepositStatus(), "ORIGINAL_RETURNED");
     }
     
-    
+    @Test
+    @DisplayName("Getting Multiple Quotes, then Book one")
+    void requestQuoteThenBook() {       
+        //Actual actual results
+        Collection<BikeType> queriedBikeTypes = new ArrayList<BikeType>();
+        queriedBikeTypes.add(testType1);
+        queriedBikeTypes.add(testType2);
+
+        //Expected query results
+        Collection<Bike> expectedBikes1 = new ArrayList<Bike>();
+        expectedBikes1.add(testBike1);
+        expectedBikes1.add(testBike2);
+        
+        Collection<Bike> expectedBikes2 = new ArrayList<Bike>();
+        expectedBikes2.add(testBike7);
+        expectedBikes2.add(testBike8);
+        
+        Collection<Bike> expectedBikes3 = new ArrayList<Bike>();
+        expectedBikes3.add(testBike7);
+        expectedBikes3.add(testBike8);
+        
+        ArrayList<Quote> quotesExpected = new ArrayList<Quote>();
+        quotesExpected.add(new Quote("Terrance Store", testBikeStore1, testRange2,
+                expectedBikes1));
+        quotesExpected.add(new Quote("Bikes4U", testBikeStore4, testRange2,
+                expectedBikes2));
+                
+        ArrayList<Quote> quotesActual = (ArrayList<Quote>) testCustomer1.getAllQuotes(allBikeStores,
+                queriedBikeTypes, testRange2, testCustomer1Accom);
+          
+        //Compare the quotes 
+        assertTrue(quotesExpected.containsAll(quotesActual)
+                && quotesActual.size() == 2
+                && quotesExpected.size() == quotesActual.size());
+        
+        //chooses the terrance store and books without delivery
+        Quote wantedQuote = null;
+        Iterator<Quote> quoteIterator = quotesActual.iterator();
+        while(quoteIterator.hasNext()) {
+            Quote tempQuote = quoteIterator.next();
+            if(tempQuote.providerName == "Terrance Store") {
+                //System.out.println("hiii");
+                wantedQuote = tempQuote;
+            }
+        }
+        
+      //Actual Booking
+        Booking returnedBooking = testCustomer1.bookQuote(wantedQuote, false);
+        
+        //Expected booking
+        Booking expBooking = new Booking(testCustomer1, testBikeStore1, testRange2, expectedBikes1, 0,
+                false, new BigDecimal("880.00"), new BigDecimal("88.00"));
+        
+        //Compare the returned booking with the expected booking
+        assertEquals(returnedBooking, expBooking);
+        
+        
+        
+    }
     //Test multiple use cases in a single test
     //...
 }
