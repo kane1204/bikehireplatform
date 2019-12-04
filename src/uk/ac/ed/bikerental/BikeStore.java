@@ -108,13 +108,13 @@ public class BikeStore {
         // input validation if the reference exists
         assert ref < Booking.BOOKINGS;
        
-        //partner store enters booking ref and finds the oringal store
+        //partner store enters booking ref and finds the original store
         //if it isnt found then exit
         Iterator<Booking> allBookingsIterator = Booking.ALLBOOKINGS.iterator();
         while(allBookingsIterator.hasNext()) {
             Booking tempBooking = allBookingsIterator.next();
             if(tempBooking.store.equals(this)) {
-                if(tempBooking.ref == ref ) {
+                if(tempBooking.ref == ref) {
                     tempBooking.depositInDelivery();
                     tempBooking.bikesReturned();
                 } else {
