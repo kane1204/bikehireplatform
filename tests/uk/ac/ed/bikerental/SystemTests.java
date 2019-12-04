@@ -442,18 +442,17 @@ public class SystemTests {
                 && quotesActual.size() == 2
                 && quotesExpected.size() == quotesActual.size());
         
-        //chooses the terrance store and books without delivery
+        //Chooses the Terrance store and books without delivery
         Quote wantedQuote = null;
         Iterator<Quote> quoteIterator = quotesActual.iterator();
         while(quoteIterator.hasNext()) {
             Quote tempQuote = quoteIterator.next();
             if(tempQuote.providerName == "Terrance Store") {
-                //System.out.println("hiii");
                 wantedQuote = tempQuote;
             }
         }
         
-      //Actual Booking
+        //Actual Booking
         Booking returnedBooking = testCustomer1.bookQuote(wantedQuote, false);
         
         //Expected booking
@@ -462,10 +461,5 @@ public class SystemTests {
         
         //Compare the returned booking with the expected booking
         assertEquals(returnedBooking, expBooking);
-        
-        
-        
     }
-    //Test multiple use cases in a single test
-    //...
 }
