@@ -6,11 +6,12 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.*;
 
 public class ValuationPolicyTests {
-    // You can add attributes here
+    // Attributes to be set up
     private Bike testbike;
     private BikeType testBikeType;
     private LinearDepreciation ld;
     private DoubleDecline dd;
+    
     /*
      * Set Up:
      * Create objects for a bike, a bike type and the 2 types of depreciation.

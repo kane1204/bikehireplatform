@@ -263,7 +263,7 @@ public class SystemTests {
     @Test
     @DisplayName("Getting No Quotes, Not Near to a Store")
     void NoQuotesNotNear() {       
-      //Actual actual results
+        //Actual actual results
         Collection<BikeType> queriedBikeTypes = new ArrayList<BikeType>();
         queriedBikeTypes.add(testType4);
 
